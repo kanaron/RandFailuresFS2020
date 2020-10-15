@@ -9,9 +9,12 @@ using Microsoft.FlightSimulator.SimConnect;
 
 namespace RandFailuresFS2020
 {
-    public interface ISimCon
+    interface ISimCon
     {
-
+        void Connect(IntPtr _hWnd);
+        void Disconnect();
+        void updateData();
+        void setValue();
     }
 
     class Simcon : ISimCon
@@ -19,6 +22,8 @@ namespace RandFailuresFS2020
         public const int WM_USER_SIMCONNECT = 0x0402;
         private IntPtr m_hWnd = new IntPtr(0);
         private SimConnect simconnect = null;
+
+        public Simcon() { }
 
         enum DEFINITIONS
         {
@@ -50,16 +55,11 @@ namespace RandFailuresFS2020
             simconnect?.ReceiveMessage();
         }
 
-        public void SetWindowHandle(IntPtr _hWnd)
-        {
-            m_hWnd = _hWnd;
-        }
-
         public void Disconnect()
         {
             Console.WriteLine("Disconnect");
 
-            m_oTimer.Stop();
+            //m_oTimer.Stop();
 
             if (simconnect != null)
             {
@@ -69,14 +69,16 @@ namespace RandFailuresFS2020
             }
         }
 
-        private void Connect()
+        public void Connect(IntPtr _hWnd)
         {
             Console.WriteLine("Connect");
+
+            m_hWnd = _hWnd;
 
             try
             {
                 /// The constructor is similar to SimConnect_Open in the native API
-                simconnect = new SimConnect("RandFailuresFS2020", m_h/Wnd, WM_USER_SIMCONNECT, null, 0);
+                simconnect = new SimConnect("RandFailuresFS2020", m_hWnd, WM_USER_SIMCONNECT, null, 0);
 
                 /// Listen to connect and quit msgs
                 simconnect.OnRecvOpen += new SimConnect.RecvOpenEventHandler(SimConnect_OnRecvOpen);
@@ -84,6 +86,8 @@ namespace RandFailuresFS2020
 
                 /// Listen to exceptions
                 simconnect.OnRecvException += new SimConnect.RecvExceptionEventHandler(SimConnect_OnRecvException);
+
+                initData();
 
                 /// Catch a simobject data request
                 simconnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(SimConnect_OnRecvSimobjectDataBytype);
@@ -94,12 +98,19 @@ namespace RandFailuresFS2020
             }
         }
 
+        void initData()
+        {
+            simconnect.AddToDataDefinition(DEFINITIONS.engine, "ENG ON FIRE:1", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+
+            simconnect.RegisterDataDefineStruct<engine>(DEFINITIONS.engine);
+        }
+
         private void SimConnect_OnRecvOpen(SimConnect sender, SIMCONNECT_RECV_OPEN data)
         {
             Console.WriteLine("SimConnect_OnRecvOpen");
             Console.WriteLine("Connected to KH");
 
-            m_oTimer.Start();
+            //m_oTimer.Start();
         }
 
         /// The case where the user closes game
@@ -116,7 +127,7 @@ namespace RandFailuresFS2020
             SIMCONNECT_EXCEPTION eException = (SIMCONNECT_EXCEPTION)data.dwException;
             Console.WriteLine("SimConnect_OnRecvException: " + eException.ToString());
 
-            lErrorMessages.Add("SimConnect : " + eException.ToString());
+            //lErrorMessages.Add("SimConnect : " + eException.ToString());
         }
 
         public engine eng;
@@ -169,6 +180,16 @@ namespace RandFailuresFS2020
             }
         }
 
+        public void updateData()
+        {
+            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_1, DEFINITIONS.engine, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+        }
+
+        public void setValue()
+        {
+            eng.fire = 1;
+            simconnect.SetDataOnSimObject(DEFINITIONS.engine, 0,0, eng);
+        }
 
     }
 }

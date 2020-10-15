@@ -19,7 +19,9 @@ namespace RandFailuresFS2020
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-
+            ISimCon oSimCon = new Simcon();
+            //HwndSource h = PresentationSource.FromVisual(this) as HwndSource;
+            oSimCon.Connect(this.Handle);
         }
     }
 }
