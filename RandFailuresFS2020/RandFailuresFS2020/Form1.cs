@@ -12,6 +12,8 @@ namespace RandFailuresFS2020
 {
     public partial class Form1 : Form
     {
+        ISimCon oSimCon;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,9 +21,14 @@ namespace RandFailuresFS2020
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            ISimCon oSimCon = new Simcon();
-            //HwndSource h = PresentationSource.FromVisual(this) as HwndSource;
+            oSimCon = new Simcon();
             oSimCon.Connect(this.Handle);
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            oSimCon.updateData();
+            oSimCon.setValue();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace RandFailuresFS2020
 
         enum EVENTS
         {
-            
+
         };
 
         public struct engine
@@ -45,14 +45,15 @@ namespace RandFailuresFS2020
             public double fire;
         };
 
-        public int GetUserSimConnectWinEvent()
+        public void updateData()
         {
-            return WM_USER_SIMCONNECT;
+            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_1, DEFINITIONS.engine, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
         }
 
-        public void ReceiveSimConnectMessage()
+        public void setValue()
         {
-            simconnect?.ReceiveMessage();
+            eng.fire = 1;
+            simconnect.SetDataOnSimObject(DEFINITIONS.engine, 0, 0, eng);
         }
 
         public void Disconnect()
@@ -96,6 +97,17 @@ namespace RandFailuresFS2020
             {
                 Console.WriteLine("Connection to KH failed: " + ex.Message);
             }
+        }
+
+
+        public int GetUserSimConnectWinEvent()
+        {
+            return WM_USER_SIMCONNECT;
+        }
+
+        public void ReceiveSimConnectMessage()
+        {
+            simconnect?.ReceiveMessage();
         }
 
         void initData()
@@ -179,17 +191,5 @@ namespace RandFailuresFS2020
                     break;
             }
         }
-
-        public void updateData()
-        {
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_1, DEFINITIONS.engine, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-        }
-
-        public void setValue()
-        {
-            eng.fire = 1;
-            simconnect.SetDataOnSimObject(DEFINITIONS.engine, 0,0, eng);
-        }
-
     }
 }
