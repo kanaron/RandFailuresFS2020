@@ -6,54 +6,140 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
 using Microsoft.FlightSimulator.SimConnect;
+using System.Windows.Threading;
 
 namespace RandFailuresFS2020
 {
     interface ISimCon
     {
-        void Connect(IntPtr _hWnd);
+        void Connect();
         void Disconnect();
-        void updateData();
-        void setValue();
+        void UpdateData();
+        void SetValue();
+
+        SimConnect GetSimConnect();
     }
+
+    enum DEFINITIONS
+    {
+        Simulation, Engine, Aviation, Electrical
+    }
+
+    enum DATA_REQ
+    {
+        REQ_1, REQ_2, REQ_3, REQ_4
+    };
+
+    enum EVENTS
+    {
+
+    };
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+    public struct Simulation
+    {
+        public double OnGround;
+    };
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+    public struct Engine
+    {
+        public double fire;
+        public double rpm;
+        public double OnGround;
+    };
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+    public struct Aviation
+    {
+        public double leftFlap;
+        public double rightFlap;
+    };
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+    public struct Electrical
+    {
+        public double batteryMaster;
+    };
+
 
     class Simcon : ISimCon
     {
         public const int WM_USER_SIMCONNECT = 0x0402;
         private IntPtr m_hWnd = new IntPtr(0);
         private SimConnect simconnect = null;
+        private DispatcherTimer GroundTimer;
+        private DispatcherTimer ContinTimer;
+        public Engine eng;
+        public Simulation sim;
+        public Aviation avi;
+        public Electrical ele;
 
-        public Simcon() { }
 
-        enum DEFINITIONS
+        public void UpdateData()
         {
-            engine
+            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_1, DEFINITIONS.Simulation, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_2, DEFINITIONS.Engine, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_3, DEFINITIONS.Aviation, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_4, DEFINITIONS.Electrical, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+
         }
 
-        enum DATA_REQ
+        public void SetValue()
         {
-            REQ_1
-        };
-
-        enum EVENTS
-        {
-
-        };
-
-        public struct engine
-        {
-            public double fire;
-        };
-
-        public void updateData()
-        {
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_1, DEFINITIONS.engine, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+            Console.WriteLine("sim" + sim.OnGround);
+            Console.WriteLine((int)sim.OnGround);
+            if ((int)sim.OnGround == 0)
+            {
+                eng.fire = 1;
+                simconnect.SetDataOnSimObject(DEFINITIONS.Engine, 0, 0, eng);
+            }
         }
 
-        public void setValue()
+        private void OnTickGround(object sender, EventArgs e)
         {
-            eng.fire = 1;
-            simconnect.SetDataOnSimObject(DEFINITIONS.engine, 0, 0, eng);
+            UpdateData();
+            SetValue();
+        }
+
+        private void OnTickContin(object sender, EventArgs e)
+        {
+            avi.leftFlap = 0.5;
+            simconnect.SetDataOnSimObject(DEFINITIONS.Aviation, 0, 0, avi);
+        }
+
+        void InitData()
+        {
+            simconnect.AddToDataDefinition(DEFINITIONS.Simulation, "SIM ON GROUND", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+
+            simconnect.AddToDataDefinition(DEFINITIONS.Engine, "ENG ON FIRE:1", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            simconnect.AddToDataDefinition(DEFINITIONS.Engine, "GENERAL ENG OIL TEMPERATURE:1", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            simconnect.AddToDataDefinition(DEFINITIONS.Engine, "SIM ON GROUND", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+
+            simconnect.AddToDataDefinition(DEFINITIONS.Aviation, "TRAILING EDGE FLAPS LEFT PERCENT", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            simconnect.AddToDataDefinition(DEFINITIONS.Aviation, "TRAILING EDGE FLAPS RIGHT PERCENT", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+
+            simconnect.AddToDataDefinition(DEFINITIONS.Electrical, "ELECTRICAL MASTER BATTERY", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+
+            simconnect.RegisterDataDefineStruct<Simulation>(DEFINITIONS.Simulation);
+            simconnect.RegisterDataDefineStruct<Engine>(DEFINITIONS.Engine);
+            simconnect.RegisterDataDefineStruct<Aviation>(DEFINITIONS.Aviation);
+            simconnect.RegisterDataDefineStruct<Electrical>(DEFINITIONS.Electrical);
+
+        }
+
+
+        public Simcon(IntPtr _hWnd)
+        {
+            GroundTimer = new DispatcherTimer();
+            GroundTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            GroundTimer.Tick += new EventHandler(OnTickGround);
+
+            ContinTimer = new DispatcherTimer();
+            ContinTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            ContinTimer.Tick += new EventHandler(OnTickContin);
+
+            m_hWnd = _hWnd;
         }
 
         public void Disconnect()
@@ -70,11 +156,9 @@ namespace RandFailuresFS2020
             }
         }
 
-        public void Connect(IntPtr _hWnd)
+        public void Connect()
         {
             Console.WriteLine("Connect");
-
-            m_hWnd = _hWnd;
 
             try
             {
@@ -88,17 +172,21 @@ namespace RandFailuresFS2020
                 /// Listen to exceptions
                 simconnect.OnRecvException += new SimConnect.RecvExceptionEventHandler(SimConnect_OnRecvException);
 
-                initData();
+                InitData();
 
                 /// Catch a simobject data request
                 simconnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(SimConnect_OnRecvSimobjectDataBytype);
+
+                UpdateData();
+
+                GroundTimer.Start();
+                ContinTimer.Start();
             }
             catch (COMException ex)
             {
                 Console.WriteLine("Connection to KH failed: " + ex.Message);
             }
-        }
-
+        }  
 
         public int GetUserSimConnectWinEvent()
         {
@@ -108,14 +196,7 @@ namespace RandFailuresFS2020
         public void ReceiveSimConnectMessage()
         {
             simconnect?.ReceiveMessage();
-        }
-
-        void initData()
-        {
-            simconnect.AddToDataDefinition(DEFINITIONS.engine, "ENG ON FIRE:1", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-
-            simconnect.RegisterDataDefineStruct<engine>(DEFINITIONS.engine);
-        }
+        } 
 
         private void SimConnect_OnRecvOpen(SimConnect sender, SIMCONNECT_RECV_OPEN data)
         {
@@ -142,36 +223,38 @@ namespace RandFailuresFS2020
             //lErrorMessages.Add("SimConnect : " + eException.ToString());
         }
 
-        public engine eng;
+        public SimConnect GetSimConnect()
+        {
+            return simconnect;
+        }
 
         private void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
         {
-            Console.WriteLine("SimConnect_OnRecvSimobjectDataBytype");
+            //Console.WriteLine("SimConnect_OnRecvSimobjectDataBytype");
 
             switch ((DATA_REQ)data.dwRequestID)
             {
                 case DATA_REQ.REQ_1:
                     {
-                        eng = (engine)data.dwData[0];
-
+                        sim = (Simulation)data.dwData[0];
                         break;
                     }
-                /*case DATA_REQ.REQ_2:
+                case DATA_REQ.REQ_2:
                     {
-                        lp2 = (leftP)data.dwData[0];
+                        eng = (Engine)data.dwData[0];
                         break;
                     }
                 case DATA_REQ.REQ_3:
                     {
-                        gps3 = (gps)data.dwData[0];
+                        avi = (Aviation)data.dwData[0];
                         break;
                     }
                 case DATA_REQ.REQ_4:
                     {
-                        cdp4 = (cdp)data.dwData[0];
+                        ele = (Electrical)data.dwData[0];
                         break;
                     }
-                case DATA_REQ.REQ_5:
+                /*case DATA_REQ.REQ_5:
                     {
                         ra5 = (radio)data.dwData[0];
                         break;
@@ -187,7 +270,7 @@ namespace RandFailuresFS2020
                         break;
                     }*/
                 default:
-                    //displayText("Unknown request ID: " + data.dwRequestID);
+                    Console.WriteLine("Unknown request ID: " + data.dwRequestID);
                     break;
             }
         }

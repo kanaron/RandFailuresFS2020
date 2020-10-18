@@ -12,7 +12,7 @@ namespace RandFailuresFS2020
 {
     public partial class Form1 : Form
     {
-        ISimCon oSimCon;
+        ISimCon oSimCon = null;
 
         public Form1()
         {
@@ -21,14 +21,24 @@ namespace RandFailuresFS2020
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            oSimCon = new Simcon();
-            oSimCon.Connect(this.Handle);
+            oSimCon = new Simcon(this.Handle);
+            oSimCon.Connect();
         }
 
-        private void btnTest_Click(object sender, EventArgs e)
+        protected override void DefWndProc(ref Message m)
         {
-            oSimCon.updateData();
-            oSimCon.setValue();
+            if (m.Msg == 0x402)
+            {
+                if (oSimCon.GetSimConnect() != null)
+                {
+                    oSimCon.GetSimConnect().ReceiveMessage();
+                    //simconnect.ReceiveMessage();
+                }
+            }
+            else
+            {
+                base.DefWndProc(ref m);
+            }
         }
     }
 }
