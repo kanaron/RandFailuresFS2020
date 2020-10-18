@@ -32,13 +32,17 @@ namespace RandFailuresFS2020
                 if (oSimCon.GetSimConnect() != null)
                 {
                     oSimCon.GetSimConnect().ReceiveMessage();
-                    //simconnect.ReceiveMessage();
                 }
             }
             else
             {
                 base.DefWndProc(ref m);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            oSimCon.SetValue();
         }
     }
 }
