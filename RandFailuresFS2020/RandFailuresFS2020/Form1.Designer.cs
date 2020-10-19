@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.btnConnect = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.fLeftFlap = new System.Windows.Forms.NumericUpDown();
+            this.fRightFlap = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.fLeftFlap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fRightFlap)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(26, 12);
+            this.btnConnect.Location = new System.Drawing.Point(109, 12);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(75, 23);
             this.btnConnect.TabIndex = 0;
@@ -42,25 +45,42 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // button1
+            // fLeftFlap
             // 
-            this.button1.Location = new System.Drawing.Point(171, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.fLeftFlap.Location = new System.Drawing.Point(59, 50);
+            this.fLeftFlap.Name = "fLeftFlap";
+            this.fLeftFlap.Size = new System.Drawing.Size(42, 20);
+            this.fLeftFlap.TabIndex = 1;
+            this.fLeftFlap.Value = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            // 
+            // fRightFlap
+            // 
+            this.fRightFlap.Location = new System.Drawing.Point(59, 76);
+            this.fRightFlap.Name = "fRightFlap";
+            this.fRightFlap.Size = new System.Drawing.Size(42, 20);
+            this.fRightFlap.TabIndex = 2;
+            this.fRightFlap.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(273, 88);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(273, 215);
+            this.Controls.Add(this.fRightFlap);
+            this.Controls.Add(this.fLeftFlap);
             this.Controls.Add(this.btnConnect);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.fLeftFlap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fRightFlap)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -68,7 +88,8 @@
         #endregion
 
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown fLeftFlap;
+        private System.Windows.Forms.NumericUpDown fRightFlap;
     }
 }
 

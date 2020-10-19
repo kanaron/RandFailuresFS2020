@@ -21,7 +21,7 @@ namespace RandFailuresFS2020
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            oSimCon = new Simcon(this.Handle);
+            oSimCon = new Simcon(this);
             oSimCon.Connect();
         }
 

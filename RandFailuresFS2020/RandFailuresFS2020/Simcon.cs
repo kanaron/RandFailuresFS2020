@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-
 using Microsoft.FlightSimulator.SimConnect;
 using System.Windows.Threading;
+using System.Windows.Forms;
 
 namespace RandFailuresFS2020
 {
@@ -16,84 +16,42 @@ namespace RandFailuresFS2020
         void Disconnect();
         void UpdateData();
         void SetValue();
-
         SimConnect GetSimConnect();
     }
 
-    enum DEFINITIONS
+    public enum DEFINITION
     {
-        Simulation, Engine1, Engine2, Engine3, Engine4, Aviation, Electrical, Fuel
-    }
-
-    enum DATA_REQ
-    {
-        REQ_1, REQ_2, REQ_3, REQ_4, REQ_5, REQ_6, REQ_7, REQ_8
+        Dummy = 0
     };
 
-    enum EVENTS
+    public enum REQUEST
     {
-
+        Dummy = 0
     };
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Simulation
+    public class SimVar
     {
-        public double OnGround;
-        public double noEngines;
-        public double altitude;
-    };
+        public DEFINITION eDef = DEFINITION.Dummy;
+        public REQUEST eRequest = REQUEST.Dummy;
+        public string sName;
+        public double dValue;
+        public string sUnits;
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Engine1
-    {
-        public double fire;
-        public double coolantReservoir;
-        public double turbocharger;
-    };
+        public string controlName;
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Engine2
-    {
-        public double fire;
-        public double coolantReservoir;
-        public double turbocharger;
-    };
+        public double failureChance;
+        public bool willFail;
+        public int failureHeight;
+        public int failureTime;
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Engine3
-    {
-        public double fire;
-        public double coolantReservoir;
-        public double turbocharger;
-    };
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Engine4
-    {
-        public double fire;
-        public double coolantReservoir;
-        public double turbocharger;
-    };
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Aviation
-    {
-        public double leftFlap;
-        public double rightFlap;
-    };
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Electrical
-    {
-        public double batteryMaster;
-    };
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Fuel
-    {
-        public double fuelCentral;
-        public double fuelLeft;
-        public double fuelRight;
+        public SimVar(int id, string _name, string _cname, string _unit = "Number")
+        {
+            eDef = (DEFINITION)id;
+            eRequest = (REQUEST)id;
+            sName = _name;
+            sUnits = _unit;
+            controlName = _cname;
+        }
     };
 
 
@@ -104,36 +62,27 @@ namespace RandFailuresFS2020
         private SimConnect simconnect = null;
         private DispatcherTimer GroundTimer;
         private DispatcherTimer ContinTimer;
-        public Engine1 eng1;
-        public Engine2 eng2;
-        public Engine3 eng3;
-        public Engine4 eng4;
-        public Simulation sim;
-        public Aviation avi;
-        public Electrical ele;
-        public Fuel fuel;
+        public List<SimVar> lSimVars;
+        public Form1 f1;
 
         public void UpdateData()
         {
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_1, DEFINITIONS.Simulation, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_2, DEFINITIONS.Engine1, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_3, DEFINITIONS.Engine2, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_4, DEFINITIONS.Engine3, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_5, DEFINITIONS.Engine4, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_6, DEFINITIONS.Aviation, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_7, DEFINITIONS.Electrical, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-            simconnect.RequestDataOnSimObjectType(DATA_REQ.REQ_8, DEFINITIONS.Fuel, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+            foreach (SimVar s in lSimVars)
+            {
+                simconnect.RequestDataOnSimObjectType(s.eRequest, s.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+                Console.WriteLine(s.sName + " " + s.dValue + " " + s.controlName + " " + s.failureChance);
+            }
         }
 
         public void SetValue()
         {
-            Console.WriteLine(sim.altitude * 3);
+            /*Console.WriteLine(sim.altitude * 3);
             if (sim.altitude * 3 >= 3000)
             {
                 eng2.turbocharger = 1;
             }
 
-            simconnect.SetDataOnSimObject(DEFINITIONS.Engine2, 0, 0, eng2);
+            simconnect.SetDataOnSimObject(DEFINITIONS.Engine2, 0, 0, eng2);*/
         }
 
         private void OnTickGround(object sender, EventArgs e)
@@ -144,44 +93,42 @@ namespace RandFailuresFS2020
 
         private void OnTickContin(object sender, EventArgs e)
         {
-            avi.leftFlap = 0.5;
+            //avi.leftFlap = 0.5;
             //simconnect.SetDataOnSimObject(DEFINITIONS.Aviation, 0, 0, avi);
         }
 
         void InitData()
         {
-            simconnect.AddToDataDefinition(DEFINITIONS.Simulation, "SIM ON GROUND", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-            simconnect.AddToDataDefinition(DEFINITIONS.Simulation, "NUMBER OF ENGINES", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-            simconnect.AddToDataDefinition(DEFINITIONS.Simulation, "PLANE ALTITUDE", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            createRegister(new SimVar(lSimVars.Count(), "PLANE ALTITUDE", "", "Feet"));
+            createRegister(new SimVar(lSimVars.Count(), "SIM ON GROUND", ""));
+            createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS LEFT PERCENT", "fLeftFlap"));
+            createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS RIGHT PERCENT", "fRightFlap"));
+            createRegister(new SimVar(lSimVars.Count(), "ELECTRICAL MASTER BATTERY", ""));
+            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK CENTER QUANTITY", ""));
+            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK LEFT MAIN QUANTITY", ""));
+            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK RIGHT MAIN QUANTITY", ""));
 
             for (int i = 0; i < 4; i++)
             {
-                simconnect.AddToDataDefinition((DEFINITIONS)(i + 1), "ENG ON FIRE:" + (i + 1), "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-                simconnect.AddToDataDefinition((DEFINITIONS)(i + 1), "RECIP ENG COOLANT RESERVOIR PERCENT:" + (i + 1), "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-                simconnect.AddToDataDefinition((DEFINITIONS)(i + 1), "RECIP ENG TURBOCHARGER FAILED:" + (i + 1), "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+                createRegister(new SimVar(lSimVars.Count(), "ENG ON FIRE: " + (i + 1), ""));
+                createRegister(new SimVar(lSimVars.Count(), "RECIP ENG COOLANT RESERVOIR PERCENT:" + (i + 1), ""));
+                createRegister(new SimVar(lSimVars.Count(), "RECIP ENG TURBOCHARGER FAILED:" + (i + 1), ""));
             }
+        }
 
-            simconnect.AddToDataDefinition(DEFINITIONS.Aviation, "TRAILING EDGE FLAPS LEFT PERCENT", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-            simconnect.AddToDataDefinition(DEFINITIONS.Aviation, "TRAILING EDGE FLAPS RIGHT PERCENT", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+        void createRegister(SimVar temp)
+        {
+            simconnect.AddToDataDefinition(temp.eDef, temp.sName, temp.sUnits, SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            simconnect.RegisterDataDefineStruct<double>(temp.eDef);
 
-            simconnect.AddToDataDefinition(DEFINITIONS.Electrical, "ELECTRICAL MASTER BATTERY", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            if (temp.controlName != "")
+                temp.failureChance = (double)((NumericUpDown)(f1.Controls[temp.controlName])).Value;
 
-            simconnect.AddToDataDefinition(DEFINITIONS.Fuel, "FUEL TANK CENTER QUANTITY", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-            simconnect.AddToDataDefinition(DEFINITIONS.Fuel, "FUEL TANK LEFT MAIN QUANTITY", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-            simconnect.AddToDataDefinition(DEFINITIONS.Fuel, "FUEL TANK RIGHT MAIN QUANTITY", "Number", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-
-            simconnect.RegisterDataDefineStruct<Simulation>(DEFINITIONS.Simulation);
-            simconnect.RegisterDataDefineStruct<Engine1>(DEFINITIONS.Engine1);
-            simconnect.RegisterDataDefineStruct<Engine2>(DEFINITIONS.Engine2);
-            simconnect.RegisterDataDefineStruct<Engine3>(DEFINITIONS.Engine3);
-            simconnect.RegisterDataDefineStruct<Engine4>(DEFINITIONS.Engine4);
-            simconnect.RegisterDataDefineStruct<Aviation>(DEFINITIONS.Aviation);
-            simconnect.RegisterDataDefineStruct<Electrical>(DEFINITIONS.Electrical);
-            simconnect.RegisterDataDefineStruct<Fuel>(DEFINITIONS.Fuel);
+            lSimVars.Add(temp);
         }
 
 
-        public Simcon(IntPtr _hWnd)
+        public Simcon(Form1 form)
         {
             GroundTimer = new DispatcherTimer();
             GroundTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
@@ -191,14 +138,11 @@ namespace RandFailuresFS2020
             ContinTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             ContinTimer.Tick += new EventHandler(OnTickContin);
 
-            m_hWnd = _hWnd;
+            m_hWnd = form.Handle;
 
-            prepareFailures();
-        }
+            lSimVars = new List<SimVar>();
 
-        void prepareFailures()
-        {
-
+            f1 = form;
         }
 
         public void Disconnect()
@@ -247,6 +191,21 @@ namespace RandFailuresFS2020
             }
         }
 
+        private void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
+        {
+            uint iRequest = data.dwRequestID;
+            //uint iObject = data.dwObjectID;
+
+            foreach (SimVar oSimvarRequest in lSimVars)
+            {
+                if (iRequest == (uint)oSimvarRequest.eRequest)
+                {
+                    double dValue = (double)data.dwData[0];
+                    oSimvarRequest.dValue = dValue;
+                }
+            }
+        }
+
         public int GetUserSimConnectWinEvent()
         {
             return WM_USER_SIMCONNECT;
@@ -284,58 +243,6 @@ namespace RandFailuresFS2020
         public SimConnect GetSimConnect()
         {
             return simconnect;
-        }
-
-        private void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
-        {
-            //Console.WriteLine("SimConnect_OnRecvSimobjectDataBytype");
-
-            switch ((DATA_REQ)data.dwRequestID)
-            {
-                case DATA_REQ.REQ_1:
-                    {
-                        sim = (Simulation)data.dwData[0];
-                        break;
-                    }
-                case DATA_REQ.REQ_2:
-                    {
-                        eng1 = (Engine1)data.dwData[0];
-                        break;
-                    }
-                case DATA_REQ.REQ_3:
-                    {
-                        eng2 = (Engine2)data.dwData[0];
-                        break;
-                    }
-                case DATA_REQ.REQ_4:
-                    {
-                        eng3 = (Engine3)data.dwData[0];
-                        break;
-                    }
-                case DATA_REQ.REQ_5:
-                    {
-                        eng4 = (Engine4)data.dwData[0];
-                        break;
-                    }
-                case DATA_REQ.REQ_6:
-                    {
-                        avi = (Aviation)data.dwData[0];
-                        break;
-                    }
-                case DATA_REQ.REQ_7:
-                    {
-                        ele = (Electrical)data.dwData[0];
-                        break;
-                    }
-                case DATA_REQ.REQ_8:
-                    {
-                        fuel = (Fuel)data.dwData[0];
-                        break;
-                    }
-                default:
-                    Console.WriteLine("Unknown request ID: " + data.dwRequestID);
-                    break;
-            }
         }
     }
 }
