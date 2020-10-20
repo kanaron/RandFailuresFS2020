@@ -21,6 +21,7 @@ namespace RandFailuresFS2020
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show(GetAll(this, typeof(NumericUpDown)).Count().ToString());
             oSimCon = new Simcon(this);
             oSimCon.Connect();
         }
@@ -43,6 +44,16 @@ namespace RandFailuresFS2020
         private void button1_Click(object sender, EventArgs e)
         {
             oSimCon.SetValue();
+        }
+
+        private void btnFailList_Click(object sender, EventArgs e)
+        {
+            List<SimVar> failList = oSimCon.getFailList();
+
+            foreach (SimVar s in failList)
+            {
+                richTextBox1.Text += s.sName + " " + s.whenFail + " " + s.failureHeight + " " + s.failureTime + "\n";
+            }
         }
     }
 }
