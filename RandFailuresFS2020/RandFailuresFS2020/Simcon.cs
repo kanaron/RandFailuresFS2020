@@ -10,13 +10,22 @@ namespace RandFailuresFS2020
 {
     interface ISimCon
     {
-        void Connect();
-        void Disconnect();
+        string Connect();
+        string Disconnect();
         void UpdateData();
-        void SetValue();
+        void prepareFailures();
         SimConnect GetSimConnect();
         List<SimVar> getFailList();
+        void setMaxAlt(int a);
+        void setMaxTime(int t);
+        void setMaxNoFails(int f);
+        void stopTimers();
     }
+
+    enum GROUP
+    {
+        ID_PRIORITY_STANDARD = 1900000000,
+    };
 
     public enum DEFINITION
     {
@@ -46,6 +55,8 @@ namespace RandFailuresFS2020
     {
         public DEFINITION eDef = DEFINITION.Dummy;
         public REQUEST eRequest = REQUEST.Dummy;
+        public EVENT eEvent = EVENT.Dummy;
+        public bool isEvent = false;
         public string sName;
         public double dValue;
         public string sUnits;
@@ -61,19 +72,34 @@ namespace RandFailuresFS2020
         public bool done = false;
         public bool failStart = false;
 
+        private Random rnd;
+
+
         public SimVar(int id, string _name, string _cname, POSSIBLE_FAIL_TYPE ptype, string _unit = "Number")
         {
             //MessageBox.Show(id.ToString());
             eDef = (DEFINITION)id;
             eRequest = (REQUEST)id;
+            isEvent = false;
             sName = _name;
             sUnits = _unit;
             controlName = _cname;
             possibleType = ptype;
         }
 
-        public void setFail()
+        public SimVar(string _name, string _cname, POSSIBLE_FAIL_TYPE ptype = POSSIBLE_FAIL_TYPE.COMPLETE)
         {
+            eEvent = EVENT.Dummy;
+            possibleType = ptype;
+            isEvent = true;
+            sName = _name;
+            controlName = _cname;
+            rnd = new Random();
+        }
+
+        public void setFail(SimConnect sc)
+        {
+            Console.WriteLine(sName + failureValue);
             switch (possibleType)
             {
                 case POSSIBLE_FAIL_TYPE.STUCK:
@@ -81,6 +107,7 @@ namespace RandFailuresFS2020
                         if (!failStart)
                         {
                             failureValue = dValue;
+                            Console.WriteLine("start" + failureValue);
                             failStart = true;
                         }
                         dValue = failureValue;
@@ -93,16 +120,34 @@ namespace RandFailuresFS2020
                     }
                 case POSSIBLE_FAIL_TYPE.CONTINOUS:
                     {
-                        dValue = failureValue;
+                        if (isEvent)
+                        {
+                            if (rnd.Next(11) >= 5)
+                            {
+                                sc.MapClientEventToSimEvent(eEvent, sName);
+                                sc.TransmitClientEvent(SimConnect.SIMCONNECT_OBJECT_ID_USER, eEvent, 0, GROUP.ID_PRIORITY_STANDARD, SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY);
+                            }
+                        }
+                        else
+                            dValue = failureValue;
                         break;
                     }
                 case POSSIBLE_FAIL_TYPE.COMPLETE:
                     {
-                        dValue = failureValue;
+                        if (isEvent)
+                        {
+                            sc.MapClientEventToSimEvent(eEvent, sName);
+                            sc.TransmitClientEvent(SimConnect.SIMCONNECT_OBJECT_ID_USER, eEvent, 0, GROUP.ID_PRIORITY_STANDARD, SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY);
+                        }
+                        else
+                            dValue = failureValue;
+
                         done = true;
                         break;
                     }
             }
+
+            sc.SetDataOnSimObject(eDef, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_DATA_SET_FLAG.DEFAULT, dValue);
         }
     };
 
@@ -119,177 +164,12 @@ namespace RandFailuresFS2020
         public Form1 f1;
         public IEnumerable<Control> controls;
 
+        public int maxAlt = 20000;
+        public int maxTime = 3600;
+        public int maxNoFails = 99;
         public uint flyTime = 0;
 
-        public void UpdateData()
-        {
-            foreach (SimVar s in lSimVars)
-            {
-                simconnect.RequestDataOnSimObjectType(s.eRequest, s.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-                //Console.WriteLine(s.sName + " " + s.dValue + " " + s.controlName + " " + s.failureChance);
-            }
-        }
-
-        public void SetValue()
-        {
-            /*Console.WriteLine(sim.altitude * 3);
-            if (sim.altitude * 3 >= 3000)
-            {
-                eng2.turbocharger = 1;
-            }
-
-            simconnect.SetDataOnSimObject(DEFINITIONS.Engine2, 0, 0, eng2);*/
-        }
-
-        private void OnTickGround(object sender, EventArgs e)
-        {
-            UpdateData();
-
-            if (lSimVars[2].dValue == 0)
-                flyTime++;
-        }
-
-        private void OnTickContin(object sender, EventArgs e)
-        {
-            foreach (SimVar s in lWillFailSV)
-            {
-                if (!s.done)
-                {
-                    switch (s.whenFail)
-                    {
-                        case WHEN_FAIL.INSTANT:
-                            {
-                                s.setFail();
-                                break;
-                            }
-                        case WHEN_FAIL.TAXI:
-                            {
-                                if (lSimVars[1].dValue >= 50)
-                                    s.setFail();
-                                break;
-                            }
-                        case WHEN_FAIL.ALT:
-                            {
-                                if (lSimVars[0].dValue >= s.failureHeight)
-                                    s.setFail();
-                                break;
-                            }
-                        case WHEN_FAIL.TIME:
-                            {
-                                if (flyTime >= s.failureTime)
-                                    s.setFail();
-                                break;
-                            }
-                    }
-                }
-
-                simconnect.SetDataOnSimObject(s.eDef, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_DATA_SET_FLAG.DEFAULT, s.dValue);
-            }
-        }
-
-        void InitData()
-        {
-            createRegister(new SimVar(lSimVars.Count(), "PLANE ALTITUDE", "", POSSIBLE_FAIL_TYPE.NO, "Feet"));
-            createRegister(new SimVar(lSimVars.Count(), "GROUND VELOCITY", "", POSSIBLE_FAIL_TYPE.NO, "Knots"));
-            createRegister(new SimVar(lSimVars.Count(), "SIM ON GROUND", "", POSSIBLE_FAIL_TYPE.NO));
-
-            createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS LEFT PERCENT", "fLeftFlap", POSSIBLE_FAIL_TYPE.STUCK));
-            createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS RIGHT PERCENT", "fRightFlap", POSSIBLE_FAIL_TYPE.STUCK));
-
-            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK CENTER QUANTITY", "fFuelCenter", POSSIBLE_FAIL_TYPE.LEAK));
-            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK LEFT MAIN QUANTITY", "fFuelLeft", POSSIBLE_FAIL_TYPE.LEAK));
-            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK RIGHT MAIN QUANTITY", "fFuelRight", POSSIBLE_FAIL_TYPE.LEAK));
-
-            for (int i = 0; i < 4; i++)
-            {
-                createRegister(new SimVar(lSimVars.Count(), "ENG ON FIRE:" + (i + 1), "fE" + (i + 1) + "Fire", POSSIBLE_FAIL_TYPE.COMPLETE));
-                createRegister(new SimVar(lSimVars.Count(), "RECIP ENG COOLANT RESERVOIR PERCENT:" + (i + 1), "fE" + (i + 1) + "Leak", POSSIBLE_FAIL_TYPE.LEAK));
-                createRegister(new SimVar(lSimVars.Count(), "RECIP ENG TURBOCHARGER FAILED:" + (i + 1), "fE" + (i + 1) + "Turbo", POSSIBLE_FAIL_TYPE.COMPLETE));
-            }
-        }
-
-        void createRegister(SimVar temp)
-        {
-            simconnect.AddToDataDefinition(temp.eDef, temp.sName, temp.sUnits, SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-            simconnect.RegisterDataDefineStruct<double>(temp.eDef);
-
-            if (temp.controlName != "")
-            {
-                try
-                {
-                    foreach (Control c in controls)
-                    {
-                        if (c is NumericUpDown)
-                        {
-                            if (c.Name == temp.controlName)
-                            {
-                                temp.failureChance = (int)(((NumericUpDown)c).Value);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-            }
-
-            lSimVars.Add(temp);
-        }
-
-        void prepareFailures()
-        {
-            Random rnd = new Random();
-            foreach (SimVar s in lSimVars)
-            {
-                if (s.possibleType != POSSIBLE_FAIL_TYPE.NO && rnd.Next(0, 100) < s.failureChance)
-                {
-                    switch (s.possibleType)
-                    {
-                        case POSSIBLE_FAIL_TYPE.COMPLETE:
-                            {
-                                s.failureValue = 1;
-                                break;
-                            }
-                        case POSSIBLE_FAIL_TYPE.LEAK:
-                            {
-                                s.failureValue = 0.0001 + (rnd.Next(0, 11) / 100000);
-                                break;
-                            }
-                        case POSSIBLE_FAIL_TYPE.STUCK:
-                            {
-                                s.failureValue = s.dValue;
-                                break;
-                            }
-                        default:
-                            {
-                                Console.WriteLine("Unexpected failure type");
-                                break;
-                            }
-                    }
-
-                    s.whenFail = (WHEN_FAIL)rnd.Next(0, 4);
-
-                    switch (s.whenFail)
-                    {
-                        case WHEN_FAIL.ALT:
-                            {
-                                s.failureHeight = (int)(lSimVars[0].dValue + 2000 + (rnd.Next(30) * 500));
-                                break;
-                            }
-                        case WHEN_FAIL.TIME:
-                            {
-                                s.failureTime = 30 + rnd.Next(3600);
-                                break;
-                            }
-                    }
-
-                    lWillFailSV.Add(s);
-                }
-            }
-        }
-
+        #region main
         public Simcon(Form1 form)
         {
             GroundTimer = new DispatcherTimer();
@@ -308,21 +188,7 @@ namespace RandFailuresFS2020
             f1 = form;
         }
 
-        public void Disconnect()
-        {
-            Console.WriteLine("Disconnect");
-
-            //m_oTimer.Stop();
-
-            if (simconnect != null)
-            {
-                /// Dispose serves the same purpose as SimConnect_Close()
-                simconnect.Dispose();
-                simconnect = null;
-            }
-        }
-
-        public void Connect()
+        public string Connect()
         {
             Console.WriteLine("Connect");
 
@@ -346,18 +212,248 @@ namespace RandFailuresFS2020
                 simconnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(SimConnect_OnRecvSimobjectDataBytype);
 
                 UpdateData();
-
-                prepareFailures();
-
-                GroundTimer.Start();
-                ContinTimer.Start();
             }
             catch (COMException ex)
             {
                 Console.WriteLine("Connection to KH failed: " + ex.Message);
+                return "Failed: " + ex.Message;
+            }
+
+            return "SimConnect connected";
+        }
+
+        void InitData()
+        {
+            createRegister(new SimVar(lSimVars.Count(), "PLANE ALTITUDE", "", POSSIBLE_FAIL_TYPE.NO, "Feet"));
+            createRegister(new SimVar(lSimVars.Count(), "GROUND VELOCITY", "", POSSIBLE_FAIL_TYPE.NO, "Knots"));
+            createRegister(new SimVar(lSimVars.Count(), "SIM ON GROUND", "", POSSIBLE_FAIL_TYPE.NO));
+
+            createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS LEFT PERCENT", "fLeftFlap", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS RIGHT PERCENT", "fRightFlap", POSSIBLE_FAIL_TYPE.STUCK));
+
+            createRegister(new SimVar(lSimVars.Count(), "GEAR CENTER POSITION", "fCenterGear", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "GEAR LEFT POSITION", "fLeftGear", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "GEAR RIGHT POSITION", "fRightGear", POSSIBLE_FAIL_TYPE.STUCK));
+
+            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK CENTER LEVEL", "fFuelCenter", POSSIBLE_FAIL_TYPE.LEAK));
+            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK LEFT MAIN LEVEL", "fFuelLeft", POSSIBLE_FAIL_TYPE.LEAK));
+            createRegister(new SimVar(lSimVars.Count(), "FUEL TANK RIGHT MAIN LEVEL", "fFuelRight", POSSIBLE_FAIL_TYPE.LEAK));
+
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL AIRSPEED", "fPAirspeed", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL ALTIMETER", "fPAltimeter", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL ATTITUDE", "fPAttitide", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL COMPASS", "fPCompass", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL ELECTRICAL", "fPElectrical", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL AVIONICS", "fPAvionics", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL ENGINE", "fPEngine", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL FUEL INDICATOR", "fPFuelI", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL HEADING", "fPHeading", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL VERTICAL VELOCITY", "fPVS", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL PITOT", "fPPitot", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL TURN COORDINATOR", "fPTurnC", POSSIBLE_FAIL_TYPE.COMPLETE));
+            createRegister(new SimVar(lSimVars.Count(), "PARTIAL PANEL VACUUM", "fPVacuum", POSSIBLE_FAIL_TYPE.COMPLETE));
+
+            for (int i = 0; i < 4; i++)
+            {
+                createRegister(new SimVar(lSimVars.Count(), "ENG ON FIRE:" + (i + 1), "fE" + (i + 1) + "Fire", POSSIBLE_FAIL_TYPE.COMPLETE));
+                createRegister(new SimVar(lSimVars.Count(), "RECIP ENG COOLANT RESERVOIR PERCENT:" + (i + 1), "fE" + (i + 1) + "Leak", POSSIBLE_FAIL_TYPE.LEAK));
+                createRegister(new SimVar(lSimVars.Count(), "RECIP ENG TURBOCHARGER FAILED:" + (i + 1), "fE" + (i + 1) + "Turbo", POSSIBLE_FAIL_TYPE.COMPLETE));
+            }
+
+            createRegister(new SimVar("TOGGLE_VACUUM_FAILURE", "feVacuum"));
+            createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalComplete"));
+            createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalShort", POSSIBLE_FAIL_TYPE.CONTINOUS));
+            createRegister(new SimVar("TOGGLE_PITOT_BLOCKAGE", "fePitot"));
+            createRegister(new SimVar("TOGGLE_STATIC_PORT_BLOCKAGE", "feStatic"));
+            createRegister(new SimVar("TOGGLE_HYDRAULIC_FAILURE", "feHydraulic"));
+            createRegister(new SimVar("TOGGLE_TOTAL_BRAKE_FAILURE", "feTotalBrake"));
+            createRegister(new SimVar("TOGGLE_LEFT_BRAKE_FAILURE", "feLeftBrake"));
+            createRegister(new SimVar("TOGGLE_RIGHT_BRAKE_FAILURE", "feRightBrake"));
+            createRegister(new SimVar("TOGGLE_ENGINE1_FAILURE", "feE1"));
+            createRegister(new SimVar("TOGGLE_ENGINE2_FAILURE", "feE2"));
+            createRegister(new SimVar("TOGGLE_ENGINE3_FAILURE", "feE3"));
+            createRegister(new SimVar("TOGGLE_ENGINE4_FAILURE", "feE4"));
+        }
+
+        void createRegister(SimVar temp)
+        {
+            if (!temp.isEvent)
+            {
+                simconnect.AddToDataDefinition(temp.eDef, temp.sName, temp.sUnits, SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+                simconnect.RegisterDataDefineStruct<double>(temp.eDef);
+            }
+
+            lSimVars.Add(temp);
+        }
+
+        public void prepareFailures()
+        {
+            GroundTimer.Stop();
+            ContinTimer.Stop();
+            lWillFailSV.Clear();
+            flyTime = 0;
+
+            Random rnd = new Random();
+            foreach (SimVar s in lSimVars)
+            {
+                if (maxNoFails <= 0)
+                {
+                    break;
+                }
+                maxNoFails--;
+                if (s.controlName != "")
+                {
+                    try
+                    {
+                        foreach (Control c in controls)
+                        {
+                            if (c is NumericUpDown)
+                            {
+                                if (c.Name == s.controlName)
+                                {
+                                    s.failureChance = (int)(((NumericUpDown)c).Value);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+                if (s.possibleType != POSSIBLE_FAIL_TYPE.NO && rnd.Next(100) < s.failureChance)
+                {
+                    switch (s.possibleType)
+                    {
+                        case POSSIBLE_FAIL_TYPE.COMPLETE:
+                            {
+                                s.failureValue = 1;
+                                break;
+                            }
+                        case POSSIBLE_FAIL_TYPE.LEAK:
+                            {
+                                s.failureValue = 0.000001 + (rnd.Next(0, 80) / 10000000);
+                                break;
+                            }
+                        case POSSIBLE_FAIL_TYPE.STUCK:
+                            {
+                                s.failureValue = s.dValue;
+                                break;
+                            }
+                    }
+
+                    s.whenFail = (WHEN_FAIL)rnd.Next(0, 4);
+
+                    switch (s.whenFail)
+                    {
+                        case WHEN_FAIL.ALT:
+                            {
+                                s.failureHeight = (int)(lSimVars[0].dValue + 2000 + (rnd.Next(maxAlt)));
+                                break;
+                            }
+                        case WHEN_FAIL.TIME:
+                            {
+                                s.failureTime = 30 + rnd.Next(maxTime);
+                                break;
+                            }
+                    }
+
+                    lWillFailSV.Add(s);
+                }
+            }
+
+            GroundTimer.Start();
+        }
+
+        public void UpdateData()
+        {
+            foreach (SimVar s in lSimVars)
+            {
+                if (!s.isEvent)
+                {
+                    simconnect.RequestDataOnSimObjectType(s.eRequest, s.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+                }
             }
         }
 
+        private void OnTickGround(object sender, EventArgs e)
+        {
+            UpdateData();
+
+            if (lSimVars[2].dValue == 0)
+                flyTime++;
+
+            if (!ContinTimer.IsEnabled)
+            {
+                ContinTimer.Start();
+            }
+        }
+
+        private void OnTickContin(object sender, EventArgs e)
+        {
+            foreach (SimVar s in lWillFailSV)
+            {
+                if (!s.done)
+                {
+                    switch (s.whenFail)
+                    {
+                        case WHEN_FAIL.INSTANT:
+                            {
+                                s.setFail(simconnect);
+                                break;
+                            }
+                        case WHEN_FAIL.TAXI:
+                            {
+                                if (lSimVars[1].dValue >= 50)
+                                    s.setFail(simconnect);
+                                break;
+                            }
+                        case WHEN_FAIL.ALT:
+                            {
+                                if (lSimVars[0].dValue >= s.failureHeight)
+                                    s.setFail(simconnect);
+                                break;
+                            }
+                        case WHEN_FAIL.TIME:
+                            {
+                                if (flyTime >= s.failureTime)
+                                    s.setFail(simconnect);
+                                break;
+                            }
+                    }
+                }
+            }
+        }
+
+        public void stopTimers()
+        {
+            GroundTimer.Stop();
+            ContinTimer.Stop();
+            lWillFailSV.Clear();
+            flyTime = 0;
+        }
+
+        public string Disconnect()
+        {
+            Console.WriteLine("Disconnect");
+
+            GroundTimer.Stop();
+            ContinTimer.Stop();
+
+            if (simconnect != null)
+            {
+                /// Dispose serves the same purpose as SimConnect_Close()
+                simconnect.Dispose();
+                simconnect = null;
+            }
+
+            return "SimConnect disconnected";
+        }
+
+        #endregion
+
+        #region simconnect
         private void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
         {
             uint iRequest = data.dwRequestID;
@@ -411,7 +507,9 @@ namespace RandFailuresFS2020
         {
             return simconnect;
         }
+        #endregion
 
+        #region interact with form
         public List<SimVar> getFailList()
         {
             return lWillFailSV;
@@ -425,5 +523,21 @@ namespace RandFailuresFS2020
                                       .Concat(controls)
                                       .Where(c => c.GetType() == type);
         }
+
+        public void setMaxTime(int t)
+        {
+            maxTime = t;
+        }
+
+        public void setMaxAlt(int a)
+        {
+            maxAlt = a;
+        }
+
+        public void setMaxNoFails(int f)
+        {
+            maxNoFails = f;
+        }
+        #endregion
     }
 }
