@@ -37,6 +37,8 @@ Thanks!
 
 - In order to create another flight you can click "Start" button after you have clicked "Ready to flight" in MSFS.
 
-
-
 Fly safe :)
+
+# Author and contact
+Mateusz "Kanaron" Godziek
+kanaron125@gmail.com
