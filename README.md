@@ -35,7 +35,7 @@ Thanks!
 
 - After flight you can check failures list if you want. You can now click "Stop" or "Exit" button.
 
-- In order to create another flight you can click "Start" button after you have clicked "Ready to flight" in MSFS.
+- In order to create another flight you can click "Start" button after you have clicked "Ready to fly" in MSFS.
 
 Fly safe :)
 
