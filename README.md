@@ -7,7 +7,7 @@ You can try what would you do in case of
 - Coolant leaks
 - and more
 
-Failures are randomized. You can set chance of occurring each failure in percent from 0 (failure won't occur) to 100 (failure will occur).
+In the field next to the name of the failure, you can enter the percentage chance of a failure in the range from 0% to 100%. Where 0% means that tere will be no failure, and 100% means that failure will occur.
 Failure will occur in one of four moments:
 - instantly
 - on takeoff
