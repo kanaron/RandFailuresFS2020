@@ -42,3 +42,4 @@ Fly safe :)
 # Author and contact
 Mateusz "Kanaron" Godziek
 kanaron125@gmail.com
+Languages: Polish, English 
