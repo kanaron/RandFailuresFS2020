@@ -60,12 +60,20 @@ namespace RandFailuresFS2020
             oSimCon.setMaxAlt((int)nruMaxAlt.Value);
             oSimCon.setMaxTime((int)nruMaxTime.Value);
             oSimCon.setMaxNoFails((int)nruNoFails.Value);
-            oSimCon.prepareFailures();
+            if (!cbInstant.Checked && !cbTaxi.Checked && !cbTime.Checked && !cbAlt.Checked)
+            {
+                MessageBox.Show("At least one checkbox in \"When fail can occur\" have to be checked", "Error", MessageBoxButtons.OK);
+            }
+            else
+            {
+                oSimCon.setWhenFail(cbInstant.Checked, cbTaxi.Checked, cbTime.Checked, cbAlt.Checked);
+                oSimCon.prepareFailures();
 
-            btnStop.Enabled = true;
-            stopToolStripMenuItem.Enabled = true;
-            btnStart.Enabled = false;
-            StartToolStripMenuItem.Enabled = false;
+                btnStop.Enabled = true;
+                stopToolStripMenuItem.Enabled = true;
+                btnStart.Enabled = false;
+                StartToolStripMenuItem.Enabled = false;
+            }
         }
 
         private void btnStop_Click(object sender, EventArgs e)

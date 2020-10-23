@@ -16,6 +16,7 @@ namespace RandFailuresFS2020
         void prepareFailures();
         SimConnect GetSimConnect();
         List<SimVar> getFailList();
+        void setWhenFail(bool ins, bool taxi, bool time, bool alt);
         void setMaxAlt(int a);
         void setMaxTime(int t);
         void setMaxNoFails(int f);
@@ -168,6 +169,10 @@ namespace RandFailuresFS2020
         public int maxTime = 3600;
         public int maxNoFails = 99;
         public uint flyTime = 0;
+        public bool bInstant;
+        public bool bTaxi;
+        public bool bAlt;
+        public bool bTime;
 
         #region main
         public Simcon(Form1 form)
@@ -293,6 +298,7 @@ namespace RandFailuresFS2020
             lWillFailSV.Clear();
             flyTime = 0;
 
+            bool cont = false;
             Random rnd = new Random();
             foreach (SimVar s in lSimVars)
             {
@@ -343,7 +349,43 @@ namespace RandFailuresFS2020
                             }
                     }
 
-                    s.whenFail = (WHEN_FAIL)rnd.Next(0, 4);
+                    do
+                    {
+                        cont = false;
+                        s.whenFail = (WHEN_FAIL)rnd.Next(0, 4);
+                        switch (s.whenFail)
+                        {
+                            case WHEN_FAIL.INSTANT:
+                                {
+                                    if (bInstant)
+                                        cont = true;
+                                    break;
+                                }
+                            case WHEN_FAIL.TAXI:
+                                {
+                                    if (bTaxi)
+                                        cont = true;
+                                    break;
+                                }
+                            case WHEN_FAIL.ALT:
+                                {
+                                    if (bAlt)
+                                        cont = true;
+                                    break;
+                                }
+                            case WHEN_FAIL.TIME:
+                                {
+                                    if (bTime)
+                                        cont = true;
+                                    break;
+                                }
+                            default:
+                                {
+                                    cont = true;
+                                    break;
+                                }
+                        }
+                    } while (!cont);
 
                     switch (s.whenFail)
                     {
@@ -537,6 +579,14 @@ namespace RandFailuresFS2020
         public void setMaxNoFails(int f)
         {
             maxNoFails = f;
+        }
+
+        public void setWhenFail(bool ins, bool taxi, bool time, bool alt)
+        {
+            bInstant = ins;
+            bTaxi = taxi;
+            bAlt = alt;
+            bTime = time;
         }
         #endregion
     }

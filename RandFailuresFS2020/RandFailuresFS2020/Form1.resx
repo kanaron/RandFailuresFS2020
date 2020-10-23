@@ -118,24 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="richTextBox5.Text" xml:space="preserve">
-    <value>In box next to failure name write number from 0 (failure will not occur) to 100 (failure will occur). 
-
-Failure can trigger in four occasions (they are also randomized)
-instant failure 
-failure on takeof 
-failure after random time 
-failure at random altitude. 
+    <value>In the field next to the name of the failure, you can enter the percentage chance of a failure in the range from 0% to 100%. Where 0% means that tere will be no failure, and 100% means that failure will occur. Failure will occur in one of four moments:
+* instant failure 
+* failure on takeoff 
+* failure after random time 
+* failure at random altitude. 
 
 If you want you can check what failures will occur and when at "Failure list" tab after clicking "Show fail list" button.</value>
   </data>
   <data name="richTextBox6.Text" xml:space="preserve">
     <value>After opening MSFS2020 click "Connect". When connection is established (there will be in bottom left corner "SimConnect connected") you may prepare new flight.
 
-Click in MSFS2020 "Ready to flight". Then you may click "Start" button. Failures will be randomized. If you want you can check them in "Failure list" tab or you can fly and wait for failures (if any will occur). You can check failures at any time as long as you not click "Stop" button.
+Click in MSFS2020 "Ready to fly". Then you may click "Start" button. Failures will be randomized. If you want you can check them in "Failure list" tab or you can fly and wait for failures (if any will occur). You can check failures at any time as long as you not click "Stop" button.
 
 After flight you can check failures list if you want. You can now click "Stop" or "Exit" button.
 
-In order to create another flight you can click "Start" button after you have clicked "Ready to flight" in MSFS.
+In order to create another flight you can click "Start" button after you have clicked "Ready to fly" in MSFS.
 
 Fly safe :)</value>
   </data>

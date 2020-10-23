@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tcFailures = new System.Windows.Forms.TabControl();
             this.tpList = new System.Windows.Forms.TabPage();
+            this.label60 = new System.Windows.Forms.Label();
+            this.nruAll = new System.Windows.Forms.NumericUpDown();
             this.gbDisclaimer = new System.Windows.Forms.GroupBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -134,28 +136,47 @@
             this.fE1Turbo = new System.Windows.Forms.NumericUpDown();
             this.fE1Leak = new System.Windows.Forms.NumericUpDown();
             this.tpPanel = new System.Windows.Forms.TabPage();
-            this.label24 = new System.Windows.Forms.Label();
-            this.nruAllPanel = new System.Windows.Forms.NumericUpDown();
-            this.label35 = new System.Windows.Forms.Label();
-            this.fPVacuum = new System.Windows.Forms.NumericUpDown();
-            this.label31 = new System.Windows.Forms.Label();
-            this.fPPitot = new System.Windows.Forms.NumericUpDown();
-            this.label32 = new System.Windows.Forms.Label();
-            this.fPVS = new System.Windows.Forms.NumericUpDown();
-            this.label27 = new System.Windows.Forms.Label();
-            this.fPHeading = new System.Windows.Forms.NumericUpDown();
-            this.label29 = new System.Windows.Forms.Label();
-            this.fPEngine = new System.Windows.Forms.NumericUpDown();
-            this.label25 = new System.Windows.Forms.Label();
-            this.fPElectrical = new System.Windows.Forms.NumericUpDown();
-            this.label26 = new System.Windows.Forms.Label();
-            this.fPCompass = new System.Windows.Forms.NumericUpDown();
-            this.label23 = new System.Windows.Forms.Label();
-            this.fPAttitide = new System.Windows.Forms.NumericUpDown();
-            this.label22 = new System.Windows.Forms.Label();
-            this.fPAltimeter = new System.Windows.Forms.NumericUpDown();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.nruPanelAll = new System.Windows.Forms.NumericUpDown();
+            this.label52 = new System.Windows.Forms.Label();
+            this.nruOtherAll = new System.Windows.Forms.NumericUpDown();
+            this.gbPanel = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.fPAirspeed = new System.Windows.Forms.NumericUpDown();
+            this.fPAltimeter = new System.Windows.Forms.NumericUpDown();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.fPAttitide = new System.Windows.Forms.NumericUpDown();
+            this.fPVacuum = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.fPCompass = new System.Windows.Forms.NumericUpDown();
+            this.fPPitot = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.fPElectrical = new System.Windows.Forms.NumericUpDown();
+            this.fPVS = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.fPEngine = new System.Windows.Forms.NumericUpDown();
+            this.fPHeading = new System.Windows.Forms.NumericUpDown();
+            this.label29 = new System.Windows.Forms.Label();
+            this.gbOther = new System.Windows.Forms.GroupBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.feHydraulic = new System.Windows.Forms.NumericUpDown();
+            this.label42 = new System.Windows.Forms.Label();
+            this.feStatic = new System.Windows.Forms.NumericUpDown();
+            this.label43 = new System.Windows.Forms.Label();
+            this.fePitot = new System.Windows.Forms.NumericUpDown();
+            this.label44 = new System.Windows.Forms.Label();
+            this.feElectricalShort = new System.Windows.Forms.NumericUpDown();
+            this.label45 = new System.Windows.Forms.Label();
+            this.feElectricalComplete = new System.Windows.Forms.NumericUpDown();
+            this.feVacuum = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
+            this.nruAllPanel = new System.Windows.Forms.NumericUpDown();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.label93 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
@@ -191,29 +212,14 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.gbOther = new System.Windows.Forms.GroupBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.feHydraulic = new System.Windows.Forms.NumericUpDown();
-            this.label42 = new System.Windows.Forms.Label();
-            this.feStatic = new System.Windows.Forms.NumericUpDown();
-            this.label43 = new System.Windows.Forms.Label();
-            this.fePitot = new System.Windows.Forms.NumericUpDown();
-            this.label44 = new System.Windows.Forms.Label();
-            this.feElectricalShort = new System.Windows.Forms.NumericUpDown();
-            this.label45 = new System.Windows.Forms.Label();
-            this.feElectricalComplete = new System.Windows.Forms.NumericUpDown();
-            this.feVacuum = new System.Windows.Forms.NumericUpDown();
-            this.gbPanel = new System.Windows.Forms.GroupBox();
-            this.label52 = new System.Windows.Forms.Label();
-            this.nruOtherAll = new System.Windows.Forms.NumericUpDown();
-            this.label58 = new System.Windows.Forms.Label();
-            this.nruPanelAll = new System.Windows.Forms.NumericUpDown();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.nruAll = new System.Windows.Forms.NumericUpDown();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cbInstant = new System.Windows.Forms.CheckBox();
+            this.cbTaxi = new System.Windows.Forms.CheckBox();
+            this.cbTime = new System.Windows.Forms.CheckBox();
+            this.cbAlt = new System.Windows.Forms.CheckBox();
             this.tcFailures.SuspendLayout();
             this.tpList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nruAll)).BeginInit();
             this.gbDisclaimer.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -269,17 +275,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.fE1Turbo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fE1Leak)).BeginInit();
             this.tpPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPVacuum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPPitot)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPVS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPHeading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPEngine)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPElectrical)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPCompass)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPAttitide)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPAltimeter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruPanelAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruOtherAll)).BeginInit();
+            this.gbPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fPAirspeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPAltimeter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPAttitide)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPVacuum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPCompass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPPitot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPElectrical)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPVS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPEngine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPHeading)).BeginInit();
+            this.gbOther.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.feHydraulic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feStatic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fePitot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feElectricalShort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).BeginInit();
             this.tpEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.evBird4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evBird3)).BeginInit();
@@ -293,17 +309,7 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.gbOther.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.feHydraulic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feStatic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fePitot)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feElectricalShort)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).BeginInit();
-            this.gbPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nruOtherAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruPanelAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruAll)).BeginInit();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcFailures
@@ -325,6 +331,7 @@
             // 
             // tpList
             // 
+            this.tpList.Controls.Add(this.groupBox7);
             this.tpList.Controls.Add(this.label60);
             this.tpList.Controls.Add(this.nruAll);
             this.tpList.Controls.Add(this.gbDisclaimer);
@@ -345,6 +352,28 @@
             this.tpList.TabIndex = 13;
             this.tpList.Text = "Options";
             this.tpList.UseVisualStyleBackColor = true;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(28, 89);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(134, 13);
+            this.label60.TabIndex = 76;
+            this.label60.Text = "Set all failure possibilities to";
+            // 
+            // nruAll
+            // 
+            this.nruAll.Location = new System.Drawing.Point(168, 87);
+            this.nruAll.Name = "nruAll";
+            this.nruAll.Size = new System.Drawing.Size(40, 20);
+            this.nruAll.TabIndex = 75;
+            this.nruAll.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nruAll.ValueChanged += new System.EventHandler(this.nruAll_ValueChanged);
             // 
             // gbDisclaimer
             // 
@@ -1340,22 +1369,109 @@
             this.tpPanel.Text = "Panel failures";
             this.tpPanel.UseVisualStyleBackColor = true;
             // 
-            // label24
+            // label59
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(392, 3);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(133, 13);
-            this.label24.TabIndex = 35;
-            this.label24.Text = "Set all failure possibilities in";
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(426, 73);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(53, 13);
+            this.label59.TabIndex = 88;
+            this.label59.Text = "this tab to";
             // 
-            // nruAllPanel
+            // label58
             // 
-            this.nruAllPanel.Location = new System.Drawing.Point(485, 71);
-            this.nruAllPanel.Name = "nruAllPanel";
-            this.nruAllPanel.Size = new System.Drawing.Size(40, 20);
-            this.nruAllPanel.TabIndex = 34;
-            this.nruAllPanel.ValueChanged += new System.EventHandler(this.nruAllPanel_ValueChanged);
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(434, 21);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(46, 13);
+            this.label58.TabIndex = 87;
+            this.label58.Text = "Panel to";
+            // 
+            // nruPanelAll
+            // 
+            this.nruPanelAll.Location = new System.Drawing.Point(485, 19);
+            this.nruPanelAll.Name = "nruPanelAll";
+            this.nruPanelAll.Size = new System.Drawing.Size(40, 20);
+            this.nruPanelAll.TabIndex = 86;
+            this.nruPanelAll.ValueChanged += new System.EventHandler(this.nruPanelAll_ValueChanged);
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(434, 47);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(45, 13);
+            this.label52.TabIndex = 85;
+            this.label52.Text = "Other to";
+            // 
+            // nruOtherAll
+            // 
+            this.nruOtherAll.Location = new System.Drawing.Point(485, 45);
+            this.nruOtherAll.Name = "nruOtherAll";
+            this.nruOtherAll.Size = new System.Drawing.Size(40, 20);
+            this.nruOtherAll.TabIndex = 84;
+            this.nruOtherAll.ValueChanged += new System.EventHandler(this.nruOtherAll_ValueChanged);
+            // 
+            // gbPanel
+            // 
+            this.gbPanel.Controls.Add(this.label21);
+            this.gbPanel.Controls.Add(this.fPAirspeed);
+            this.gbPanel.Controls.Add(this.fPAltimeter);
+            this.gbPanel.Controls.Add(this.label22);
+            this.gbPanel.Controls.Add(this.label35);
+            this.gbPanel.Controls.Add(this.fPAttitide);
+            this.gbPanel.Controls.Add(this.fPVacuum);
+            this.gbPanel.Controls.Add(this.label23);
+            this.gbPanel.Controls.Add(this.label31);
+            this.gbPanel.Controls.Add(this.fPCompass);
+            this.gbPanel.Controls.Add(this.fPPitot);
+            this.gbPanel.Controls.Add(this.label26);
+            this.gbPanel.Controls.Add(this.label32);
+            this.gbPanel.Controls.Add(this.fPElectrical);
+            this.gbPanel.Controls.Add(this.fPVS);
+            this.gbPanel.Controls.Add(this.label25);
+            this.gbPanel.Controls.Add(this.label27);
+            this.gbPanel.Controls.Add(this.fPEngine);
+            this.gbPanel.Controls.Add(this.fPHeading);
+            this.gbPanel.Controls.Add(this.label29);
+            this.gbPanel.Location = new System.Drawing.Point(5, 3);
+            this.gbPanel.Name = "gbPanel";
+            this.gbPanel.Size = new System.Drawing.Size(200, 272);
+            this.gbPanel.TabIndex = 37;
+            this.gbPanel.TabStop = false;
+            this.gbPanel.Text = "Panel";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 16);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(48, 13);
+            this.label21.TabIndex = 9;
+            this.label21.Text = "Airspeed";
+            // 
+            // fPAirspeed
+            // 
+            this.fPAirspeed.Location = new System.Drawing.Point(114, 14);
+            this.fPAirspeed.Name = "fPAirspeed";
+            this.fPAirspeed.Size = new System.Drawing.Size(40, 20);
+            this.fPAirspeed.TabIndex = 8;
+            // 
+            // fPAltimeter
+            // 
+            this.fPAltimeter.Location = new System.Drawing.Point(114, 40);
+            this.fPAltimeter.Name = "fPAltimeter";
+            this.fPAltimeter.Size = new System.Drawing.Size(40, 20);
+            this.fPAltimeter.TabIndex = 10;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 42);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(47, 13);
+            this.label22.TabIndex = 11;
+            this.label22.Text = "Altimeter";
             // 
             // label35
             // 
@@ -1366,12 +1482,28 @@
             this.label35.TabIndex = 33;
             this.label35.Text = "Vacuum";
             // 
+            // fPAttitide
+            // 
+            this.fPAttitide.Location = new System.Drawing.Point(114, 66);
+            this.fPAttitide.Name = "fPAttitide";
+            this.fPAttitide.Size = new System.Drawing.Size(40, 20);
+            this.fPAttitide.TabIndex = 12;
+            // 
             // fPVacuum
             // 
             this.fPVacuum.Location = new System.Drawing.Point(114, 144);
             this.fPVacuum.Name = "fPVacuum";
             this.fPVacuum.Size = new System.Drawing.Size(40, 20);
             this.fPVacuum.TabIndex = 32;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 68);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(43, 13);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "Attitude";
             // 
             // label31
             // 
@@ -1382,12 +1514,28 @@
             this.label31.TabIndex = 29;
             this.label31.Text = "Pitot";
             // 
+            // fPCompass
+            // 
+            this.fPCompass.Location = new System.Drawing.Point(114, 92);
+            this.fPCompass.Name = "fPCompass";
+            this.fPCompass.Size = new System.Drawing.Size(40, 20);
+            this.fPCompass.TabIndex = 14;
+            // 
             // fPPitot
             // 
             this.fPPitot.Location = new System.Drawing.Point(114, 196);
             this.fPPitot.Name = "fPPitot";
             this.fPPitot.Size = new System.Drawing.Size(40, 20);
             this.fPPitot.TabIndex = 28;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 94);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(50, 13);
+            this.label26.TabIndex = 15;
+            this.label26.Text = "Compass";
             // 
             // label32
             // 
@@ -1398,12 +1546,28 @@
             this.label32.TabIndex = 27;
             this.label32.Text = "Vertical speed";
             // 
+            // fPElectrical
+            // 
+            this.fPElectrical.Location = new System.Drawing.Point(114, 118);
+            this.fPElectrical.Name = "fPElectrical";
+            this.fPElectrical.Size = new System.Drawing.Size(40, 20);
+            this.fPElectrical.TabIndex = 16;
+            // 
             // fPVS
             // 
             this.fPVS.Location = new System.Drawing.Point(114, 248);
             this.fPVS.Name = "fPVS";
             this.fPVS.Size = new System.Drawing.Size(40, 20);
             this.fPVS.TabIndex = 26;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 120);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(50, 13);
+            this.label25.TabIndex = 17;
+            this.label25.Text = "Electrical";
             // 
             // label27
             // 
@@ -1413,6 +1577,13 @@
             this.label27.Size = new System.Drawing.Size(47, 13);
             this.label27.TabIndex = 25;
             this.label27.Text = "Heading";
+            // 
+            // fPEngine
+            // 
+            this.fPEngine.Location = new System.Drawing.Point(114, 170);
+            this.fPEngine.Name = "fPEngine";
+            this.fPEngine.Size = new System.Drawing.Size(40, 20);
+            this.fPEngine.TabIndex = 20;
             // 
             // fPHeading
             // 
@@ -1430,92 +1601,139 @@
             this.label29.TabIndex = 21;
             this.label29.Text = "Engine";
             // 
-            // fPEngine
+            // gbOther
             // 
-            this.fPEngine.Location = new System.Drawing.Point(114, 170);
-            this.fPEngine.Name = "fPEngine";
-            this.fPEngine.Size = new System.Drawing.Size(40, 20);
-            this.fPEngine.TabIndex = 20;
+            this.gbOther.Controls.Add(this.label46);
+            this.gbOther.Controls.Add(this.label41);
+            this.gbOther.Controls.Add(this.feHydraulic);
+            this.gbOther.Controls.Add(this.label42);
+            this.gbOther.Controls.Add(this.feStatic);
+            this.gbOther.Controls.Add(this.label43);
+            this.gbOther.Controls.Add(this.fePitot);
+            this.gbOther.Controls.Add(this.label44);
+            this.gbOther.Controls.Add(this.feElectricalShort);
+            this.gbOther.Controls.Add(this.label45);
+            this.gbOther.Controls.Add(this.feElectricalComplete);
+            this.gbOther.Controls.Add(this.feVacuum);
+            this.gbOther.Location = new System.Drawing.Point(211, 3);
+            this.gbOther.Name = "gbOther";
+            this.gbOther.Size = new System.Drawing.Size(168, 193);
+            this.gbOther.TabIndex = 36;
+            this.gbOther.TabStop = false;
+            this.gbOther.Text = "Other";
             // 
-            // label25
+            // label46
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(6, 120);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(50, 13);
-            this.label25.TabIndex = 17;
-            this.label25.Text = "Electrical";
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(6, 16);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(77, 13);
+            this.label46.TabIndex = 64;
+            this.label46.Text = "Vacuum failure";
             // 
-            // fPElectrical
+            // label41
             // 
-            this.fPElectrical.Location = new System.Drawing.Point(114, 118);
-            this.fPElectrical.Name = "fPElectrical";
-            this.fPElectrical.Size = new System.Drawing.Size(40, 20);
-            this.fPElectrical.TabIndex = 16;
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(6, 146);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(82, 13);
+            this.label41.TabIndex = 63;
+            this.label41.Text = "Hydraulic failure";
             // 
-            // label26
+            // feHydraulic
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(6, 94);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(50, 13);
-            this.label26.TabIndex = 15;
-            this.label26.Text = "Compass";
+            this.feHydraulic.Location = new System.Drawing.Point(114, 144);
+            this.feHydraulic.Name = "feHydraulic";
+            this.feHydraulic.Size = new System.Drawing.Size(40, 20);
+            this.feHydraulic.TabIndex = 62;
             // 
-            // fPCompass
+            // label42
             // 
-            this.fPCompass.Location = new System.Drawing.Point(114, 92);
-            this.fPCompass.Name = "fPCompass";
-            this.fPCompass.Size = new System.Drawing.Size(40, 20);
-            this.fPCompass.TabIndex = 14;
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(6, 120);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(102, 13);
+            this.label42.TabIndex = 61;
+            this.label42.Text = "Static port blockage";
             // 
-            // label23
+            // feStatic
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 68);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(43, 13);
-            this.label23.TabIndex = 13;
-            this.label23.Text = "Attitude";
+            this.feStatic.Location = new System.Drawing.Point(114, 118);
+            this.feStatic.Name = "feStatic";
+            this.feStatic.Size = new System.Drawing.Size(40, 20);
+            this.feStatic.TabIndex = 60;
             // 
-            // fPAttitide
+            // label43
             // 
-            this.fPAttitide.Location = new System.Drawing.Point(114, 66);
-            this.fPAttitide.Name = "fPAttitide";
-            this.fPAttitide.Size = new System.Drawing.Size(40, 20);
-            this.fPAttitide.TabIndex = 12;
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(6, 94);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(75, 13);
+            this.label43.TabIndex = 59;
+            this.label43.Text = "Pitot blockage";
             // 
-            // label22
+            // fePitot
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 42);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(47, 13);
-            this.label22.TabIndex = 11;
-            this.label22.Text = "Altimeter";
+            this.fePitot.Location = new System.Drawing.Point(114, 92);
+            this.fePitot.Name = "fePitot";
+            this.fePitot.Size = new System.Drawing.Size(40, 20);
+            this.fePitot.TabIndex = 58;
             // 
-            // fPAltimeter
+            // label44
             // 
-            this.fPAltimeter.Location = new System.Drawing.Point(114, 40);
-            this.fPAltimeter.Name = "fPAltimeter";
-            this.fPAltimeter.Size = new System.Drawing.Size(40, 20);
-            this.fPAltimeter.TabIndex = 10;
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(6, 68);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(76, 13);
+            this.label44.TabIndex = 57;
+            this.label44.Text = "Electrical short";
             // 
-            // label21
+            // feElectricalShort
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 16);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(48, 13);
-            this.label21.TabIndex = 9;
-            this.label21.Text = "Airspeed";
+            this.feElectricalShort.Location = new System.Drawing.Point(114, 66);
+            this.feElectricalShort.Name = "feElectricalShort";
+            this.feElectricalShort.Size = new System.Drawing.Size(40, 20);
+            this.feElectricalShort.TabIndex = 56;
             // 
-            // fPAirspeed
+            // label45
             // 
-            this.fPAirspeed.Location = new System.Drawing.Point(114, 14);
-            this.fPAirspeed.Name = "fPAirspeed";
-            this.fPAirspeed.Size = new System.Drawing.Size(40, 20);
-            this.fPAirspeed.TabIndex = 8;
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(6, 42);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(73, 13);
+            this.label45.TabIndex = 55;
+            this.label45.Text = "Electrical total";
+            // 
+            // feElectricalComplete
+            // 
+            this.feElectricalComplete.Location = new System.Drawing.Point(114, 40);
+            this.feElectricalComplete.Name = "feElectricalComplete";
+            this.feElectricalComplete.Size = new System.Drawing.Size(40, 20);
+            this.feElectricalComplete.TabIndex = 54;
+            // 
+            // feVacuum
+            // 
+            this.feVacuum.Location = new System.Drawing.Point(114, 14);
+            this.feVacuum.Name = "feVacuum";
+            this.feVacuum.Size = new System.Drawing.Size(40, 20);
+            this.feVacuum.TabIndex = 53;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(392, 3);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(133, 13);
+            this.label24.TabIndex = 35;
+            this.label24.Text = "Set all failure possibilities in";
+            // 
+            // nruAllPanel
+            // 
+            this.nruAllPanel.Location = new System.Drawing.Point(485, 71);
+            this.nruAllPanel.Name = "nruAllPanel";
+            this.nruAllPanel.Size = new System.Drawing.Size(40, 20);
+            this.nruAllPanel.TabIndex = 34;
+            this.nruAllPanel.ValueChanged += new System.EventHandler(this.nruAllPanel_ValueChanged);
             // 
             // tpEvents
             // 
@@ -1673,7 +1891,7 @@
             this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(533, 271);
+            this.tabPage2.Size = new System.Drawing.Size(533, 276);
             this.tabPage2.TabIndex = 14;
             this.tabPage2.Text = "Help";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1684,7 +1902,7 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(533, 271);
+            this.groupBox5.Size = new System.Drawing.Size(533, 276);
             this.groupBox5.TabIndex = 24;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Info";
@@ -1695,7 +1913,7 @@
             this.richTextBox5.Location = new System.Drawing.Point(3, 16);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.ReadOnly = true;
-            this.richTextBox5.Size = new System.Drawing.Size(527, 252);
+            this.richTextBox5.Size = new System.Drawing.Size(527, 257);
             this.richTextBox5.TabIndex = 0;
             this.richTextBox5.Text = resources.GetString("richTextBox5.Text");
             // 
@@ -1704,7 +1922,7 @@
             this.tabPage3.Controls.Add(this.groupBox6);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(533, 271);
+            this.tabPage3.Size = new System.Drawing.Size(533, 276);
             this.tabPage3.TabIndex = 15;
             this.tabPage3.Text = "ReadMe (How to use)";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1715,7 +1933,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(0, 0);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(533, 271);
+            this.groupBox6.Size = new System.Drawing.Size(533, 276);
             this.groupBox6.TabIndex = 25;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Info";
@@ -1726,7 +1944,7 @@
             this.richTextBox6.Location = new System.Drawing.Point(3, 16);
             this.richTextBox6.Name = "richTextBox6";
             this.richTextBox6.ReadOnly = true;
-            this.richTextBox6.Size = new System.Drawing.Size(527, 252);
+            this.richTextBox6.Size = new System.Drawing.Size(527, 257);
             this.richTextBox6.TabIndex = 0;
             this.richTextBox6.Text = resources.GetString("richTextBox6.Text");
             // 
@@ -1754,7 +1972,7 @@
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.connectToolStripMenuItem.Text = "Connect";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.btnConnect_Click);
             // 
@@ -1762,7 +1980,7 @@
             // 
             this.StartToolStripMenuItem.Enabled = false;
             this.StartToolStripMenuItem.Name = "StartToolStripMenuItem";
-            this.StartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.StartToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.StartToolStripMenuItem.Text = "Start";
             this.StartToolStripMenuItem.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -1770,14 +1988,14 @@
             // 
             this.stopToolStripMenuItem.Enabled = false;
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1856,216 +2074,66 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // gbOther
+            // groupBox7
             // 
-            this.gbOther.Controls.Add(this.label46);
-            this.gbOther.Controls.Add(this.label41);
-            this.gbOther.Controls.Add(this.feHydraulic);
-            this.gbOther.Controls.Add(this.label42);
-            this.gbOther.Controls.Add(this.feStatic);
-            this.gbOther.Controls.Add(this.label43);
-            this.gbOther.Controls.Add(this.fePitot);
-            this.gbOther.Controls.Add(this.label44);
-            this.gbOther.Controls.Add(this.feElectricalShort);
-            this.gbOther.Controls.Add(this.label45);
-            this.gbOther.Controls.Add(this.feElectricalComplete);
-            this.gbOther.Controls.Add(this.feVacuum);
-            this.gbOther.Location = new System.Drawing.Point(211, 3);
-            this.gbOther.Name = "gbOther";
-            this.gbOther.Size = new System.Drawing.Size(168, 193);
-            this.gbOther.TabIndex = 36;
-            this.gbOther.TabStop = false;
-            this.gbOther.Text = "Other";
+            this.groupBox7.Controls.Add(this.cbTime);
+            this.groupBox7.Controls.Add(this.cbAlt);
+            this.groupBox7.Controls.Add(this.cbTaxi);
+            this.groupBox7.Controls.Add(this.cbInstant);
+            this.groupBox7.Location = new System.Drawing.Point(11, 113);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(200, 67);
+            this.groupBox7.TabIndex = 77;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "When fail can occur";
             // 
-            // label46
+            // cbInstant
             // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(6, 16);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(77, 13);
-            this.label46.TabIndex = 64;
-            this.label46.Text = "Vacuum failure";
+            this.cbInstant.AutoSize = true;
+            this.cbInstant.Checked = true;
+            this.cbInstant.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbInstant.Location = new System.Drawing.Point(9, 19);
+            this.cbInstant.Name = "cbInstant";
+            this.cbInstant.Size = new System.Drawing.Size(58, 17);
+            this.cbInstant.TabIndex = 0;
+            this.cbInstant.Text = "Instant";
+            this.cbInstant.UseVisualStyleBackColor = true;
             // 
-            // label41
+            // cbTaxi
             // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 146);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(82, 13);
-            this.label41.TabIndex = 63;
-            this.label41.Text = "Hydraulic failure";
+            this.cbTaxi.AutoSize = true;
+            this.cbTaxi.Checked = true;
+            this.cbTaxi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTaxi.Location = new System.Drawing.Point(9, 42);
+            this.cbTaxi.Name = "cbTaxi";
+            this.cbTaxi.Size = new System.Drawing.Size(72, 17);
+            this.cbTaxi.TabIndex = 1;
+            this.cbTaxi.Text = "At takeoff";
+            this.cbTaxi.UseVisualStyleBackColor = true;
             // 
-            // feHydraulic
+            // cbTime
             // 
-            this.feHydraulic.Location = new System.Drawing.Point(114, 144);
-            this.feHydraulic.Name = "feHydraulic";
-            this.feHydraulic.Size = new System.Drawing.Size(40, 20);
-            this.feHydraulic.TabIndex = 62;
+            this.cbTime.AutoSize = true;
+            this.cbTime.Checked = true;
+            this.cbTime.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTime.Location = new System.Drawing.Point(93, 42);
+            this.cbTime.Name = "cbTime";
+            this.cbTime.Size = new System.Drawing.Size(94, 17);
+            this.cbTime.TabIndex = 3;
+            this.cbTime.Text = "After rand time";
+            this.cbTime.UseVisualStyleBackColor = true;
             // 
-            // label42
+            // cbAlt
             // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 120);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(102, 13);
-            this.label42.TabIndex = 61;
-            this.label42.Text = "Static port blockage";
-            // 
-            // feStatic
-            // 
-            this.feStatic.Location = new System.Drawing.Point(114, 118);
-            this.feStatic.Name = "feStatic";
-            this.feStatic.Size = new System.Drawing.Size(40, 20);
-            this.feStatic.TabIndex = 60;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(6, 94);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(75, 13);
-            this.label43.TabIndex = 59;
-            this.label43.Text = "Pitot blockage";
-            // 
-            // fePitot
-            // 
-            this.fePitot.Location = new System.Drawing.Point(114, 92);
-            this.fePitot.Name = "fePitot";
-            this.fePitot.Size = new System.Drawing.Size(40, 20);
-            this.fePitot.TabIndex = 58;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 68);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(76, 13);
-            this.label44.TabIndex = 57;
-            this.label44.Text = "Electrical short";
-            // 
-            // feElectricalShort
-            // 
-            this.feElectricalShort.Location = new System.Drawing.Point(114, 66);
-            this.feElectricalShort.Name = "feElectricalShort";
-            this.feElectricalShort.Size = new System.Drawing.Size(40, 20);
-            this.feElectricalShort.TabIndex = 56;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(6, 42);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(73, 13);
-            this.label45.TabIndex = 55;
-            this.label45.Text = "Electrical total";
-            // 
-            // feElectricalComplete
-            // 
-            this.feElectricalComplete.Location = new System.Drawing.Point(114, 40);
-            this.feElectricalComplete.Name = "feElectricalComplete";
-            this.feElectricalComplete.Size = new System.Drawing.Size(40, 20);
-            this.feElectricalComplete.TabIndex = 54;
-            // 
-            // feVacuum
-            // 
-            this.feVacuum.Location = new System.Drawing.Point(114, 14);
-            this.feVacuum.Name = "feVacuum";
-            this.feVacuum.Size = new System.Drawing.Size(40, 20);
-            this.feVacuum.TabIndex = 53;
-            // 
-            // gbPanel
-            // 
-            this.gbPanel.Controls.Add(this.label21);
-            this.gbPanel.Controls.Add(this.fPAirspeed);
-            this.gbPanel.Controls.Add(this.fPAltimeter);
-            this.gbPanel.Controls.Add(this.label22);
-            this.gbPanel.Controls.Add(this.label35);
-            this.gbPanel.Controls.Add(this.fPAttitide);
-            this.gbPanel.Controls.Add(this.fPVacuum);
-            this.gbPanel.Controls.Add(this.label23);
-            this.gbPanel.Controls.Add(this.label31);
-            this.gbPanel.Controls.Add(this.fPCompass);
-            this.gbPanel.Controls.Add(this.fPPitot);
-            this.gbPanel.Controls.Add(this.label26);
-            this.gbPanel.Controls.Add(this.label32);
-            this.gbPanel.Controls.Add(this.fPElectrical);
-            this.gbPanel.Controls.Add(this.fPVS);
-            this.gbPanel.Controls.Add(this.label25);
-            this.gbPanel.Controls.Add(this.label27);
-            this.gbPanel.Controls.Add(this.fPEngine);
-            this.gbPanel.Controls.Add(this.fPHeading);
-            this.gbPanel.Controls.Add(this.label29);
-            this.gbPanel.Location = new System.Drawing.Point(5, 3);
-            this.gbPanel.Name = "gbPanel";
-            this.gbPanel.Size = new System.Drawing.Size(200, 272);
-            this.gbPanel.TabIndex = 37;
-            this.gbPanel.TabStop = false;
-            this.gbPanel.Text = "Panel";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(434, 47);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(45, 13);
-            this.label52.TabIndex = 85;
-            this.label52.Text = "Other to";
-            // 
-            // nruOtherAll
-            // 
-            this.nruOtherAll.Location = new System.Drawing.Point(485, 45);
-            this.nruOtherAll.Name = "nruOtherAll";
-            this.nruOtherAll.Size = new System.Drawing.Size(40, 20);
-            this.nruOtherAll.TabIndex = 84;
-            this.nruOtherAll.ValueChanged += new System.EventHandler(this.nruOtherAll_ValueChanged);
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(434, 21);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(46, 13);
-            this.label58.TabIndex = 87;
-            this.label58.Text = "Panel to";
-            // 
-            // nruPanelAll
-            // 
-            this.nruPanelAll.Location = new System.Drawing.Point(485, 19);
-            this.nruPanelAll.Name = "nruPanelAll";
-            this.nruPanelAll.Size = new System.Drawing.Size(40, 20);
-            this.nruPanelAll.TabIndex = 86;
-            this.nruPanelAll.ValueChanged += new System.EventHandler(this.nruPanelAll_ValueChanged);
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(426, 73);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(53, 13);
-            this.label59.TabIndex = 88;
-            this.label59.Text = "this tab to";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(28, 89);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(134, 13);
-            this.label60.TabIndex = 76;
-            this.label60.Text = "Set all failure possibilities to";
-            // 
-            // nruAll
-            // 
-            this.nruAll.Location = new System.Drawing.Point(168, 87);
-            this.nruAll.Name = "nruAll";
-            this.nruAll.Size = new System.Drawing.Size(40, 20);
-            this.nruAll.TabIndex = 75;
-            this.nruAll.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nruAll.ValueChanged += new System.EventHandler(this.nruAll_ValueChanged);
+            this.cbAlt.AutoSize = true;
+            this.cbAlt.Checked = true;
+            this.cbAlt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAlt.Location = new System.Drawing.Point(93, 19);
+            this.cbAlt.Name = "cbAlt";
+            this.cbAlt.Size = new System.Drawing.Size(93, 17);
+            this.cbAlt.TabIndex = 2;
+            this.cbAlt.Text = "At rand altitide";
+            this.cbAlt.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -2085,6 +2153,7 @@
             this.tcFailures.ResumeLayout(false);
             this.tpList.ResumeLayout(false);
             this.tpList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nruAll)).EndInit();
             this.gbDisclaimer.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -2152,17 +2221,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.fE1Leak)).EndInit();
             this.tpPanel.ResumeLayout(false);
             this.tpPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPVacuum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPPitot)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPVS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPHeading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPEngine)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPElectrical)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPCompass)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPAttitide)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fPAltimeter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruPanelAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruOtherAll)).EndInit();
+            this.gbPanel.ResumeLayout(false);
+            this.gbPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fPAirspeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPAltimeter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPAttitide)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPVacuum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPCompass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPPitot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPElectrical)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPVS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPEngine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fPHeading)).EndInit();
+            this.gbOther.ResumeLayout(false);
+            this.gbOther.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.feHydraulic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feStatic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fePitot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feElectricalShort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).EndInit();
             this.tpEvents.ResumeLayout(false);
             this.tpEvents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.evBird4)).EndInit();
@@ -2179,19 +2260,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.gbOther.ResumeLayout(false);
-            this.gbOther.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.feHydraulic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feStatic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fePitot)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feElectricalShort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).EndInit();
-            this.gbPanel.ResumeLayout(false);
-            this.gbPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nruOtherAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruPanelAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruAll)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2381,6 +2451,11 @@
         private System.Windows.Forms.NumericUpDown feVacuum;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.NumericUpDown nruAll;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.CheckBox cbTaxi;
+        private System.Windows.Forms.CheckBox cbInstant;
+        private System.Windows.Forms.CheckBox cbTime;
+        private System.Windows.Forms.CheckBox cbAlt;
     }
 }
 
