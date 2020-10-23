@@ -387,6 +387,7 @@ namespace RandFailuresFS2020
                         }
                     } while (!cont);
 
+
                     switch (s.whenFail)
                     {
                         case WHEN_FAIL.ALT:
