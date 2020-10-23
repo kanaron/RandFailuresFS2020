@@ -1,6 +1,6 @@
 # RandFailuresFS2020
 
-Randomize in-flight failures and check if you can detect them, handle them and survive. From minor panel or turbocharger failure to complete brake or engine failures.
+Randomize in-flight failures and check if you can detect them, handle them and survive. From minor panel or turbocharger failure to complete brakes or engine failures.
 You can try what would you do in case of
 - Asymetric flaps
 - Gear failure
