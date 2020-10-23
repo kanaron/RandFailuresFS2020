@@ -2,7 +2,7 @@
 
 Randomize in-flight failures and check if you can detect them, handle them and survive. From minor panel or turbocharger failure to complete brakes or engine failures.
 You can try what would you do in case of
-- Asymetric flaps
+- Asymmetric flaps
 - Gear failure
 - Coolant leaks
 - and more
