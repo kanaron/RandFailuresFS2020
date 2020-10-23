@@ -392,7 +392,7 @@ namespace RandFailuresFS2020
                     {
                         case WHEN_FAIL.ALT:
                             {
-                                s.failureHeight = (int)(lSimVars[0].dValue + 2000 + (rnd.Next(maxAlt)));
+                                s.failureHeight = (int)(lSimVars[0].dValue + 2000 + (rnd.Next(maxAlt - 2000 - (int)lSimVars[0].dValue)));
                                 break;
                             }
                         case WHEN_FAIL.TIME:
