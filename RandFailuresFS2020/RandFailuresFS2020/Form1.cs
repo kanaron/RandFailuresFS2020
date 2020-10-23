@@ -18,6 +18,14 @@ namespace RandFailuresFS2020
         {
             InitializeComponent();
             tcFailures.TabPages.Remove(tpEvents);
+
+            foreach (Control c in GetAll(this, typeof(NumericUpDown)))
+            {
+                if (c is NumericUpDown)
+                    if (c.Name.Contains("All"))
+                        ((NumericUpDown)c).Value = nruAll.Value;
+            }
+
             oSimCon = new Simcon(this);
         }
 
@@ -30,15 +38,20 @@ namespace RandFailuresFS2020
                 if (statusLabel.Text == "SimConnect connected")
                 {
                     btnConnect.Text = "Disconnect";
+                    connectToolStripMenuItem.Text = "Disconnect";
                     btnStart.Enabled = true;
+                    StartToolStripMenuItem.Enabled = false;
                 }
             }
             else
             {
                 statusLabel.Text = oSimCon.Disconnect();
                 btnConnect.Text = "Connect";
+                connectToolStripMenuItem.Text = "Connect";
                 btnStart.Enabled = false;
+                StartToolStripMenuItem.Enabled = false;
                 btnStop.Enabled = false;
+                stopToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -50,14 +63,18 @@ namespace RandFailuresFS2020
             oSimCon.prepareFailures();
 
             btnStop.Enabled = true;
+            stopToolStripMenuItem.Enabled = true;
             btnStart.Enabled = false;
+            StartToolStripMenuItem.Enabled = false;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             oSimCon.stopTimers();
             btnStop.Enabled = false;
+            stopToolStripMenuItem.Enabled = false;
             btnStart.Enabled = true;
+            StartToolStripMenuItem.Enabled = true;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -228,6 +245,24 @@ namespace RandFailuresFS2020
             }
         }
 
+        private void nruSystemAll_ValueChanged(object sender, EventArgs e)
+        {
+            foreach (Control c in tpAvionics.Controls)
+            {
+                if (c is NumericUpDown)
+                    ((NumericUpDown)c).Value = nruSystemAll.Value;
+            }
+        }
+
+        private void nruPanelAll_ValueChanged(object sender, EventArgs e)
+        {
+            foreach (Control c in GetAll(gbPanel, typeof(NumericUpDown)))
+            {
+                if (c is NumericUpDown)
+                    ((NumericUpDown)c).Value = nruPanelAll.Value;
+            }
+        }
+
         private void nruOtherAll_ValueChanged(object sender, EventArgs e)
         {
             foreach (Control c in GetAll(gbOther, typeof(NumericUpDown)))
@@ -237,15 +272,15 @@ namespace RandFailuresFS2020
             }
         }
 
-        private void nruSystemAll_ValueChanged(object sender, EventArgs e)
+        private void nruAll_ValueChanged(object sender, EventArgs e)
         {
-            foreach (Control c in tpAvionics.Controls)
+            foreach (Control c in GetAll(this, typeof(NumericUpDown)))
             {
                 if (c is NumericUpDown)
-                    ((NumericUpDown)c).Value = nruSystemAll.Value;
+                    if (c.Name.Contains("All"))
+                        ((NumericUpDown)c).Value = nruAll.Value;
             }
         }
         #endregion
-
     }
 }
