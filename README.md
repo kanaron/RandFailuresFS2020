@@ -46,5 +46,5 @@ Languages: Polish, English
 
 # Donations 
 If you like my work and want to support me you can doante me here:  
-paypal.me/kanaron  
+https://www.paypal.com/paypalme/kanaron  
 Thank you :)
