@@ -17,7 +17,7 @@ Failure will occur in one of four moments (which you can turn on or off) :
 ![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev.jpg?raw=true)
 
 This project won't be succesful without contributions from community, especially thanks to:
-- Karol Filip Knapik @kfkcharlie
+- Karol Filip Knapik @kfkcharlie 
 
 Thanks!
 
