@@ -40,6 +40,11 @@ Thanks!
 Fly safe :)
 
 # Author and contact
-Mateusz "Kanaron" Godziek
-kanaron125@gmail.com
+Mateusz "Kanaron" Godziek  
+kanaron125@gmail.com  
 Languages: Polish, English 
+
+# Donations 
+If you like my work and want to support me you can doante me here:  
+https://www.paypal.com/paypalme/kanaron  
+Thank you :)
