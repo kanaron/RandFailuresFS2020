@@ -118,11 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="richTextBox5.Text" xml:space="preserve">
-    <value>In the field next to the name of the failure, you can enter the percentage chance of a failure in the range from 0% to 100%. Where 0% means that tere will be no failure, and 100% means that failure will occur. Failure will occur in one of four moments:
+    <value>In the field next to the name of the failure, you can enter the percentage chance of a failure in the range from 0% to 100%. Where 0% means that tere will be no failure, and 100% means that failure will occur. Failure will occur in one of four moments (which you can turn on or off, at least one option have to be checked) :
 * instant failure 
-* failure on takeoff 
+* failure on takeoff (for now it means that speed is greater than 50 knots)
 * failure after random time 
 * failure at random altitude. 
+
+You can also set range for time and altitude. 
+Warning: 
+* If you set miminum failure altitude below your starting altitude you may get instant failure.
+* If you set minimum and maximum failure altitude below your starting altitude you will get instant failure.
 
 If you want you can check what failures will occur and when at "Failure list" tab after clicking "Show fail list" button.</value>
   </data>

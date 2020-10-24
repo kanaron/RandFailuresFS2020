@@ -19,6 +19,8 @@ namespace RandFailuresFS2020
         void setWhenFail(bool ins, bool taxi, bool time, bool alt);
         void setMaxAlt(int a);
         void setMaxTime(int t);
+        void setMinAlt(int a);
+        void setMinTime(int t);
         void setMaxNoFails(int f);
         void stopTimers();
     }
@@ -165,6 +167,8 @@ namespace RandFailuresFS2020
         public Form1 f1;
         public IEnumerable<Control> controls;
 
+        public int minAlt = 4000;
+        public int minTime = 20;
         public int maxAlt = 20000;
         public int maxTime = 3600;
         public int maxNoFails = 99;
@@ -302,11 +306,6 @@ namespace RandFailuresFS2020
             Random rnd = new Random();
             foreach (SimVar s in lSimVars)
             {
-                if (maxNoFails <= 0)
-                {
-                    break;
-                }
-                maxNoFails--;
                 if (s.controlName != "")
                 {
                     try
@@ -330,6 +329,12 @@ namespace RandFailuresFS2020
 
                 if (s.possibleType != POSSIBLE_FAIL_TYPE.NO && rnd.Next(100) < s.failureChance)
                 {
+                    if (maxNoFails <= 0)
+                    {
+                        break;
+                    }
+                    maxNoFails--;
+
                     switch (s.possibleType)
                     {
                         case POSSIBLE_FAIL_TYPE.COMPLETE:
@@ -387,17 +392,16 @@ namespace RandFailuresFS2020
                         }
                     } while (!cont);
 
-
                     switch (s.whenFail)
                     {
                         case WHEN_FAIL.ALT:
                             {
-                                s.failureHeight = (int)(lSimVars[0].dValue + 2000 + (rnd.Next(maxAlt - 2000 - (int)lSimVars[0].dValue)));
+                                s.failureHeight = rnd.Next(minAlt, maxAlt);
                                 break;
                             }
                         case WHEN_FAIL.TIME:
                             {
-                                s.failureTime = 30 + rnd.Next(maxTime);
+                                s.failureTime = rnd.Next(minTime, maxTime);
                                 break;
                             }
                     }
@@ -575,6 +579,16 @@ namespace RandFailuresFS2020
         public void setMaxAlt(int a)
         {
             maxAlt = a;
+        }
+
+        public void setMinTime(int t)
+        {
+            minTime = t;
+        }
+
+        public void setMinAlt(int a)
+        {
+            minAlt = a;
         }
 
         public void setMaxNoFails(int f)

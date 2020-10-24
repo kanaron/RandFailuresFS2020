@@ -33,14 +33,17 @@ namespace RandFailuresFS2020
         {
             if (btnConnect.Text == "Connect")
             {
-                statusLabel.Text = oSimCon.Connect();
-
-                if (statusLabel.Text == "SimConnect connected")
+                if (checkMinMax())
                 {
-                    btnConnect.Text = "Disconnect";
-                    connectToolStripMenuItem.Text = "Disconnect";
-                    btnStart.Enabled = true;
-                    StartToolStripMenuItem.Enabled = false;
+                    statusLabel.Text = oSimCon.Connect();
+
+                    if (statusLabel.Text == "SimConnect connected")
+                    {
+                        btnConnect.Text = "Disconnect";
+                        connectToolStripMenuItem.Text = "Disconnect";
+                        btnStart.Enabled = true;
+                        StartToolStripMenuItem.Enabled = false;
+                    }
                 }
             }
             else
@@ -57,22 +60,31 @@ namespace RandFailuresFS2020
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            oSimCon.setMaxAlt((int)nruMaxAlt.Value);
-            oSimCon.setMaxTime((int)nruMaxTime.Value);
-            oSimCon.setMaxNoFails((int)nruNoFails.Value);
-            if (!cbInstant.Checked && !cbTaxi.Checked && !cbTime.Checked && !cbAlt.Checked)
+            if (checkMinMax())
             {
-                MessageBox.Show("At least one checkbox in \"When fail can occur\" have to be checked", "Error", MessageBoxButtons.OK);
-            }
-            else
-            {
-                oSimCon.setWhenFail(cbInstant.Checked, cbTaxi.Checked, cbTime.Checked, cbAlt.Checked);
-                oSimCon.prepareFailures();
+                oSimCon.Disconnect();
+                oSimCon = null;
+                oSimCon = new Simcon(this);
+                oSimCon.Connect();
+                oSimCon.setMinAlt((int)nruMinAlt.Value);
+                oSimCon.setMaxAlt((int)nruMaxAlt.Value);
+                oSimCon.setMinTime((int)nruMinTime.Value);
+                oSimCon.setMaxTime((int)nruMaxTime.Value);
+                oSimCon.setMaxNoFails((int)nruNoFails.Value);
+                if (!cbInstant.Checked && !cbTaxi.Checked && !cbTime.Checked && !cbAlt.Checked)
+                {
+                    MessageBox.Show("At least one checkbox in \"When fail can occur\" have to be checked", "Error", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    oSimCon.setWhenFail(cbInstant.Checked, cbTaxi.Checked, cbTime.Checked, cbAlt.Checked);
+                    oSimCon.prepareFailures();
 
-                btnStop.Enabled = true;
-                stopToolStripMenuItem.Enabled = true;
-                btnStart.Enabled = false;
-                StartToolStripMenuItem.Enabled = false;
+                    btnStop.Enabled = true;
+                    stopToolStripMenuItem.Enabled = true;
+                    btnStart.Enabled = false;
+                    StartToolStripMenuItem.Enabled = false;
+                }
             }
         }
 
@@ -139,14 +151,38 @@ namespace RandFailuresFS2020
         }
 
         #region setOptions
+        private void nruMinAlt_ValueChanged(object sender, EventArgs e)
+        {
+            if (checkMinMax())
+                oSimCon.setMinAlt((int)nruMinAlt.Value);
+        }
+
+        private void nruMinTime_ValueChanged(object sender, EventArgs e)
+        {
+            if (checkMinMax())
+                oSimCon.setMinTime((int)nruMinTime.Value);
+        }
+
         private void nruMaxAlt_ValueChanged(object sender, EventArgs e)
         {
-            oSimCon.setMaxAlt((int)nruMaxAlt.Value);
+            if (checkMinMax())
+                oSimCon.setMaxAlt((int)nruMaxAlt.Value);
         }
 
         private void nruMaxTime_ValueChanged(object sender, EventArgs e)
         {
-            oSimCon.setMaxTime((int)nruMaxTime.Value);
+            if (checkMinMax())
+                oSimCon.setMaxTime((int)nruMaxTime.Value);
+        }
+
+        bool checkMinMax()
+        {
+            if ((nruMaxAlt.Value < nruMinAlt.Value) || (nruMaxTime.Value < nruMinTime.Value))
+            {
+                MessageBox.Show("Min value can not be greater than max value", "Error", MessageBoxButtons.OK);
+                return false;
+            }
+            return true;
         }
 
         private void nruNoFails_ValueChanged(object sender, EventArgs e)
