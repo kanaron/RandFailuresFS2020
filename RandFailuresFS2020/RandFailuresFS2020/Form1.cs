@@ -71,7 +71,7 @@ namespace RandFailuresFS2020
                 oSimCon.setMinTime((int)nruMinTime.Value);
                 oSimCon.setMaxTime((int)nruMaxTime.Value);
                 oSimCon.setMaxNoFails((int)nruNoFails.Value);
-                if (!cbInstant.Checked && !cbTaxi.Checked && !cbTime.Checked && !cbAlt.Checked)
+                if (!cbInstant.Checked && !cbTaxi.Checked && !cbTime.Checked && !cbAlt.Checked && !cbSpeed.Checked)
                 {
                     MessageBox.Show("At least one checkbox in \"When fail can occur\" have to be checked", "Error", MessageBoxButtons.OK);
                 }
