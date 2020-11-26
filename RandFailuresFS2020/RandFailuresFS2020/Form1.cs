@@ -70,6 +70,8 @@ namespace RandFailuresFS2020
                 oSimCon.setMaxAlt((int)nruMaxAlt.Value);
                 oSimCon.setMinTime((int)nruMinTime.Value);
                 oSimCon.setMaxTime((int)nruMaxTime.Value);
+                oSimCon.setMinSpeed((int)nruMinSpeed.Value);
+                oSimCon.setMaxSpeed((int)nruMaxSpeed.Value);
                 oSimCon.setMaxNoFails((int)nruNoFails.Value);
                 if (!cbInstant.Checked && !cbTaxi.Checked && !cbTime.Checked && !cbAlt.Checked && !cbSpeed.Checked)
                 {
