@@ -14,7 +14,7 @@ Failure will occur in one of four moments (which you can turn on or off) :
 - after random set of secconds
 - at random altitide
 
-![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev.jpg?raw=true)
+![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev1.jpg?raw=true)
 
 This project won't be succesful without contributions from community, especially thanks to:
 - Karol Filip Knapik @kfkcharlie 
@@ -45,6 +45,6 @@ kanaron125@gmail.com
 Languages: Polish, English 
 
 # Donations 
-If you like my work and want to support me you can doante me here:  
+If you like my work and want to support me you can donate me here:  
 https://www.paypal.com/paypalme/kanaron  
 Thank you :)
