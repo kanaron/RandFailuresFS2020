@@ -4,6 +4,8 @@ If you like my work and want to support me you can donate me here:
 https://www.paypal.com/paypalme/kanaron  
 Thank you :)
 
+# About
+
 Randomize in-flight failures and check if you can detect them, handle them and survive. From minor panel or turbocharger failure to complete brakes or engine failures.
 You can try what would you do in case of
 - Asymmetric flaps
