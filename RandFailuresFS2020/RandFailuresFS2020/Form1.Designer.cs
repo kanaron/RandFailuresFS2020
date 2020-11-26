@@ -31,6 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tcFailures = new System.Windows.Forms.TabControl();
             this.tpList = new System.Windows.Forms.TabPage();
+            this.label131 = new System.Windows.Forms.Label();
+            this.label132 = new System.Windows.Forms.Label();
+            this.label133 = new System.Windows.Forms.Label();
+            this.label134 = new System.Windows.Forms.Label();
+            this.nruMinTime = new System.Windows.Forms.NumericUpDown();
+            this.nruMinAlt = new System.Windows.Forms.NumericUpDown();
             this.label61 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cbTime = new System.Windows.Forms.CheckBox();
@@ -274,14 +280,18 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.label131 = new System.Windows.Forms.Label();
-            this.label132 = new System.Windows.Forms.Label();
-            this.label133 = new System.Windows.Forms.Label();
-            this.label134 = new System.Windows.Forms.Label();
-            this.nruMinTime = new System.Windows.Forms.NumericUpDown();
-            this.nruMinAlt = new System.Windows.Forms.NumericUpDown();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.label135 = new System.Windows.Forms.Label();
+            this.label136 = new System.Windows.Forms.Label();
+            this.nruMinSpeed = new System.Windows.Forms.NumericUpDown();
+            this.label137 = new System.Windows.Forms.Label();
+            this.label138 = new System.Windows.Forms.Label();
+            this.nruMaxSpeed = new System.Windows.Forms.NumericUpDown();
+            this.cbSpeed = new System.Windows.Forms.CheckBox();
             this.tcFailures.SuspendLayout();
             this.tpList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinAlt)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nruAll)).BeginInit();
             this.gbDisclaimer.SuspendLayout();
@@ -373,8 +383,8 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nruMinTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruMinAlt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMaxSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // tcFailures
@@ -391,11 +401,17 @@
             this.tcFailures.Location = new System.Drawing.Point(0, 24);
             this.tcFailures.Name = "tcFailures";
             this.tcFailures.SelectedIndex = 0;
-            this.tcFailures.Size = new System.Drawing.Size(541, 302);
+            this.tcFailures.Size = new System.Drawing.Size(541, 357);
             this.tcFailures.TabIndex = 1;
             // 
             // tpList
             // 
+            this.tpList.Controls.Add(this.label135);
+            this.tpList.Controls.Add(this.label136);
+            this.tpList.Controls.Add(this.nruMinSpeed);
+            this.tpList.Controls.Add(this.label137);
+            this.tpList.Controls.Add(this.label138);
+            this.tpList.Controls.Add(this.nruMaxSpeed);
             this.tpList.Controls.Add(this.label131);
             this.tpList.Controls.Add(this.label132);
             this.tpList.Controls.Add(this.label133);
@@ -420,15 +436,87 @@
             this.tpList.Controls.Add(this.nruMaxAlt);
             this.tpList.Location = new System.Drawing.Point(4, 22);
             this.tpList.Name = "tpList";
-            this.tpList.Size = new System.Drawing.Size(533, 276);
+            this.tpList.Size = new System.Drawing.Size(533, 331);
             this.tpList.TabIndex = 13;
             this.tpList.Text = "Options";
             this.tpList.UseVisualStyleBackColor = true;
             // 
+            // label131
+            // 
+            this.label131.AutoSize = true;
+            this.label131.Location = new System.Drawing.Point(217, 37);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(12, 13);
+            this.label131.TabIndex = 84;
+            this.label131.Text = "s";
+            // 
+            // label132
+            // 
+            this.label132.AutoSize = true;
+            this.label132.Location = new System.Drawing.Point(217, 11);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(13, 13);
+            this.label132.TabIndex = 83;
+            this.label132.Text = "ft";
+            // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Location = new System.Drawing.Point(8, 37);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(89, 13);
+            this.label133.TabIndex = 82;
+            this.label133.Text = "Min time to failure";
+            // 
+            // label134
+            // 
+            this.label134.AutoSize = true;
+            this.label134.Location = new System.Drawing.Point(8, 11);
+            this.label134.Name = "label134";
+            this.label134.Size = new System.Drawing.Size(92, 13);
+            this.label134.TabIndex = 81;
+            this.label134.Text = "Min failure altitude";
+            // 
+            // nruMinTime
+            // 
+            this.nruMinTime.Location = new System.Drawing.Point(143, 35);
+            this.nruMinTime.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nruMinTime.Name = "nruMinTime";
+            this.nruMinTime.Size = new System.Drawing.Size(68, 20);
+            this.nruMinTime.TabIndex = 80;
+            this.nruMinTime.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nruMinTime.ValueChanged += new System.EventHandler(this.nruMinTime_ValueChanged);
+            // 
+            // nruMinAlt
+            // 
+            this.nruMinAlt.Location = new System.Drawing.Point(143, 9);
+            this.nruMinAlt.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nruMinAlt.Name = "nruMinAlt";
+            this.nruMinAlt.Size = new System.Drawing.Size(68, 20);
+            this.nruMinAlt.TabIndex = 79;
+            this.nruMinAlt.Value = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.nruMinAlt.ValueChanged += new System.EventHandler(this.nruMinAlt_ValueChanged);
+            // 
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(214, 89);
+            this.label61.Location = new System.Drawing.Point(214, 115);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(15, 13);
             this.label61.TabIndex = 78;
@@ -436,13 +524,14 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.cbSpeed);
             this.groupBox7.Controls.Add(this.cbTime);
             this.groupBox7.Controls.Add(this.cbAlt);
             this.groupBox7.Controls.Add(this.cbTaxi);
             this.groupBox7.Controls.Add(this.cbInstant);
-            this.groupBox7.Location = new System.Drawing.Point(11, 113);
+            this.groupBox7.Location = new System.Drawing.Point(11, 139);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(200, 67);
+            this.groupBox7.Size = new System.Drawing.Size(200, 101);
             this.groupBox7.TabIndex = 77;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "When fail can occur";
@@ -498,7 +587,7 @@
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(8, 89);
+            this.label60.Location = new System.Drawing.Point(8, 115);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(134, 13);
             this.label60.TabIndex = 76;
@@ -506,7 +595,7 @@
             // 
             // nruAll
             // 
-            this.nruAll.Location = new System.Drawing.Point(143, 87);
+            this.nruAll.Location = new System.Drawing.Point(143, 113);
             this.nruAll.Name = "nruAll";
             this.nruAll.Size = new System.Drawing.Size(68, 20);
             this.nruAll.TabIndex = 75;
@@ -520,7 +609,7 @@
             // gbDisclaimer
             // 
             this.gbDisclaimer.Controls.Add(this.richTextBox2);
-            this.gbDisclaimer.Location = new System.Drawing.Point(3, 186);
+            this.gbDisclaimer.Location = new System.Drawing.Point(3, 246);
             this.gbDisclaimer.Name = "gbDisclaimer";
             this.gbDisclaimer.Size = new System.Drawing.Size(247, 82);
             this.gbDisclaimer.TabIndex = 31;
@@ -543,7 +632,7 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.GitLink);
-            this.groupBox3.Location = new System.Drawing.Point(256, 221);
+            this.groupBox3.Location = new System.Drawing.Point(256, 247);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(274, 47);
             this.groupBox3.TabIndex = 30;
@@ -565,7 +654,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.richTextBox4);
-            this.groupBox2.Location = new System.Drawing.Point(256, 138);
+            this.groupBox2.Location = new System.Drawing.Point(256, 164);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(274, 82);
             this.groupBox2.TabIndex = 28;
@@ -587,7 +676,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.richTextBox3);
-            this.groupBox1.Location = new System.Drawing.Point(256, 61);
+            this.groupBox1.Location = new System.Drawing.Point(256, 87);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(274, 71);
             this.groupBox1.TabIndex = 29;
@@ -625,7 +714,7 @@
             // label103
             // 
             this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(8, 63);
+            this.label103.Location = new System.Drawing.Point(8, 89);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(126, 13);
             this.label103.TabIndex = 17;
@@ -633,7 +722,7 @@
             // 
             // nruNoFails
             // 
-            this.nruNoFails.Location = new System.Drawing.Point(143, 61);
+            this.nruNoFails.Location = new System.Drawing.Point(143, 87);
             this.nruNoFails.Name = "nruNoFails";
             this.nruNoFails.Size = new System.Drawing.Size(68, 20);
             this.nruNoFails.TabIndex = 16;
@@ -880,7 +969,7 @@
             this.gbFuel.Controls.Add(this.fFuelCenter);
             this.gbFuel.Location = new System.Drawing.Point(181, 6);
             this.gbFuel.Name = "gbFuel";
-            this.gbFuel.Size = new System.Drawing.Size(168, 92);
+            this.gbFuel.Size = new System.Drawing.Size(168, 88);
             this.gbFuel.TabIndex = 17;
             this.gbFuel.TabStop = false;
             this.gbFuel.Text = "Fuel leaks";
@@ -971,7 +1060,7 @@
             this.gbBrakes.Controls.Add(this.feLeftBrake);
             this.gbBrakes.Controls.Add(this.label40);
             this.gbBrakes.Controls.Add(this.feTotalBrake);
-            this.gbBrakes.Location = new System.Drawing.Point(181, 126);
+            this.gbBrakes.Location = new System.Drawing.Point(181, 102);
             this.gbBrakes.Name = "gbBrakes";
             this.gbBrakes.Size = new System.Drawing.Size(168, 95);
             this.gbBrakes.TabIndex = 16;
@@ -1064,7 +1153,7 @@
             this.gbGear.Controls.Add(this.fRightGear);
             this.gbGear.Controls.Add(this.fLeftGear);
             this.gbGear.Controls.Add(this.fCenterGear);
-            this.gbGear.Location = new System.Drawing.Point(8, 126);
+            this.gbGear.Location = new System.Drawing.Point(8, 102);
             this.gbGear.Name = "gbGear";
             this.gbGear.Size = new System.Drawing.Size(167, 95);
             this.gbGear.TabIndex = 15;
@@ -1156,7 +1245,7 @@
             this.gbAvionics.Controls.Add(this.fRightFlap);
             this.gbAvionics.Location = new System.Drawing.Point(8, 6);
             this.gbAvionics.Name = "gbAvionics";
-            this.gbAvionics.Size = new System.Drawing.Size(167, 92);
+            this.gbAvionics.Size = new System.Drawing.Size(167, 88);
             this.gbAvionics.TabIndex = 14;
             this.gbAvionics.TabStop = false;
             this.gbAvionics.Text = "Avionics";
@@ -2560,11 +2649,12 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnClear);
             this.tabPage1.Controls.Add(this.richTextBox1);
             this.tabPage1.Controls.Add(this.btnFailList);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(533, 276);
+            this.tabPage1.Size = new System.Drawing.Size(533, 297);
             this.tabPage1.TabIndex = 8;
             this.tabPage1.Text = "Failure list";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2705,7 +2795,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 375);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 419);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(541, 22);
             this.statusStrip1.TabIndex = 4;
@@ -2724,7 +2814,7 @@
             this.groupBox4.Controls.Add(this.btnConnect);
             this.groupBox4.Controls.Add(this.btnStart);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(0, 326);
+            this.groupBox4.Location = new System.Drawing.Point(0, 381);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(541, 44);
             this.groupBox4.TabIndex = 5;
@@ -2776,83 +2866,105 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // label131
+            // btnClear
             // 
-            this.label131.AutoSize = true;
-            this.label131.Location = new System.Drawing.Point(217, 37);
-            this.label131.Name = "label131";
-            this.label131.Size = new System.Drawing.Size(12, 13);
-            this.label131.TabIndex = 84;
-            this.label131.Text = "s";
+            this.btnClear.Location = new System.Drawing.Point(12, 43);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // label132
+            // label135
             // 
-            this.label132.AutoSize = true;
-            this.label132.Location = new System.Drawing.Point(217, 11);
-            this.label132.Name = "label132";
-            this.label132.Size = new System.Drawing.Size(13, 13);
-            this.label132.TabIndex = 83;
-            this.label132.Text = "ft";
+            this.label135.AutoSize = true;
+            this.label135.Location = new System.Drawing.Point(217, 63);
+            this.label135.Name = "label135";
+            this.label135.Size = new System.Drawing.Size(21, 13);
+            this.label135.TabIndex = 90;
+            this.label135.Text = "kts";
             // 
-            // label133
+            // label136
             // 
-            this.label133.AutoSize = true;
-            this.label133.Location = new System.Drawing.Point(8, 37);
-            this.label133.Name = "label133";
-            this.label133.Size = new System.Drawing.Size(89, 13);
-            this.label133.TabIndex = 82;
-            this.label133.Text = "Min time to failure";
+            this.label136.AutoSize = true;
+            this.label136.Location = new System.Drawing.Point(8, 63);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(87, 13);
+            this.label136.TabIndex = 89;
+            this.label136.Text = "Min failure speed";
             // 
-            // label134
+            // nruMinSpeed
             // 
-            this.label134.AutoSize = true;
-            this.label134.Location = new System.Drawing.Point(8, 11);
-            this.label134.Name = "label134";
-            this.label134.Size = new System.Drawing.Size(92, 13);
-            this.label134.TabIndex = 81;
-            this.label134.Text = "Min failure altitude";
-            // 
-            // nruMinTime
-            // 
-            this.nruMinTime.Location = new System.Drawing.Point(143, 35);
-            this.nruMinTime.Maximum = new decimal(new int[] {
+            this.nruMinSpeed.Location = new System.Drawing.Point(143, 61);
+            this.nruMinSpeed.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.nruMinTime.Name = "nruMinTime";
-            this.nruMinTime.Size = new System.Drawing.Size(68, 20);
-            this.nruMinTime.TabIndex = 80;
-            this.nruMinTime.Value = new decimal(new int[] {
-            20,
+            this.nruMinSpeed.Name = "nruMinSpeed";
+            this.nruMinSpeed.Size = new System.Drawing.Size(68, 20);
+            this.nruMinSpeed.TabIndex = 88;
+            this.nruMinSpeed.Value = new decimal(new int[] {
+            50,
             0,
             0,
             0});
-            this.nruMinTime.ValueChanged += new System.EventHandler(this.nruMinTime_ValueChanged);
+            this.nruMinSpeed.ValueChanged += new System.EventHandler(this.nruMinSpeed_ValueChanged);
             // 
-            // nruMinAlt
+            // label137
             // 
-            this.nruMinAlt.Location = new System.Drawing.Point(143, 9);
-            this.nruMinAlt.Maximum = new decimal(new int[] {
+            this.label137.AutoSize = true;
+            this.label137.Location = new System.Drawing.Point(462, 63);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(21, 13);
+            this.label137.TabIndex = 87;
+            this.label137.Text = "kts";
+            // 
+            // label138
+            // 
+            this.label138.AutoSize = true;
+            this.label138.Location = new System.Drawing.Point(253, 63);
+            this.label138.Name = "label138";
+            this.label138.Size = new System.Drawing.Size(90, 13);
+            this.label138.TabIndex = 86;
+            this.label138.Text = "Max failure speed";
+            // 
+            // nruMaxSpeed
+            // 
+            this.nruMaxSpeed.Location = new System.Drawing.Point(388, 61);
+            this.nruMaxSpeed.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.nruMinAlt.Name = "nruMinAlt";
-            this.nruMinAlt.Size = new System.Drawing.Size(68, 20);
-            this.nruMinAlt.TabIndex = 79;
-            this.nruMinAlt.Value = new decimal(new int[] {
-            3000,
+            this.nruMaxSpeed.Name = "nruMaxSpeed";
+            this.nruMaxSpeed.Size = new System.Drawing.Size(68, 20);
+            this.nruMaxSpeed.TabIndex = 85;
+            this.nruMaxSpeed.Value = new decimal(new int[] {
+            250,
             0,
             0,
             0});
-            this.nruMinAlt.ValueChanged += new System.EventHandler(this.nruMinAlt_ValueChanged);
+            this.nruMaxSpeed.ValueChanged += new System.EventHandler(this.nruMaxSpeed_ValueChanged);
+            // 
+            // cbSpeed
+            // 
+            this.cbSpeed.AutoSize = true;
+            this.cbSpeed.Checked = true;
+            this.cbSpeed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSpeed.Location = new System.Drawing.Point(9, 65);
+            this.cbSpeed.Name = "cbSpeed";
+            this.cbSpeed.Size = new System.Drawing.Size(92, 17);
+            this.cbSpeed.TabIndex = 4;
+            this.cbSpeed.Text = "At rand speed";
+            this.cbSpeed.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 397);
+            this.ClientSize = new System.Drawing.Size(541, 441);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tcFailures);
@@ -2866,6 +2978,8 @@
             this.tcFailures.ResumeLayout(false);
             this.tpList.ResumeLayout(false);
             this.tpList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinAlt)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nruAll)).EndInit();
@@ -2975,8 +3089,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nruMinTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruMinAlt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMaxSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3234,6 +3348,14 @@
         private System.Windows.Forms.Label label134;
         private System.Windows.Forms.NumericUpDown nruMinTime;
         private System.Windows.Forms.NumericUpDown nruMinAlt;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label135;
+        private System.Windows.Forms.Label label136;
+        private System.Windows.Forms.NumericUpDown nruMinSpeed;
+        private System.Windows.Forms.Label label137;
+        private System.Windows.Forms.Label label138;
+        private System.Windows.Forms.NumericUpDown nruMaxSpeed;
+        private System.Windows.Forms.CheckBox cbSpeed;
     }
 }
 

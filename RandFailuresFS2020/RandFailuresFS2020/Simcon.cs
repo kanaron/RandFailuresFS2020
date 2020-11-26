@@ -16,11 +16,13 @@ namespace RandFailuresFS2020
         void prepareFailures();
         SimConnect GetSimConnect();
         List<SimVar> getFailList();
-        void setWhenFail(bool ins, bool taxi, bool time, bool alt);
+        void setWhenFail(bool ins, bool taxi, bool time, bool alt, bool speed);
         void setMaxAlt(int a);
         void setMaxTime(int t);
         void setMinAlt(int a);
         void setMinTime(int t);
+        void setMinSpeed(int s);
+        void setMaxSpeed(int s);
         void setMaxNoFails(int f);
         void stopTimers();
     }
@@ -47,8 +49,9 @@ namespace RandFailuresFS2020
 
     public enum WHEN_FAIL
     {
-        ALT, TIME, TAXI, INSTANT
+        ALT, TIME, TAXI, INSTANT, SPEED
     };
+
     public enum POSSIBLE_FAIL_TYPE
     {
         NO, CONTINOUS, COMPLETE, BOTH, STUCK, LEAK
@@ -72,6 +75,7 @@ namespace RandFailuresFS2020
         public WHEN_FAIL whenFail;
         public int failureHeight;
         public int failureTime;
+        public int failureSpeed;
         public bool done = false;
         public bool failStart = false;
 
@@ -171,12 +175,15 @@ namespace RandFailuresFS2020
         public int minTime = 20;
         public int maxAlt = 20000;
         public int maxTime = 3600;
+        public int maxSpeed = 250;
+        public int minSpeed = 50;
         public int maxNoFails = 99;
         public uint flyTime = 0;
         public bool bInstant;
         public bool bTaxi;
         public bool bAlt;
         public bool bTime;
+        public bool bSpeed;
 
         #region main
         public Simcon(Form1 form)
@@ -329,12 +336,6 @@ namespace RandFailuresFS2020
 
                 if (s.possibleType != POSSIBLE_FAIL_TYPE.NO && rnd.Next(100) < s.failureChance)
                 {
-                    if (maxNoFails <= 0)
-                    {
-                        break;
-                    }
-                    maxNoFails--;
-
                     switch (s.possibleType)
                     {
                         case POSSIBLE_FAIL_TYPE.COMPLETE:
@@ -357,7 +358,7 @@ namespace RandFailuresFS2020
                     do
                     {
                         cont = false;
-                        s.whenFail = (WHEN_FAIL)rnd.Next(0, 4);
+                        s.whenFail = (WHEN_FAIL)rnd.Next(0, 5);
                         switch (s.whenFail)
                         {
                             case WHEN_FAIL.INSTANT:
@@ -384,6 +385,12 @@ namespace RandFailuresFS2020
                                         cont = true;
                                     break;
                                 }
+                            case WHEN_FAIL.SPEED:
+                                {
+                                    if (bSpeed)
+                                        cont = true;
+                                    break;
+                                }
                             default:
                                 {
                                     cont = true;
@@ -404,10 +411,20 @@ namespace RandFailuresFS2020
                                 s.failureTime = rnd.Next(minTime, maxTime);
                                 break;
                             }
+                        case WHEN_FAIL.SPEED:
+                            {
+                                s.failureSpeed = rnd.Next(minSpeed, maxSpeed);
+                                break;
+                            }
                     }
 
                     lWillFailSV.Add(s);
                 }
+            }
+
+            while (lWillFailSV.Count > maxNoFails)
+            {
+                lWillFailSV.RemoveAt(rnd.Next(lWillFailSV.Count()));
             }
 
             GroundTimer.Start();
@@ -465,6 +482,12 @@ namespace RandFailuresFS2020
                         case WHEN_FAIL.TIME:
                             {
                                 if (flyTime >= s.failureTime)
+                                    s.setFail(simconnect);
+                                break;
+                            }
+                        case WHEN_FAIL.SPEED:
+                            {
+                                if (lSimVars[1].dValue >=  s.failureSpeed)
                                     s.setFail(simconnect);
                                 break;
                             }
@@ -591,17 +614,28 @@ namespace RandFailuresFS2020
             minAlt = a;
         }
 
+        public void setMaxSpeed(int s)
+        {
+            maxSpeed = s;
+        }
+
+        public void setMinSpeed(int s)
+        {
+            minSpeed = s;
+        }
+
         public void setMaxNoFails(int f)
         {
             maxNoFails = f;
         }
 
-        public void setWhenFail(bool ins, bool taxi, bool time, bool alt)
+        public void setWhenFail(bool ins, bool taxi, bool time, bool alt, bool speed)
         {
             bInstant = ins;
             bTaxi = taxi;
             bAlt = alt;
             bTime = time;
+            bSpeed = speed;
         }
         #endregion
     }

@@ -77,7 +77,7 @@ namespace RandFailuresFS2020
                 }
                 else
                 {
-                    oSimCon.setWhenFail(cbInstant.Checked, cbTaxi.Checked, cbTime.Checked, cbAlt.Checked);
+                    oSimCon.setWhenFail(cbInstant.Checked, cbTaxi.Checked, cbTime.Checked, cbAlt.Checked, cbSpeed.Checked);
                     oSimCon.prepareFailures();
 
                     btnStop.Enabled = true;
@@ -121,9 +121,22 @@ namespace RandFailuresFS2020
                 {
                     altTime = "after " + s.failureTime.ToString() + " seconds";
                 }
+                else if (s.whenFail == WHEN_FAIL.SPEED)
+                {
+                    altTime = "at " + s.failureSpeed.ToString() + " kts";
+                }
+                else
+                {
+                    altTime = "";
+                }
 
                 richTextBox1.Text += "Name: " + s.sName + " when will fail: " + s.whenFail + " " + altTime + "\n";
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
         }
 
         public IEnumerable<Control> GetAll(Control control, Type type)
@@ -175,9 +188,21 @@ namespace RandFailuresFS2020
                 oSimCon.setMaxTime((int)nruMaxTime.Value);
         }
 
+        private void nruMaxSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            if (checkMinMax())
+                oSimCon.setMaxSpeed((int)nruMaxSpeed.Value);
+        }
+
+        private void nruMinSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            if (checkMinMax())
+                oSimCon.setMinSpeed((int)nruMinSpeed.Value);
+        }
+
         bool checkMinMax()
         {
-            if ((nruMaxAlt.Value < nruMinAlt.Value) || (nruMaxTime.Value < nruMinTime.Value))
+            if ((nruMaxAlt.Value < nruMinAlt.Value) || (nruMaxTime.Value < nruMinTime.Value) || (nruMaxAlt.Value < nruMinSpeed.Value))
             {
                 MessageBox.Show("Min value can not be greater than max value", "Error", MessageBoxButtons.OK);
                 return false;
