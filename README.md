@@ -1,3 +1,8 @@
+# Donations 
+If you like my work and want to support me you can donate me here:  
+https://www.paypal.com/paypalme/kanaron  
+Thank you :)
+
 # RandFailuresFS2020
 
 Randomize in-flight failures and check if you can detect them, handle them and survive. From minor panel or turbocharger failure to complete brakes or engine failures.
@@ -27,11 +32,6 @@ Thanks!
 
 # Requirements
 - Application requires .NET 4.7.2 
-
-# Donations 
-If you like my work and want to support me you can donate me here:  
-https://www.paypal.com/paypalme/kanaron  
-Thank you :)
 
 # How to use
 - After opening MSFS2020 click "Connect". When connection is established (there will be in bottom left corner "SimConnect connected") you may prepare new flight.
