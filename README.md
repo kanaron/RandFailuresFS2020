@@ -27,7 +27,7 @@ This project won't be succesful without contributions from community, especially
 
 Thanks!
 
-# Instalation manual
+# Installation manual
 1. Download latest release from https://github.com/kanaron/RandFailuresFS2020/releases
 2. Unzip RandFailuresFS2020[version].zip archive to a directory
 
