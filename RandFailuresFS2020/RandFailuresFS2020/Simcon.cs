@@ -278,7 +278,7 @@ namespace RandFailuresFS2020
 
             createRegister(new SimVar("TOGGLE_VACUUM_FAILURE", "feVacuum"));
             createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalComplete"));
-            createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalShort", POSSIBLE_FAIL_TYPE.CONTINOUS));
+            //createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalShort", POSSIBLE_FAIL_TYPE.CONTINOUS));
             createRegister(new SimVar("TOGGLE_PITOT_BLOCKAGE", "fePitot"));
             createRegister(new SimVar("TOGGLE_STATIC_PORT_BLOCKAGE", "feStatic"));
             createRegister(new SimVar("TOGGLE_HYDRAULIC_FAILURE", "feHydraulic"));

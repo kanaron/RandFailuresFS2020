@@ -31,6 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tcFailures = new System.Windows.Forms.TabControl();
             this.tpList = new System.Windows.Forms.TabPage();
+            this.label135 = new System.Windows.Forms.Label();
+            this.label136 = new System.Windows.Forms.Label();
+            this.nruMinSpeed = new System.Windows.Forms.NumericUpDown();
+            this.label137 = new System.Windows.Forms.Label();
+            this.label138 = new System.Windows.Forms.Label();
+            this.nruMaxSpeed = new System.Windows.Forms.NumericUpDown();
             this.label131 = new System.Windows.Forms.Label();
             this.label132 = new System.Windows.Forms.Label();
             this.label133 = new System.Windows.Forms.Label();
@@ -39,6 +45,7 @@
             this.nruMinAlt = new System.Windows.Forms.NumericUpDown();
             this.label61 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cbSpeed = new System.Windows.Forms.CheckBox();
             this.cbTime = new System.Windows.Forms.CheckBox();
             this.cbAlt = new System.Windows.Forms.CheckBox();
             this.cbTaxi = new System.Windows.Forms.CheckBox();
@@ -235,11 +242,8 @@
             this.label125 = new System.Windows.Forms.Label();
             this.feStatic = new System.Windows.Forms.NumericUpDown();
             this.label43 = new System.Windows.Forms.Label();
-            this.label126 = new System.Windows.Forms.Label();
             this.fePitot = new System.Windows.Forms.NumericUpDown();
-            this.label44 = new System.Windows.Forms.Label();
             this.label127 = new System.Windows.Forms.Label();
-            this.feElectricalShort = new System.Windows.Forms.NumericUpDown();
             this.label45 = new System.Windows.Forms.Label();
             this.feElectricalComplete = new System.Windows.Forms.NumericUpDown();
             this.feVacuum = new System.Windows.Forms.NumericUpDown();
@@ -259,6 +263,7 @@
             this.evBird2 = new System.Windows.Forms.NumericUpDown();
             this.evBird1 = new System.Windows.Forms.NumericUpDown();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnFailList = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -280,16 +285,10 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.label135 = new System.Windows.Forms.Label();
-            this.label136 = new System.Windows.Forms.Label();
-            this.nruMinSpeed = new System.Windows.Forms.NumericUpDown();
-            this.label137 = new System.Windows.Forms.Label();
-            this.label138 = new System.Windows.Forms.Label();
-            this.nruMaxSpeed = new System.Windows.Forms.NumericUpDown();
-            this.cbSpeed = new System.Windows.Forms.CheckBox();
             this.tcFailures.SuspendLayout();
             this.tpList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMaxSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinAlt)).BeginInit();
             this.groupBox7.SuspendLayout();
@@ -366,7 +365,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.feHydraulic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.feStatic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fePitot)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feElectricalShort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).BeginInit();
@@ -383,8 +381,6 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruMaxSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // tcFailures
@@ -440,6 +436,78 @@
             this.tpList.TabIndex = 13;
             this.tpList.Text = "Options";
             this.tpList.UseVisualStyleBackColor = true;
+            // 
+            // label135
+            // 
+            this.label135.AutoSize = true;
+            this.label135.Location = new System.Drawing.Point(217, 63);
+            this.label135.Name = "label135";
+            this.label135.Size = new System.Drawing.Size(21, 13);
+            this.label135.TabIndex = 90;
+            this.label135.Text = "kts";
+            // 
+            // label136
+            // 
+            this.label136.AutoSize = true;
+            this.label136.Location = new System.Drawing.Point(8, 63);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(87, 13);
+            this.label136.TabIndex = 89;
+            this.label136.Text = "Min failure speed";
+            // 
+            // nruMinSpeed
+            // 
+            this.nruMinSpeed.Location = new System.Drawing.Point(143, 61);
+            this.nruMinSpeed.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nruMinSpeed.Name = "nruMinSpeed";
+            this.nruMinSpeed.Size = new System.Drawing.Size(68, 20);
+            this.nruMinSpeed.TabIndex = 88;
+            this.nruMinSpeed.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.nruMinSpeed.ValueChanged += new System.EventHandler(this.nruMinSpeed_ValueChanged);
+            // 
+            // label137
+            // 
+            this.label137.AutoSize = true;
+            this.label137.Location = new System.Drawing.Point(462, 63);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(21, 13);
+            this.label137.TabIndex = 87;
+            this.label137.Text = "kts";
+            // 
+            // label138
+            // 
+            this.label138.AutoSize = true;
+            this.label138.Location = new System.Drawing.Point(253, 63);
+            this.label138.Name = "label138";
+            this.label138.Size = new System.Drawing.Size(90, 13);
+            this.label138.TabIndex = 86;
+            this.label138.Text = "Max failure speed";
+            // 
+            // nruMaxSpeed
+            // 
+            this.nruMaxSpeed.Location = new System.Drawing.Point(388, 61);
+            this.nruMaxSpeed.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nruMaxSpeed.Name = "nruMaxSpeed";
+            this.nruMaxSpeed.Size = new System.Drawing.Size(68, 20);
+            this.nruMaxSpeed.TabIndex = 85;
+            this.nruMaxSpeed.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            this.nruMaxSpeed.ValueChanged += new System.EventHandler(this.nruMaxSpeed_ValueChanged);
             // 
             // label131
             // 
@@ -535,6 +603,18 @@
             this.groupBox7.TabIndex = 77;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "When fail can occur";
+            // 
+            // cbSpeed
+            // 
+            this.cbSpeed.AutoSize = true;
+            this.cbSpeed.Checked = true;
+            this.cbSpeed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSpeed.Location = new System.Drawing.Point(9, 65);
+            this.cbSpeed.Name = "cbSpeed";
+            this.cbSpeed.Size = new System.Drawing.Size(92, 17);
+            this.cbSpeed.TabIndex = 4;
+            this.cbSpeed.Text = "At rand speed";
+            this.cbSpeed.UseVisualStyleBackColor = true;
             // 
             // cbTime
             // 
@@ -812,7 +892,7 @@
             this.tpAvionics.Location = new System.Drawing.Point(4, 22);
             this.tpAvionics.Name = "tpAvionics";
             this.tpAvionics.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAvionics.Size = new System.Drawing.Size(533, 276);
+            this.tpAvionics.Size = new System.Drawing.Size(533, 331);
             this.tpAvionics.TabIndex = 0;
             this.tpAvionics.Text = "System failures";
             this.tpAvionics.UseVisualStyleBackColor = true;
@@ -1324,7 +1404,7 @@
             this.tpEngine1.Controls.Add(this.gbEngine1);
             this.tpEngine1.Location = new System.Drawing.Point(4, 22);
             this.tpEngine1.Name = "tpEngine1";
-            this.tpEngine1.Size = new System.Drawing.Size(533, 276);
+            this.tpEngine1.Size = new System.Drawing.Size(533, 331);
             this.tpEngine1.TabIndex = 2;
             this.tpEngine1.Text = "Engines failures";
             this.tpEngine1.UseVisualStyleBackColor = true;
@@ -1968,7 +2048,7 @@
             this.tpPanel.Controls.Add(this.nruAllPanel);
             this.tpPanel.Location = new System.Drawing.Point(4, 22);
             this.tpPanel.Name = "tpPanel";
-            this.tpPanel.Size = new System.Drawing.Size(533, 276);
+            this.tpPanel.Size = new System.Drawing.Size(533, 331);
             this.tpPanel.TabIndex = 10;
             this.tpPanel.Text = "Panel failures";
             this.tpPanel.UseVisualStyleBackColor = true;
@@ -2344,17 +2424,14 @@
             this.gbOther.Controls.Add(this.label125);
             this.gbOther.Controls.Add(this.feStatic);
             this.gbOther.Controls.Add(this.label43);
-            this.gbOther.Controls.Add(this.label126);
             this.gbOther.Controls.Add(this.fePitot);
-            this.gbOther.Controls.Add(this.label44);
             this.gbOther.Controls.Add(this.label127);
-            this.gbOther.Controls.Add(this.feElectricalShort);
             this.gbOther.Controls.Add(this.label45);
             this.gbOther.Controls.Add(this.feElectricalComplete);
             this.gbOther.Controls.Add(this.feVacuum);
             this.gbOther.Location = new System.Drawing.Point(169, 3);
             this.gbOther.Name = "gbOther";
-            this.gbOther.Size = new System.Drawing.Size(186, 185);
+            this.gbOther.Size = new System.Drawing.Size(186, 148);
             this.gbOther.TabIndex = 36;
             this.gbOther.TabStop = false;
             this.gbOther.Text = "Other";
@@ -2371,7 +2448,7 @@
             // label123
             // 
             this.label123.AutoSize = true;
-            this.label123.Location = new System.Drawing.Point(160, 146);
+            this.label123.Location = new System.Drawing.Point(160, 120);
             this.label123.Name = "label123";
             this.label123.Size = new System.Drawing.Size(15, 13);
             this.label123.TabIndex = 69;
@@ -2389,7 +2466,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 146);
+            this.label41.Location = new System.Drawing.Point(6, 120);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(82, 13);
             this.label41.TabIndex = 63;
@@ -2398,7 +2475,7 @@
             // label124
             // 
             this.label124.AutoSize = true;
-            this.label124.Location = new System.Drawing.Point(160, 120);
+            this.label124.Location = new System.Drawing.Point(160, 94);
             this.label124.Name = "label124";
             this.label124.Size = new System.Drawing.Size(15, 13);
             this.label124.TabIndex = 68;
@@ -2406,7 +2483,7 @@
             // 
             // feHydraulic
             // 
-            this.feHydraulic.Location = new System.Drawing.Point(114, 144);
+            this.feHydraulic.Location = new System.Drawing.Point(114, 118);
             this.feHydraulic.Name = "feHydraulic";
             this.feHydraulic.Size = new System.Drawing.Size(40, 20);
             this.feHydraulic.TabIndex = 62;
@@ -2414,7 +2491,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 120);
+            this.label42.Location = new System.Drawing.Point(6, 94);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(102, 13);
             this.label42.TabIndex = 61;
@@ -2423,7 +2500,7 @@
             // label125
             // 
             this.label125.AutoSize = true;
-            this.label125.Location = new System.Drawing.Point(160, 94);
+            this.label125.Location = new System.Drawing.Point(160, 68);
             this.label125.Name = "label125";
             this.label125.Size = new System.Drawing.Size(15, 13);
             this.label125.TabIndex = 67;
@@ -2431,7 +2508,7 @@
             // 
             // feStatic
             // 
-            this.feStatic.Location = new System.Drawing.Point(114, 118);
+            this.feStatic.Location = new System.Drawing.Point(114, 92);
             this.feStatic.Name = "feStatic";
             this.feStatic.Size = new System.Drawing.Size(40, 20);
             this.feStatic.TabIndex = 60;
@@ -2439,36 +2516,18 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(6, 94);
+            this.label43.Location = new System.Drawing.Point(6, 68);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(75, 13);
             this.label43.TabIndex = 59;
             this.label43.Text = "Pitot blockage";
             // 
-            // label126
-            // 
-            this.label126.AutoSize = true;
-            this.label126.Location = new System.Drawing.Point(160, 68);
-            this.label126.Name = "label126";
-            this.label126.Size = new System.Drawing.Size(15, 13);
-            this.label126.TabIndex = 66;
-            this.label126.Text = "%";
-            // 
             // fePitot
             // 
-            this.fePitot.Location = new System.Drawing.Point(114, 92);
+            this.fePitot.Location = new System.Drawing.Point(114, 66);
             this.fePitot.Name = "fePitot";
             this.fePitot.Size = new System.Drawing.Size(40, 20);
             this.fePitot.TabIndex = 58;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 68);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(63, 13);
-            this.label44.TabIndex = 57;
-            this.label44.Text = "Short circuit";
             // 
             // label127
             // 
@@ -2478,13 +2537,6 @@
             this.label127.Size = new System.Drawing.Size(15, 13);
             this.label127.TabIndex = 65;
             this.label127.Text = "%";
-            // 
-            // feElectricalShort
-            // 
-            this.feElectricalShort.Location = new System.Drawing.Point(114, 66);
-            this.feElectricalShort.Name = "feElectricalShort";
-            this.feElectricalShort.Size = new System.Drawing.Size(40, 20);
-            this.feElectricalShort.TabIndex = 56;
             // 
             // label45
             // 
@@ -2542,7 +2594,7 @@
             this.tpEvents.Controls.Add(this.evBird1);
             this.tpEvents.Location = new System.Drawing.Point(4, 22);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(533, 276);
+            this.tpEvents.Size = new System.Drawing.Size(533, 331);
             this.tpEvents.TabIndex = 12;
             this.tpEvents.Text = "Events";
             this.tpEvents.UseVisualStyleBackColor = true;
@@ -2654,10 +2706,20 @@
             this.tabPage1.Controls.Add(this.btnFailList);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(533, 297);
+            this.tabPage1.Size = new System.Drawing.Size(533, 331);
             this.tabPage1.TabIndex = 8;
             this.tabPage1.Text = "Failure list";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(12, 43);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // richTextBox1
             // 
@@ -2683,7 +2745,7 @@
             this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(533, 276);
+            this.tabPage2.Size = new System.Drawing.Size(533, 331);
             this.tabPage2.TabIndex = 14;
             this.tabPage2.Text = "Help";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2694,7 +2756,7 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(533, 276);
+            this.groupBox5.Size = new System.Drawing.Size(533, 331);
             this.groupBox5.TabIndex = 24;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Info";
@@ -2705,7 +2767,7 @@
             this.richTextBox5.Location = new System.Drawing.Point(3, 16);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.ReadOnly = true;
-            this.richTextBox5.Size = new System.Drawing.Size(527, 257);
+            this.richTextBox5.Size = new System.Drawing.Size(527, 312);
             this.richTextBox5.TabIndex = 0;
             this.richTextBox5.Text = resources.GetString("richTextBox5.Text");
             // 
@@ -2714,7 +2776,7 @@
             this.tabPage3.Controls.Add(this.groupBox6);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(533, 276);
+            this.tabPage3.Size = new System.Drawing.Size(533, 331);
             this.tabPage3.TabIndex = 15;
             this.tabPage3.Text = "ReadMe (How to use)";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -2725,7 +2787,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(0, 0);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(533, 276);
+            this.groupBox6.Size = new System.Drawing.Size(533, 331);
             this.groupBox6.TabIndex = 25;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Info";
@@ -2736,7 +2798,7 @@
             this.richTextBox6.Location = new System.Drawing.Point(3, 16);
             this.richTextBox6.Name = "richTextBox6";
             this.richTextBox6.ReadOnly = true;
-            this.richTextBox6.Size = new System.Drawing.Size(527, 257);
+            this.richTextBox6.Size = new System.Drawing.Size(527, 312);
             this.richTextBox6.TabIndex = 0;
             this.richTextBox6.Text = resources.GetString("richTextBox6.Text");
             // 
@@ -2866,100 +2928,6 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(12, 43);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 3;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // label135
-            // 
-            this.label135.AutoSize = true;
-            this.label135.Location = new System.Drawing.Point(217, 63);
-            this.label135.Name = "label135";
-            this.label135.Size = new System.Drawing.Size(21, 13);
-            this.label135.TabIndex = 90;
-            this.label135.Text = "kts";
-            // 
-            // label136
-            // 
-            this.label136.AutoSize = true;
-            this.label136.Location = new System.Drawing.Point(8, 63);
-            this.label136.Name = "label136";
-            this.label136.Size = new System.Drawing.Size(87, 13);
-            this.label136.TabIndex = 89;
-            this.label136.Text = "Min failure speed";
-            // 
-            // nruMinSpeed
-            // 
-            this.nruMinSpeed.Location = new System.Drawing.Point(143, 61);
-            this.nruMinSpeed.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.nruMinSpeed.Name = "nruMinSpeed";
-            this.nruMinSpeed.Size = new System.Drawing.Size(68, 20);
-            this.nruMinSpeed.TabIndex = 88;
-            this.nruMinSpeed.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.nruMinSpeed.ValueChanged += new System.EventHandler(this.nruMinSpeed_ValueChanged);
-            // 
-            // label137
-            // 
-            this.label137.AutoSize = true;
-            this.label137.Location = new System.Drawing.Point(462, 63);
-            this.label137.Name = "label137";
-            this.label137.Size = new System.Drawing.Size(21, 13);
-            this.label137.TabIndex = 87;
-            this.label137.Text = "kts";
-            // 
-            // label138
-            // 
-            this.label138.AutoSize = true;
-            this.label138.Location = new System.Drawing.Point(253, 63);
-            this.label138.Name = "label138";
-            this.label138.Size = new System.Drawing.Size(90, 13);
-            this.label138.TabIndex = 86;
-            this.label138.Text = "Max failure speed";
-            // 
-            // nruMaxSpeed
-            // 
-            this.nruMaxSpeed.Location = new System.Drawing.Point(388, 61);
-            this.nruMaxSpeed.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.nruMaxSpeed.Name = "nruMaxSpeed";
-            this.nruMaxSpeed.Size = new System.Drawing.Size(68, 20);
-            this.nruMaxSpeed.TabIndex = 85;
-            this.nruMaxSpeed.Value = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
-            this.nruMaxSpeed.ValueChanged += new System.EventHandler(this.nruMaxSpeed_ValueChanged);
-            // 
-            // cbSpeed
-            // 
-            this.cbSpeed.AutoSize = true;
-            this.cbSpeed.Checked = true;
-            this.cbSpeed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSpeed.Location = new System.Drawing.Point(9, 65);
-            this.cbSpeed.Name = "cbSpeed";
-            this.cbSpeed.Size = new System.Drawing.Size(92, 17);
-            this.cbSpeed.TabIndex = 4;
-            this.cbSpeed.Text = "At rand speed";
-            this.cbSpeed.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2978,6 +2946,8 @@
             this.tcFailures.ResumeLayout(false);
             this.tpList.ResumeLayout(false);
             this.tpList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruMaxSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinAlt)).EndInit();
             this.groupBox7.ResumeLayout(false);
@@ -3069,7 +3039,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.feHydraulic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.feStatic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fePitot)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feElectricalShort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).EndInit();
@@ -3089,8 +3058,6 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nruMaxSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3273,8 +3240,6 @@
         private System.Windows.Forms.NumericUpDown feStatic;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.NumericUpDown fePitot;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.NumericUpDown feElectricalShort;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.NumericUpDown feElectricalComplete;
         private System.Windows.Forms.NumericUpDown feVacuum;
@@ -3340,7 +3305,6 @@
         private System.Windows.Forms.Label label123;
         private System.Windows.Forms.Label label124;
         private System.Windows.Forms.Label label125;
-        private System.Windows.Forms.Label label126;
         private System.Windows.Forms.Label label127;
         private System.Windows.Forms.Label label131;
         private System.Windows.Forms.Label label132;
