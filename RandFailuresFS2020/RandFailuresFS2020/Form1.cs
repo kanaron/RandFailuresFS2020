@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace RandFailuresFS2020
 {
@@ -27,6 +28,107 @@ namespace RandFailuresFS2020
             }
 
             oSimCon = new Simcon(this);
+
+            setLastSettings();
+        }
+
+        void setLastSettings()
+        {
+            if (File.Exists("settings.txt"))
+            {
+                using (StreamReader sr = File.OpenText("settings.txt"))
+                {
+                    string s;
+                    int i;
+
+                    try
+                    {
+                        foreach (Control c in tpList.Controls)
+                            if (c is NumericUpDown)
+                            {
+                                s = sr.ReadLine();
+                                Int32.TryParse(s, out i);
+                                ((NumericUpDown)c).Value = i;
+                            }
+
+                        foreach (Control c in GetAll(groupBox7, typeof(CheckBox)))
+                            if (c is CheckBox)
+                            {
+                                s = sr.ReadLine();
+                                if (s == "True")
+                                    ((CheckBox)c).Checked = true;
+                                else
+                                    ((CheckBox)c).Checked = false;
+                            }
+
+                        foreach (Control gb in tpAvionics.Controls)
+                            if (gb is GroupBox)
+                                foreach (Control c in GetAll((GroupBox)gb, typeof(NumericUpDown)))
+                                    if (c is NumericUpDown)
+                                    {
+                                        s = sr.ReadLine();
+                                        Int32.TryParse(s, out i);
+                                        ((NumericUpDown)c).Value = i;
+                                    }
+
+                        foreach (Control gb in tpEngine1.Controls)
+                            if (gb is GroupBox)
+                                foreach (Control c in GetAll((GroupBox)gb, typeof(NumericUpDown)))
+                                    if (c is NumericUpDown)
+                                    {
+                                        s = sr.ReadLine();
+                                        Int32.TryParse(s, out i);
+                                        ((NumericUpDown)c).Value = i;
+                                    }
+
+                        foreach (Control gb in tpPanel.Controls)
+                            if (gb is GroupBox)
+                                foreach (Control c in GetAll((GroupBox)gb, typeof(NumericUpDown)))
+                                    if (c is NumericUpDown)
+                                    {
+                                        s = sr.ReadLine();
+                                        Int32.TryParse(s, out i);
+                                        ((NumericUpDown)c).Value = i;
+                                    }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+        }
+
+        void saveSettings()
+        {
+            using (StreamWriter sw = File.CreateText("settings.txt"))
+            {
+                foreach (Control c in tpList.Controls)
+                    if (c is NumericUpDown)
+                        sw.WriteLine(((NumericUpDown)c).Value);
+
+                foreach (Control c in GetAll(groupBox7, typeof(CheckBox)))
+                    if (c is CheckBox)
+                        sw.WriteLine(((CheckBox)c).Checked);
+
+                foreach (Control gb in tpAvionics.Controls)
+                    if (gb is GroupBox)
+                        foreach (Control c in GetAll((GroupBox)gb, typeof(NumericUpDown)))
+                            if (c is NumericUpDown)
+                                sw.WriteLine(((NumericUpDown)c).Value);
+
+                foreach (Control gb in tpEngine1.Controls)
+                    if (gb is GroupBox)
+                        foreach (Control c in GetAll((GroupBox)gb, typeof(NumericUpDown)))
+                            if (c is NumericUpDown)
+                                sw.WriteLine(((NumericUpDown)c).Value);
+
+                foreach (Control gb in tpPanel.Controls)
+                    if (gb is GroupBox)
+                        foreach (Control c in GetAll((GroupBox)gb, typeof(NumericUpDown)))
+                            if (c is NumericUpDown)
+                                sw.WriteLine(((NumericUpDown)c).Value);
+            }
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -204,7 +306,7 @@ namespace RandFailuresFS2020
 
         bool checkMinMax()
         {
-            if ((nruMaxAlt.Value < nruMinAlt.Value) || (nruMaxTime.Value < nruMinTime.Value) || (nruMaxAlt.Value < nruMinSpeed.Value))
+            if ((nruMaxAlt.Value < nruMinAlt.Value) || (nruMaxTime.Value < nruMinTime.Value) || (nruMaxSpeed.Value < nruMinSpeed.Value))
             {
                 MessageBox.Show("Min value can not be greater than max value", "Error", MessageBoxButtons.OK);
                 return false;
@@ -222,6 +324,13 @@ namespace RandFailuresFS2020
             GitLink.LinkVisited = true;
 
             System.Diagnostics.Process.Start("https://github.com/kanaron/RandFailuresFS2020");
+        }
+
+        private void PayPalLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            GitLink.LinkVisited = true;
+
+            System.Diagnostics.Process.Start("https://www.paypal.com/paypalme/kanaron");
         }
         #endregion
 
@@ -353,5 +462,10 @@ namespace RandFailuresFS2020
             }
         }
         #endregion
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            saveSettings();
+        }
     }
 }

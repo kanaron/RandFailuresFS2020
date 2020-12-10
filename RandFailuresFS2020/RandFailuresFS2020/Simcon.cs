@@ -44,7 +44,9 @@ namespace RandFailuresFS2020
 
     public enum EVENT
     {
-        Dummy = 0
+        Dummy, KEY_TOGGLE_VACUUM_FAILURE, KEY_TOGGLE_ENGINE1_FAILURE, KEY_TOGGLE_ENGINE2_FAILURE, KEY_TOGGLE_ENGINE3_FAILURE, KEY_TOGGLE_ENGINE4_FAILURE,
+        KEY_TOGGLE_ELECTRICAL_FAILURE, KEY_TOGGLE_PITOT_BLOCKAGE, KEY_TOGGLE_STATIC_PORT_BLOCKAGE, KEY_TOGGLE_HYDRAULIC_FAILURE,
+        KEY_TOGGLE_TOTAL_BRAKE_FAILURE, KEY_TOGGLE_LEFT_BRAKE_FAILURE, KEY_TOGGLE_RIGHT_BRAKE_FAILURE, KEY_TEST
     };
 
     public enum WHEN_FAIL
@@ -92,11 +94,16 @@ namespace RandFailuresFS2020
             sUnits = _unit;
             controlName = _cname;
             possibleType = ptype;
+
+            if (ptype == POSSIBLE_FAIL_TYPE.COMPLETE)
+            {
+                failureValue = 1;
+            }
         }
 
-        public SimVar(string _name, string _cname, POSSIBLE_FAIL_TYPE ptype = POSSIBLE_FAIL_TYPE.COMPLETE)
+        public SimVar(string _name, string _cname, EVENT ev, POSSIBLE_FAIL_TYPE ptype = POSSIBLE_FAIL_TYPE.COMPLETE)
         {
-            eEvent = EVENT.Dummy;
+            eEvent = ev;
             possibleType = ptype;
             isEvent = true;
             sName = _name;
@@ -227,7 +234,7 @@ namespace RandFailuresFS2020
                 /// Catch a simobject data request
                 simconnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(SimConnect_OnRecvSimobjectDataBytype);
 
-                UpdateData();
+                //UpdateData();
             }
             catch (COMException ex)
             {
@@ -276,19 +283,19 @@ namespace RandFailuresFS2020
                 createRegister(new SimVar(lSimVars.Count(), "RECIP ENG TURBOCHARGER FAILED:" + (i + 1), "fE" + (i + 1) + "Turbo", POSSIBLE_FAIL_TYPE.COMPLETE));
             }
 
-            createRegister(new SimVar("TOGGLE_VACUUM_FAILURE", "feVacuum"));
-            createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalComplete"));
+            createRegister(new SimVar("TOGGLE_VACUUM_FAILURE", "feVacuum", EVENT.KEY_TOGGLE_VACUUM_FAILURE));
+            createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalComplete", EVENT.KEY_TOGGLE_ELECTRICAL_FAILURE));
             //createRegister(new SimVar("TOGGLE_ELECTRICAL_FAILURE", "feElectricalShort", POSSIBLE_FAIL_TYPE.CONTINOUS));
-            createRegister(new SimVar("TOGGLE_PITOT_BLOCKAGE", "fePitot"));
-            createRegister(new SimVar("TOGGLE_STATIC_PORT_BLOCKAGE", "feStatic"));
-            createRegister(new SimVar("TOGGLE_HYDRAULIC_FAILURE", "feHydraulic"));
-            createRegister(new SimVar("TOGGLE_TOTAL_BRAKE_FAILURE", "feTotalBrake"));
-            createRegister(new SimVar("TOGGLE_LEFT_BRAKE_FAILURE", "feLeftBrake"));
-            createRegister(new SimVar("TOGGLE_RIGHT_BRAKE_FAILURE", "feRightBrake"));
-            createRegister(new SimVar("TOGGLE_ENGINE1_FAILURE", "feE1"));
-            createRegister(new SimVar("TOGGLE_ENGINE2_FAILURE", "feE2"));
-            createRegister(new SimVar("TOGGLE_ENGINE3_FAILURE", "feE3"));
-            createRegister(new SimVar("TOGGLE_ENGINE4_FAILURE", "feE4"));
+            createRegister(new SimVar("TOGGLE_PITOT_BLOCKAGE", "fePitot", EVENT.KEY_TOGGLE_PITOT_BLOCKAGE));
+            createRegister(new SimVar("TOGGLE_STATIC_PORT_BLOCKAGE", "feStatic", EVENT.KEY_TOGGLE_STATIC_PORT_BLOCKAGE));
+            createRegister(new SimVar("TOGGLE_HYDRAULIC_FAILURE", "feHydraulic", EVENT.KEY_TOGGLE_HYDRAULIC_FAILURE));
+            createRegister(new SimVar("TOGGLE_TOTAL_BRAKE_FAILURE", "feTotalBrake", EVENT.KEY_TOGGLE_TOTAL_BRAKE_FAILURE));
+            createRegister(new SimVar("TOGGLE_LEFT_BRAKE_FAILURE", "feLeftBrake", EVENT.KEY_TOGGLE_LEFT_BRAKE_FAILURE));
+            createRegister(new SimVar("TOGGLE_RIGHT_BRAKE_FAILURE", "feRightBrake", EVENT.KEY_TOGGLE_RIGHT_BRAKE_FAILURE));
+            createRegister(new SimVar("TOGGLE_ENGINE1_FAILURE", "feE1", EVENT.KEY_TOGGLE_ENGINE1_FAILURE));
+            createRegister(new SimVar("TOGGLE_ENGINE2_FAILURE", "feE2", EVENT.KEY_TOGGLE_ENGINE2_FAILURE));
+            createRegister(new SimVar("TOGGLE_ENGINE3_FAILURE", "feE3", EVENT.KEY_TOGGLE_ENGINE3_FAILURE));
+            createRegister(new SimVar("TOGGLE_ENGINE4_FAILURE", "feE4", EVENT.KEY_TOGGLE_ENGINE4_FAILURE));
         }
 
         void createRegister(SimVar temp)

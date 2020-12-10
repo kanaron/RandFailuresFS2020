@@ -122,7 +122,8 @@
 * instant failure 
 * failure on takeoff (for now it means that speed is greater than 50 knots)
 * failure after random time 
-* failure at random altitude. 
+* failure at random altitude
+* failure at random speed. 
 
 You can also set range for time and altitude. 
 Warning: 

@@ -285,6 +285,12 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
+            this.label44 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.PayPalLink = new System.Windows.Forms.LinkLabel();
+            this.label126 = new System.Windows.Forms.Label();
+            this.label140 = new System.Windows.Forms.Label();
+            this.label141 = new System.Windows.Forms.Label();
             this.tcFailures.SuspendLayout();
             this.tpList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).BeginInit();
@@ -381,6 +387,7 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcFailures
@@ -389,10 +396,11 @@
             this.tcFailures.Controls.Add(this.tpAvionics);
             this.tcFailures.Controls.Add(this.tpEngine1);
             this.tcFailures.Controls.Add(this.tpPanel);
-            this.tcFailures.Controls.Add(this.tpEvents);
             this.tcFailures.Controls.Add(this.tabPage1);
             this.tcFailures.Controls.Add(this.tabPage2);
             this.tcFailures.Controls.Add(this.tabPage3);
+            this.tcFailures.Controls.Add(this.tpEvents);
+            this.tcFailures.Controls.Add(this.tabPage4);
             this.tcFailures.Dock = System.Windows.Forms.DockStyle.Top;
             this.tcFailures.Location = new System.Drawing.Point(0, 24);
             this.tcFailures.Name = "tcFailures";
@@ -711,13 +719,14 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.PayPalLink);
             this.groupBox3.Controls.Add(this.GitLink);
             this.groupBox3.Location = new System.Drawing.Point(256, 247);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(274, 47);
+            this.groupBox3.Size = new System.Drawing.Size(274, 78);
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "GitHub";
+            this.groupBox3.Text = "GitHub and PayPal";
             // 
             // GitLink
             // 
@@ -894,7 +903,7 @@
             this.tpAvionics.Padding = new System.Windows.Forms.Padding(3);
             this.tpAvionics.Size = new System.Drawing.Size(533, 331);
             this.tpAvionics.TabIndex = 0;
-            this.tpAvionics.Text = "System failures";
+            this.tpAvionics.Text = "System";
             this.tpAvionics.UseVisualStyleBackColor = true;
             // 
             // label73
@@ -1406,7 +1415,7 @@
             this.tpEngine1.Name = "tpEngine1";
             this.tpEngine1.Size = new System.Drawing.Size(533, 331);
             this.tpEngine1.TabIndex = 2;
-            this.tpEngine1.Text = "Engines failures";
+            this.tpEngine1.Text = "Engines";
             this.tpEngine1.UseVisualStyleBackColor = true;
             // 
             // label111
@@ -2050,7 +2059,7 @@
             this.tpPanel.Name = "tpPanel";
             this.tpPanel.Size = new System.Drawing.Size(533, 331);
             this.tpPanel.TabIndex = 10;
-            this.tpPanel.Text = "Panel failures";
+            this.tpPanel.Text = "Panel";
             this.tpPanel.UseVisualStyleBackColor = true;
             // 
             // label128
@@ -2804,6 +2813,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Enabled = false;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -2928,11 +2938,73 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(99, 11);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(43, 13);
+            this.label44.TabIndex = 77;
+            this.label44.Text = "Failures";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label141);
+            this.tabPage4.Controls.Add(this.label140);
+            this.tabPage4.Controls.Add(this.label126);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(533, 331);
+            this.tabPage4.TabIndex = 16;
+            this.tabPage4.Text = "Twitch";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // PayPalLink
+            // 
+            this.PayPalLink.AutoSize = true;
+            this.PayPalLink.Location = new System.Drawing.Point(6, 43);
+            this.PayPalLink.Name = "PayPalLink";
+            this.PayPalLink.Size = new System.Drawing.Size(218, 13);
+            this.PayPalLink.TabIndex = 1;
+            this.PayPalLink.TabStop = true;
+            this.PayPalLink.Text = "https://www.paypal.com/paypalme/kanaron";
+            this.PayPalLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PayPalLink_LinkClicked);
+            // 
+            // label126
+            // 
+            this.label126.AutoSize = true;
+            this.label126.Location = new System.Drawing.Point(51, 49);
+            this.label126.Name = "label126";
+            this.label126.Size = new System.Drawing.Size(433, 13);
+            this.label126.TabIndex = 0;
+            this.label126.Text = "There is RandFailuresFS2020Stream edition which allows to trigger failures via Tw" +
+    "itch chat";
+            // 
+            // label140
+            // 
+            this.label140.AutoSize = true;
+            this.label140.Location = new System.Drawing.Point(65, 74);
+            this.label140.Name = "label140";
+            this.label140.Size = new System.Drawing.Size(405, 13);
+            this.label140.TabIndex = 2;
+            this.label140.Text = "Failures can be also triggered by specyfic ammount of bits donated to specyfic fa" +
+    "ilure";
+            // 
+            // label141
+            // 
+            this.label141.AutoSize = true;
+            this.label141.Location = new System.Drawing.Point(108, 99);
+            this.label141.Name = "label141";
+            this.label141.Size = new System.Drawing.Size(319, 13);
+            this.label141.TabIndex = 3;
+            this.label141.Text = "For more informations contact me via mail kanaron125@gmail.com";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 441);
+            this.Controls.Add(this.label44);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tcFailures);
@@ -2943,6 +3015,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "RandFailuresFS2020";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tcFailures.ResumeLayout(false);
             this.tpList.ResumeLayout(false);
             this.tpList.PerformLayout();
@@ -3058,6 +3131,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3320,6 +3395,12 @@
         private System.Windows.Forms.Label label138;
         private System.Windows.Forms.NumericUpDown nruMaxSpeed;
         private System.Windows.Forms.CheckBox cbSpeed;
+        private System.Windows.Forms.LinkLabel PayPalLink;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label141;
+        private System.Windows.Forms.Label label140;
+        private System.Windows.Forms.Label label126;
     }
 }
 
