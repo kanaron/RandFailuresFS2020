@@ -46,7 +46,7 @@ namespace RandFailuresFS2020
     {
         Dummy, KEY_TOGGLE_VACUUM_FAILURE, KEY_TOGGLE_ENGINE1_FAILURE, KEY_TOGGLE_ENGINE2_FAILURE, KEY_TOGGLE_ENGINE3_FAILURE, KEY_TOGGLE_ENGINE4_FAILURE,
         KEY_TOGGLE_ELECTRICAL_FAILURE, KEY_TOGGLE_PITOT_BLOCKAGE, KEY_TOGGLE_STATIC_PORT_BLOCKAGE, KEY_TOGGLE_HYDRAULIC_FAILURE,
-        KEY_TOGGLE_TOTAL_BRAKE_FAILURE, KEY_TOGGLE_LEFT_BRAKE_FAILURE, KEY_TOGGLE_RIGHT_BRAKE_FAILURE, KEY_TEST
+        KEY_TOGGLE_TOTAL_BRAKE_FAILURE, KEY_TOGGLE_LEFT_BRAKE_FAILURE, KEY_TOGGLE_RIGHT_BRAKE_FAILURE
     };
 
     public enum WHEN_FAIL
@@ -161,7 +161,8 @@ namespace RandFailuresFS2020
                     }
             }
 
-            sc.SetDataOnSimObject(eDef, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_DATA_SET_FLAG.DEFAULT, dValue);
+            if (!isEvent)
+                sc.SetDataOnSimObject(eDef, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_DATA_SET_FLAG.DEFAULT, dValue);
         }
     };
 
@@ -234,7 +235,7 @@ namespace RandFailuresFS2020
                 /// Catch a simobject data request
                 simconnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(SimConnect_OnRecvSimobjectDataBytype);
 
-                //UpdateData();
+                UpdateData();
             }
             catch (COMException ex)
             {
@@ -494,7 +495,7 @@ namespace RandFailuresFS2020
                             }
                         case WHEN_FAIL.SPEED:
                             {
-                                if (lSimVars[1].dValue >=  s.failureSpeed)
+                                if (lSimVars[1].dValue >= s.failureSpeed)
                                     s.setFail(simconnect);
                                 break;
                             }
