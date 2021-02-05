@@ -55,6 +55,7 @@
             this.gbDisclaimer = new System.Windows.Forms.GroupBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.PayPalLink = new System.Windows.Forms.LinkLabel();
             this.GitLink = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
@@ -249,6 +250,16 @@
             this.feVacuum = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.nruAllPanel = new System.Windows.Forms.NumericUpDown();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnFailList = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.label93 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
@@ -262,16 +273,10 @@
             this.evBird3 = new System.Windows.Forms.NumericUpDown();
             this.evBird2 = new System.Windows.Forms.NumericUpDown();
             this.evBird1 = new System.Windows.Forms.NumericUpDown();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btnFailList = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label141 = new System.Windows.Forms.Label();
+            this.label140 = new System.Windows.Forms.Label();
+            this.label126 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -286,11 +291,15 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.PayPalLink = new System.Windows.Forms.LinkLabel();
-            this.label126 = new System.Windows.Forms.Label();
-            this.label140 = new System.Windows.Forms.Label();
-            this.label141 = new System.Windows.Forms.Label();
+            this.label139 = new System.Windows.Forms.Label();
+            this.label142 = new System.Windows.Forms.Label();
+            this.label143 = new System.Windows.Forms.Label();
+            this.label144 = new System.Windows.Forms.Label();
+            this.fTrimAileron = new System.Windows.Forms.NumericUpDown();
+            this.label145 = new System.Windows.Forms.Label();
+            this.fTrimRudder = new System.Windows.Forms.NumericUpDown();
+            this.label146 = new System.Windows.Forms.Label();
+            this.fTrimElevator = new System.Windows.Forms.NumericUpDown();
             this.tcFailures.SuspendLayout();
             this.tpList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).BeginInit();
@@ -374,20 +383,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).BeginInit();
-            this.tpEvents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.evBird4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evBird3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evBird2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evBird1)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tpEvents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.evBird4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.evBird3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.evBird2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.evBird1)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimAileron)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimRudder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimElevator)).BeginInit();
             this.SuspendLayout();
             // 
             // tcFailures
@@ -727,6 +739,17 @@
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "GitHub and PayPal";
+            // 
+            // PayPalLink
+            // 
+            this.PayPalLink.AutoSize = true;
+            this.PayPalLink.Location = new System.Drawing.Point(6, 43);
+            this.PayPalLink.Name = "PayPalLink";
+            this.PayPalLink.Size = new System.Drawing.Size(218, 13);
+            this.PayPalLink.TabIndex = 1;
+            this.PayPalLink.TabStop = true;
+            this.PayPalLink.Text = "https://www.paypal.com/paypalme/kanaron";
+            this.PayPalLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PayPalLink_LinkClicked);
             // 
             // GitLink
             // 
@@ -1242,9 +1265,9 @@
             this.gbGear.Controls.Add(this.fRightGear);
             this.gbGear.Controls.Add(this.fLeftGear);
             this.gbGear.Controls.Add(this.fCenterGear);
-            this.gbGear.Location = new System.Drawing.Point(8, 102);
+            this.gbGear.Location = new System.Drawing.Point(181, 203);
             this.gbGear.Name = "gbGear";
-            this.gbGear.Size = new System.Drawing.Size(167, 95);
+            this.gbGear.Size = new System.Drawing.Size(168, 95);
             this.gbGear.TabIndex = 15;
             this.gbGear.TabStop = false;
             this.gbGear.Text = "Gear";
@@ -1326,6 +1349,15 @@
             // 
             // gbAvionics
             // 
+            this.gbAvionics.Controls.Add(this.label139);
+            this.gbAvionics.Controls.Add(this.label142);
+            this.gbAvionics.Controls.Add(this.label143);
+            this.gbAvionics.Controls.Add(this.label144);
+            this.gbAvionics.Controls.Add(this.fTrimAileron);
+            this.gbAvionics.Controls.Add(this.label145);
+            this.gbAvionics.Controls.Add(this.fTrimRudder);
+            this.gbAvionics.Controls.Add(this.label146);
+            this.gbAvionics.Controls.Add(this.fTrimElevator);
             this.gbAvionics.Controls.Add(this.label63);
             this.gbAvionics.Controls.Add(this.label62);
             this.gbAvionics.Controls.Add(this.label18);
@@ -1334,7 +1366,7 @@
             this.gbAvionics.Controls.Add(this.fRightFlap);
             this.gbAvionics.Location = new System.Drawing.Point(8, 6);
             this.gbAvionics.Name = "gbAvionics";
-            this.gbAvionics.Size = new System.Drawing.Size(167, 88);
+            this.gbAvionics.Size = new System.Drawing.Size(167, 151);
             this.gbAvionics.TabIndex = 14;
             this.gbAvionics.TabStop = false;
             this.gbAvionics.Text = "Avionics";
@@ -2587,6 +2619,109 @@
             this.nruAllPanel.TabIndex = 34;
             this.nruAllPanel.ValueChanged += new System.EventHandler(this.nruAllPanel_ValueChanged);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnClear);
+            this.tabPage1.Controls.Add(this.richTextBox1);
+            this.tabPage1.Controls.Add(this.btnFailList);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(533, 331);
+            this.tabPage1.TabIndex = 8;
+            this.tabPage1.Text = "Failure list";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(12, 43);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(93, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(432, 265);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
+            // 
+            // btnFailList
+            // 
+            this.btnFailList.Location = new System.Drawing.Point(12, 14);
+            this.btnFailList.Name = "btnFailList";
+            this.btnFailList.Size = new System.Drawing.Size(75, 23);
+            this.btnFailList.TabIndex = 0;
+            this.btnFailList.Text = "Show fail list";
+            this.btnFailList.UseVisualStyleBackColor = true;
+            this.btnFailList.Click += new System.EventHandler(this.btnFailList_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(533, 331);
+            this.tabPage2.TabIndex = 14;
+            this.tabPage2.Text = "Help";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.richTextBox5);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Location = new System.Drawing.Point(0, 0);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(533, 331);
+            this.groupBox5.TabIndex = 24;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Info";
+            // 
+            // richTextBox5
+            // 
+            this.richTextBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox5.Location = new System.Drawing.Point(3, 16);
+            this.richTextBox5.Name = "richTextBox5";
+            this.richTextBox5.ReadOnly = true;
+            this.richTextBox5.Size = new System.Drawing.Size(527, 312);
+            this.richTextBox5.TabIndex = 0;
+            this.richTextBox5.Text = resources.GetString("richTextBox5.Text");
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox6);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(533, 331);
+            this.tabPage3.TabIndex = 15;
+            this.tabPage3.Text = "ReadMe (How to use)";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.richTextBox6);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.Location = new System.Drawing.Point(0, 0);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(533, 331);
+            this.groupBox6.TabIndex = 25;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Info";
+            // 
+            // richTextBox6
+            // 
+            this.richTextBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox6.Location = new System.Drawing.Point(3, 16);
+            this.richTextBox6.Name = "richTextBox6";
+            this.richTextBox6.ReadOnly = true;
+            this.richTextBox6.Size = new System.Drawing.Size(527, 312);
+            this.richTextBox6.TabIndex = 0;
+            this.richTextBox6.Text = resources.GetString("richTextBox6.Text");
+            // 
             // tpEvents
             // 
             this.tpEvents.Controls.Add(this.label93);
@@ -2708,108 +2843,46 @@
             this.evBird1.Size = new System.Drawing.Size(40, 20);
             this.evBird1.TabIndex = 60;
             // 
-            // tabPage1
+            // tabPage4
             // 
-            this.tabPage1.Controls.Add(this.btnClear);
-            this.tabPage1.Controls.Add(this.richTextBox1);
-            this.tabPage1.Controls.Add(this.btnFailList);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(533, 331);
-            this.tabPage1.TabIndex = 8;
-            this.tabPage1.Text = "Failure list";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage4.Controls.Add(this.label141);
+            this.tabPage4.Controls.Add(this.label140);
+            this.tabPage4.Controls.Add(this.label126);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(533, 331);
+            this.tabPage4.TabIndex = 16;
+            this.tabPage4.Text = "Twitch";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // btnClear
+            // label141
             // 
-            this.btnClear.Location = new System.Drawing.Point(12, 43);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 3;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.label141.AutoSize = true;
+            this.label141.Location = new System.Drawing.Point(108, 99);
+            this.label141.Name = "label141";
+            this.label141.Size = new System.Drawing.Size(319, 13);
+            this.label141.TabIndex = 3;
+            this.label141.Text = "For more informations contact me via mail kanaron125@gmail.com";
             // 
-            // richTextBox1
+            // label140
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(93, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(432, 265);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.label140.AutoSize = true;
+            this.label140.Location = new System.Drawing.Point(65, 74);
+            this.label140.Name = "label140";
+            this.label140.Size = new System.Drawing.Size(405, 13);
+            this.label140.TabIndex = 2;
+            this.label140.Text = "Failures can be also triggered by specyfic ammount of bits donated to specyfic fa" +
+    "ilure";
             // 
-            // btnFailList
+            // label126
             // 
-            this.btnFailList.Location = new System.Drawing.Point(12, 14);
-            this.btnFailList.Name = "btnFailList";
-            this.btnFailList.Size = new System.Drawing.Size(75, 23);
-            this.btnFailList.TabIndex = 0;
-            this.btnFailList.Text = "Show fail list";
-            this.btnFailList.UseVisualStyleBackColor = true;
-            this.btnFailList.Click += new System.EventHandler(this.btnFailList_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.groupBox5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(533, 331);
-            this.tabPage2.TabIndex = 14;
-            this.tabPage2.Text = "Help";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.richTextBox5);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(0, 0);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(533, 331);
-            this.groupBox5.TabIndex = 24;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Info";
-            // 
-            // richTextBox5
-            // 
-            this.richTextBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox5.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox5.Name = "richTextBox5";
-            this.richTextBox5.ReadOnly = true;
-            this.richTextBox5.Size = new System.Drawing.Size(527, 312);
-            this.richTextBox5.TabIndex = 0;
-            this.richTextBox5.Text = resources.GetString("richTextBox5.Text");
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.groupBox6);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(533, 331);
-            this.tabPage3.TabIndex = 15;
-            this.tabPage3.Text = "ReadMe (How to use)";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.richTextBox6);
-            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(0, 0);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(533, 331);
-            this.groupBox6.TabIndex = 25;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Info";
-            // 
-            // richTextBox6
-            // 
-            this.richTextBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox6.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.ReadOnly = true;
-            this.richTextBox6.Size = new System.Drawing.Size(527, 312);
-            this.richTextBox6.TabIndex = 0;
-            this.richTextBox6.Text = resources.GetString("richTextBox6.Text");
+            this.label126.AutoSize = true;
+            this.label126.Location = new System.Drawing.Point(51, 49);
+            this.label126.Name = "label126";
+            this.label126.Size = new System.Drawing.Size(433, 13);
+            this.label126.TabIndex = 0;
+            this.label126.Text = "There is RandFailuresFS2020Stream edition which allows to trigger failures via Tw" +
+    "itch chat";
             // 
             // menuStrip1
             // 
@@ -2947,57 +3020,80 @@
             this.label44.TabIndex = 77;
             this.label44.Text = "Failures";
             // 
-            // tabPage4
+            // label139
             // 
-            this.tabPage4.Controls.Add(this.label141);
-            this.tabPage4.Controls.Add(this.label140);
-            this.tabPage4.Controls.Add(this.label126);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(533, 331);
-            this.tabPage4.TabIndex = 16;
-            this.tabPage4.Text = "Twitch";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.label139.AutoSize = true;
+            this.label139.Location = new System.Drawing.Point(151, 120);
+            this.label139.Name = "label139";
+            this.label139.Size = new System.Drawing.Size(15, 13);
+            this.label139.TabIndex = 75;
+            this.label139.Text = "%";
             // 
-            // PayPalLink
+            // label142
             // 
-            this.PayPalLink.AutoSize = true;
-            this.PayPalLink.Location = new System.Drawing.Point(6, 43);
-            this.PayPalLink.Name = "PayPalLink";
-            this.PayPalLink.Size = new System.Drawing.Size(218, 13);
-            this.PayPalLink.TabIndex = 1;
-            this.PayPalLink.TabStop = true;
-            this.PayPalLink.Text = "https://www.paypal.com/paypalme/kanaron";
-            this.PayPalLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PayPalLink_LinkClicked);
+            this.label142.AutoSize = true;
+            this.label142.Location = new System.Drawing.Point(151, 94);
+            this.label142.Name = "label142";
+            this.label142.Size = new System.Drawing.Size(15, 13);
+            this.label142.TabIndex = 74;
+            this.label142.Text = "%";
             // 
-            // label126
+            // label143
             // 
-            this.label126.AutoSize = true;
-            this.label126.Location = new System.Drawing.Point(51, 49);
-            this.label126.Name = "label126";
-            this.label126.Size = new System.Drawing.Size(433, 13);
-            this.label126.TabIndex = 0;
-            this.label126.Text = "There is RandFailuresFS2020Stream edition which allows to trigger failures via Tw" +
-    "itch chat";
+            this.label143.AutoSize = true;
+            this.label143.Location = new System.Drawing.Point(151, 68);
+            this.label143.Name = "label143";
+            this.label143.Size = new System.Drawing.Size(15, 13);
+            this.label143.TabIndex = 73;
+            this.label143.Text = "%";
             // 
-            // label140
+            // label144
             // 
-            this.label140.AutoSize = true;
-            this.label140.Location = new System.Drawing.Point(65, 74);
-            this.label140.Name = "label140";
-            this.label140.Size = new System.Drawing.Size(405, 13);
-            this.label140.TabIndex = 2;
-            this.label140.Text = "Failures can be also triggered by specyfic ammount of bits donated to specyfic fa" +
-    "ilure";
+            this.label144.AutoSize = true;
+            this.label144.Location = new System.Drawing.Point(6, 120);
+            this.label144.Name = "label144";
+            this.label144.Size = new System.Drawing.Size(58, 13);
+            this.label144.TabIndex = 72;
+            this.label144.Text = "Aileron trim";
             // 
-            // label141
+            // fTrimAileron
             // 
-            this.label141.AutoSize = true;
-            this.label141.Location = new System.Drawing.Point(108, 99);
-            this.label141.Name = "label141";
-            this.label141.Size = new System.Drawing.Size(319, 13);
-            this.label141.TabIndex = 3;
-            this.label141.Text = "For more informations contact me via mail kanaron125@gmail.com";
+            this.fTrimAileron.Location = new System.Drawing.Point(105, 118);
+            this.fTrimAileron.Name = "fTrimAileron";
+            this.fTrimAileron.Size = new System.Drawing.Size(40, 20);
+            this.fTrimAileron.TabIndex = 71;
+            // 
+            // label145
+            // 
+            this.label145.AutoSize = true;
+            this.label145.Location = new System.Drawing.Point(6, 94);
+            this.label145.Name = "label145";
+            this.label145.Size = new System.Drawing.Size(61, 13);
+            this.label145.TabIndex = 70;
+            this.label145.Text = "Rudder trim";
+            // 
+            // fTrimRudder
+            // 
+            this.fTrimRudder.Location = new System.Drawing.Point(105, 92);
+            this.fTrimRudder.Name = "fTrimRudder";
+            this.fTrimRudder.Size = new System.Drawing.Size(40, 20);
+            this.fTrimRudder.TabIndex = 69;
+            // 
+            // label146
+            // 
+            this.label146.AutoSize = true;
+            this.label146.Location = new System.Drawing.Point(6, 68);
+            this.label146.Name = "label146";
+            this.label146.Size = new System.Drawing.Size(65, 13);
+            this.label146.TabIndex = 68;
+            this.label146.Text = "Elevator trim";
+            // 
+            // fTrimElevator
+            // 
+            this.fTrimElevator.Location = new System.Drawing.Point(105, 66);
+            this.fTrimElevator.Name = "fTrimElevator";
+            this.fTrimElevator.Size = new System.Drawing.Size(40, 20);
+            this.fTrimElevator.TabIndex = 67;
             // 
             // Form1
             // 
@@ -3115,24 +3211,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.feElectricalComplete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.feVacuum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nruAllPanel)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
             this.tpEvents.ResumeLayout(false);
             this.tpEvents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.evBird4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evBird3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evBird2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evBird1)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimAileron)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimRudder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimElevator)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3401,6 +3500,15 @@
         private System.Windows.Forms.Label label141;
         private System.Windows.Forms.Label label140;
         private System.Windows.Forms.Label label126;
+        private System.Windows.Forms.Label label139;
+        private System.Windows.Forms.Label label142;
+        private System.Windows.Forms.Label label143;
+        private System.Windows.Forms.Label label144;
+        private System.Windows.Forms.NumericUpDown fTrimAileron;
+        private System.Windows.Forms.Label label145;
+        private System.Windows.Forms.NumericUpDown fTrimRudder;
+        private System.Windows.Forms.Label label146;
+        private System.Windows.Forms.NumericUpDown fTrimElevator;
     }
 }
 

@@ -252,8 +252,13 @@ namespace RandFailuresFS2020
             createRegister(new SimVar(lSimVars.Count(), "GROUND VELOCITY", "", POSSIBLE_FAIL_TYPE.NO, "Knots"));
             createRegister(new SimVar(lSimVars.Count(), "SIM ON GROUND", "", POSSIBLE_FAIL_TYPE.NO));
 
+            //createRegister(new SimVar(lSimVars.Count(), "PLANE ALTITUDE", "fLeftFlap", POSSIBLE_FAIL_TYPE.STUCK));
             createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS LEFT PERCENT", "fLeftFlap", POSSIBLE_FAIL_TYPE.STUCK));
             createRegister(new SimVar(lSimVars.Count(), "TRAILING EDGE FLAPS RIGHT PERCENT", "fRightFlap", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "ELEVATOR TRIM POSITION", "fTrimElevator", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "RUDDER TRIM PCT", "fTrimRudder", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "AILERON TRIM PCT", "fTrimAileron", POSSIBLE_FAIL_TYPE.STUCK));
+
 
             createRegister(new SimVar(lSimVars.Count(), "GEAR CENTER POSITION", "fCenterGear", POSSIBLE_FAIL_TYPE.STUCK));
             createRegister(new SimVar(lSimVars.Count(), "GEAR LEFT POSITION", "fLeftGear", POSSIBLE_FAIL_TYPE.STUCK));
