@@ -398,6 +398,15 @@ namespace RandFailuresFS2020
             }
         }
 
+        private void nruFlightControlSurfacesAll_ValueChanged(object sender, EventArgs e)
+        {
+            foreach (Control c in GetAll(gbFlightControlSufraces, typeof(NumericUpDown)))
+            {
+                if (c is NumericUpDown)
+                    ((NumericUpDown)c).Value = nruFlightControlSurfacesAll.Value;
+            }
+        }
+
         private void nruGearAll_ValueChanged(object sender, EventArgs e)
         {
             foreach (Control c in GetAll(gbGear, typeof(NumericUpDown)))
@@ -467,5 +476,6 @@ namespace RandFailuresFS2020
         {
             saveSettings();
         }
+
     }
 }

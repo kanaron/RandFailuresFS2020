@@ -117,6 +117,15 @@
             this.fLeftGear = new System.Windows.Forms.NumericUpDown();
             this.fCenterGear = new System.Windows.Forms.NumericUpDown();
             this.gbAvionics = new System.Windows.Forms.GroupBox();
+            this.label139 = new System.Windows.Forms.Label();
+            this.label142 = new System.Windows.Forms.Label();
+            this.label143 = new System.Windows.Forms.Label();
+            this.label144 = new System.Windows.Forms.Label();
+            this.fTrimAileron = new System.Windows.Forms.NumericUpDown();
+            this.label145 = new System.Windows.Forms.Label();
+            this.fTrimRudder = new System.Windows.Forms.NumericUpDown();
+            this.label146 = new System.Windows.Forms.Label();
+            this.fTrimElevator = new System.Windows.Forms.NumericUpDown();
             this.label63 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -291,15 +300,20 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
-            this.label139 = new System.Windows.Forms.Label();
-            this.label142 = new System.Windows.Forms.Label();
-            this.label143 = new System.Windows.Forms.Label();
-            this.label144 = new System.Windows.Forms.Label();
-            this.fTrimAileron = new System.Windows.Forms.NumericUpDown();
-            this.label145 = new System.Windows.Forms.Label();
-            this.fTrimRudder = new System.Windows.Forms.NumericUpDown();
-            this.label146 = new System.Windows.Forms.Label();
-            this.fTrimElevator = new System.Windows.Forms.NumericUpDown();
+            this.gbFlightControlSufraces = new System.Windows.Forms.GroupBox();
+            this.label147 = new System.Windows.Forms.Label();
+            this.label148 = new System.Windows.Forms.Label();
+            this.label149 = new System.Windows.Forms.Label();
+            this.label150 = new System.Windows.Forms.Label();
+            this.label151 = new System.Windows.Forms.Label();
+            this.label152 = new System.Windows.Forms.Label();
+            this.fControlAileron = new System.Windows.Forms.NumericUpDown();
+            this.fControlRudder = new System.Windows.Forms.NumericUpDown();
+            this.fControlElevator = new System.Windows.Forms.NumericUpDown();
+            this.label153 = new System.Windows.Forms.Label();
+            this.label154 = new System.Windows.Forms.Label();
+            this.nruFlightControlSurfacesAll = new System.Windows.Forms.NumericUpDown();
+            this.label155 = new System.Windows.Forms.Label();
             this.tcFailures.SuspendLayout();
             this.tpList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).BeginInit();
@@ -334,6 +348,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.fLeftGear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fCenterGear)).BeginInit();
             this.gbAvionics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimAileron)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimRudder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimElevator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fLeftFlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fRightFlap)).BeginInit();
             this.tpEngine1.SuspendLayout();
@@ -397,9 +414,11 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fTrimAileron)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fTrimRudder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fTrimElevator)).BeginInit();
+            this.gbFlightControlSufraces.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fControlAileron)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fControlRudder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fControlElevator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruFlightControlSurfacesAll)).BeginInit();
             this.SuspendLayout();
             // 
             // tcFailures
@@ -766,9 +785,9 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.richTextBox4);
-            this.groupBox2.Location = new System.Drawing.Point(256, 164);
+            this.groupBox2.Location = new System.Drawing.Point(256, 181);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(274, 82);
+            this.groupBox2.Size = new System.Drawing.Size(274, 65);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bug / Help";
@@ -779,7 +798,7 @@
             this.richTextBox4.Location = new System.Drawing.Point(3, 16);
             this.richTextBox4.Name = "richTextBox4";
             this.richTextBox4.ReadOnly = true;
-            this.richTextBox4.Size = new System.Drawing.Size(268, 63);
+            this.richTextBox4.Size = new System.Drawing.Size(268, 46);
             this.richTextBox4.TabIndex = 0;
             this.richTextBox4.Text = "If you need help or if you found bug in my add-on, please contact me via email wi" +
     "th \"Bug\" or \"Help\" in email thread.";
@@ -790,7 +809,7 @@
             this.groupBox1.Controls.Add(this.richTextBox3);
             this.groupBox1.Location = new System.Drawing.Point(256, 87);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(274, 71);
+            this.groupBox1.Size = new System.Drawing.Size(274, 88);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Author and contact";
@@ -801,9 +820,10 @@
             this.richTextBox3.Location = new System.Drawing.Point(3, 16);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.ReadOnly = true;
-            this.richTextBox3.Size = new System.Drawing.Size(268, 52);
+            this.richTextBox3.Size = new System.Drawing.Size(268, 69);
             this.richTextBox3.TabIndex = 1;
-            this.richTextBox3.Text = "Author: Mateusz \"Kanaron\" G\nemail:\nkanaron125@gmail.com";
+            this.richTextBox3.Text = "Author: Mateusz \"Kanaron\" Godziek\nemail:\nkanaron125@gmail.com\ndiscord: PL_Kanaron" +
+    "#5564";
             // 
             // label104
             // 
@@ -901,6 +921,10 @@
             // 
             // tpAvionics
             // 
+            this.tpAvionics.Controls.Add(this.label153);
+            this.tpAvionics.Controls.Add(this.label154);
+            this.tpAvionics.Controls.Add(this.nruFlightControlSurfacesAll);
+            this.tpAvionics.Controls.Add(this.gbFlightControlSufraces);
             this.tpAvionics.Controls.Add(this.label73);
             this.tpAvionics.Controls.Add(this.label74);
             this.tpAvionics.Controls.Add(this.label75);
@@ -932,7 +956,7 @@
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(512, 48);
+            this.label73.Location = new System.Drawing.Point(512, 74);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(15, 13);
             this.label73.TabIndex = 92;
@@ -941,7 +965,7 @@
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(512, 128);
+            this.label74.Location = new System.Drawing.Point(512, 154);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(15, 13);
             this.label74.TabIndex = 91;
@@ -950,7 +974,7 @@
             // label75
             // 
             this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(512, 74);
+            this.label75.Location = new System.Drawing.Point(512, 100);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(15, 13);
             this.label75.TabIndex = 90;
@@ -959,7 +983,7 @@
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(512, 102);
+            this.label76.Location = new System.Drawing.Point(512, 128);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(15, 13);
             this.label76.TabIndex = 89;
@@ -977,7 +1001,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(418, 50);
+            this.label57.Location = new System.Drawing.Point(418, 76);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(42, 13);
             this.label57.TabIndex = 87;
@@ -985,7 +1009,7 @@
             // 
             // nruGearAll
             // 
-            this.nruGearAll.Location = new System.Drawing.Point(466, 48);
+            this.nruGearAll.Location = new System.Drawing.Point(466, 74);
             this.nruGearAll.Name = "nruGearAll";
             this.nruGearAll.Size = new System.Drawing.Size(40, 20);
             this.nruGearAll.TabIndex = 86;
@@ -994,7 +1018,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(407, 128);
+            this.label51.Location = new System.Drawing.Point(407, 154);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(53, 13);
             this.label51.TabIndex = 85;
@@ -1002,7 +1026,7 @@
             // 
             // nruSystemAll
             // 
-            this.nruSystemAll.Location = new System.Drawing.Point(466, 126);
+            this.nruSystemAll.Location = new System.Drawing.Point(466, 152);
             this.nruSystemAll.Name = "nruSystemAll";
             this.nruSystemAll.Size = new System.Drawing.Size(40, 20);
             this.nruSystemAll.TabIndex = 84;
@@ -1011,7 +1035,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(393, 76);
+            this.label53.Location = new System.Drawing.Point(393, 102);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(67, 13);
             this.label53.TabIndex = 81;
@@ -1019,7 +1043,7 @@
             // 
             // nruFuelAll
             // 
-            this.nruFuelAll.Location = new System.Drawing.Point(466, 74);
+            this.nruFuelAll.Location = new System.Drawing.Point(466, 100);
             this.nruFuelAll.Name = "nruFuelAll";
             this.nruFuelAll.Size = new System.Drawing.Size(40, 20);
             this.nruFuelAll.TabIndex = 80;
@@ -1028,7 +1052,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(408, 102);
+            this.label54.Location = new System.Drawing.Point(408, 128);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(52, 13);
             this.label54.TabIndex = 79;
@@ -1036,7 +1060,7 @@
             // 
             // nruBrakesAll
             // 
-            this.nruBrakesAll.Location = new System.Drawing.Point(466, 100);
+            this.nruBrakesAll.Location = new System.Drawing.Point(466, 126);
             this.nruBrakesAll.Name = "nruBrakesAll";
             this.nruBrakesAll.Size = new System.Drawing.Size(40, 20);
             this.nruBrakesAll.TabIndex = 78;
@@ -1370,6 +1394,81 @@
             this.gbAvionics.TabIndex = 14;
             this.gbAvionics.TabStop = false;
             this.gbAvionics.Text = "Avionics";
+            // 
+            // label139
+            // 
+            this.label139.AutoSize = true;
+            this.label139.Location = new System.Drawing.Point(151, 120);
+            this.label139.Name = "label139";
+            this.label139.Size = new System.Drawing.Size(15, 13);
+            this.label139.TabIndex = 75;
+            this.label139.Text = "%";
+            // 
+            // label142
+            // 
+            this.label142.AutoSize = true;
+            this.label142.Location = new System.Drawing.Point(151, 94);
+            this.label142.Name = "label142";
+            this.label142.Size = new System.Drawing.Size(15, 13);
+            this.label142.TabIndex = 74;
+            this.label142.Text = "%";
+            // 
+            // label143
+            // 
+            this.label143.AutoSize = true;
+            this.label143.Location = new System.Drawing.Point(151, 68);
+            this.label143.Name = "label143";
+            this.label143.Size = new System.Drawing.Size(15, 13);
+            this.label143.TabIndex = 73;
+            this.label143.Text = "%";
+            // 
+            // label144
+            // 
+            this.label144.AutoSize = true;
+            this.label144.Location = new System.Drawing.Point(6, 120);
+            this.label144.Name = "label144";
+            this.label144.Size = new System.Drawing.Size(58, 13);
+            this.label144.TabIndex = 72;
+            this.label144.Text = "Aileron trim";
+            // 
+            // fTrimAileron
+            // 
+            this.fTrimAileron.Location = new System.Drawing.Point(105, 118);
+            this.fTrimAileron.Name = "fTrimAileron";
+            this.fTrimAileron.Size = new System.Drawing.Size(40, 20);
+            this.fTrimAileron.TabIndex = 71;
+            // 
+            // label145
+            // 
+            this.label145.AutoSize = true;
+            this.label145.Location = new System.Drawing.Point(6, 94);
+            this.label145.Name = "label145";
+            this.label145.Size = new System.Drawing.Size(61, 13);
+            this.label145.TabIndex = 70;
+            this.label145.Text = "Rudder trim";
+            // 
+            // fTrimRudder
+            // 
+            this.fTrimRudder.Location = new System.Drawing.Point(105, 92);
+            this.fTrimRudder.Name = "fTrimRudder";
+            this.fTrimRudder.Size = new System.Drawing.Size(40, 20);
+            this.fTrimRudder.TabIndex = 69;
+            // 
+            // label146
+            // 
+            this.label146.AutoSize = true;
+            this.label146.Location = new System.Drawing.Point(6, 68);
+            this.label146.Name = "label146";
+            this.label146.Size = new System.Drawing.Size(65, 13);
+            this.label146.TabIndex = 68;
+            this.label146.Text = "Elevator trim";
+            // 
+            // fTrimElevator
+            // 
+            this.fTrimElevator.Location = new System.Drawing.Point(105, 66);
+            this.fTrimElevator.Name = "fTrimElevator";
+            this.fTrimElevator.Size = new System.Drawing.Size(40, 20);
+            this.fTrimElevator.TabIndex = 67;
             // 
             // label63
             // 
@@ -2845,6 +2944,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label155);
             this.tabPage4.Controls.Add(this.label141);
             this.tabPage4.Controls.Add(this.label140);
             this.tabPage4.Controls.Add(this.label126);
@@ -2858,7 +2958,7 @@
             // label141
             // 
             this.label141.AutoSize = true;
-            this.label141.Location = new System.Drawing.Point(108, 99);
+            this.label141.Location = new System.Drawing.Point(107, 99);
             this.label141.Name = "label141";
             this.label141.Size = new System.Drawing.Size(319, 13);
             this.label141.TabIndex = 3;
@@ -2867,7 +2967,7 @@
             // label140
             // 
             this.label140.AutoSize = true;
-            this.label140.Location = new System.Drawing.Point(65, 74);
+            this.label140.Location = new System.Drawing.Point(64, 74);
             this.label140.Name = "label140";
             this.label140.Size = new System.Drawing.Size(405, 13);
             this.label140.TabIndex = 2;
@@ -2877,7 +2977,7 @@
             // label126
             // 
             this.label126.AutoSize = true;
-            this.label126.Location = new System.Drawing.Point(51, 49);
+            this.label126.Location = new System.Drawing.Point(50, 49);
             this.label126.Name = "label126";
             this.label126.Size = new System.Drawing.Size(433, 13);
             this.label126.TabIndex = 0;
@@ -3020,80 +3120,133 @@
             this.label44.TabIndex = 77;
             this.label44.Text = "Failures";
             // 
-            // label139
+            // gbFlightControlSufraces
             // 
-            this.label139.AutoSize = true;
-            this.label139.Location = new System.Drawing.Point(151, 120);
-            this.label139.Name = "label139";
-            this.label139.Size = new System.Drawing.Size(15, 13);
-            this.label139.TabIndex = 75;
-            this.label139.Text = "%";
+            this.gbFlightControlSufraces.Controls.Add(this.label147);
+            this.gbFlightControlSufraces.Controls.Add(this.label148);
+            this.gbFlightControlSufraces.Controls.Add(this.label149);
+            this.gbFlightControlSufraces.Controls.Add(this.label150);
+            this.gbFlightControlSufraces.Controls.Add(this.label151);
+            this.gbFlightControlSufraces.Controls.Add(this.label152);
+            this.gbFlightControlSufraces.Controls.Add(this.fControlAileron);
+            this.gbFlightControlSufraces.Controls.Add(this.fControlRudder);
+            this.gbFlightControlSufraces.Controls.Add(this.fControlElevator);
+            this.gbFlightControlSufraces.Location = new System.Drawing.Point(8, 163);
+            this.gbFlightControlSufraces.Name = "gbFlightControlSufraces";
+            this.gbFlightControlSufraces.Size = new System.Drawing.Size(167, 95);
+            this.gbFlightControlSufraces.TabIndex = 22;
+            this.gbFlightControlSufraces.TabStop = false;
+            this.gbFlightControlSufraces.Text = "Primary flight controls";
             // 
-            // label142
+            // label147
             // 
-            this.label142.AutoSize = true;
-            this.label142.Location = new System.Drawing.Point(151, 94);
-            this.label142.Name = "label142";
-            this.label142.Size = new System.Drawing.Size(15, 13);
-            this.label142.TabIndex = 74;
-            this.label142.Text = "%";
+            this.label147.AutoSize = true;
+            this.label147.Location = new System.Drawing.Point(151, 68);
+            this.label147.Name = "label147";
+            this.label147.Size = new System.Drawing.Size(15, 13);
+            this.label147.TabIndex = 21;
+            this.label147.Text = "%";
             // 
-            // label143
+            // label148
             // 
-            this.label143.AutoSize = true;
-            this.label143.Location = new System.Drawing.Point(151, 68);
-            this.label143.Name = "label143";
-            this.label143.Size = new System.Drawing.Size(15, 13);
-            this.label143.TabIndex = 73;
-            this.label143.Text = "%";
+            this.label148.AutoSize = true;
+            this.label148.Location = new System.Drawing.Point(151, 42);
+            this.label148.Name = "label148";
+            this.label148.Size = new System.Drawing.Size(15, 13);
+            this.label148.TabIndex = 20;
+            this.label148.Text = "%";
             // 
-            // label144
+            // label149
             // 
-            this.label144.AutoSize = true;
-            this.label144.Location = new System.Drawing.Point(6, 120);
-            this.label144.Name = "label144";
-            this.label144.Size = new System.Drawing.Size(58, 13);
-            this.label144.TabIndex = 72;
-            this.label144.Text = "Aileron trim";
+            this.label149.AutoSize = true;
+            this.label149.Location = new System.Drawing.Point(151, 16);
+            this.label149.Name = "label149";
+            this.label149.Size = new System.Drawing.Size(15, 13);
+            this.label149.TabIndex = 19;
+            this.label149.Text = "%";
             // 
-            // fTrimAileron
+            // label150
             // 
-            this.fTrimAileron.Location = new System.Drawing.Point(105, 118);
-            this.fTrimAileron.Name = "fTrimAileron";
-            this.fTrimAileron.Size = new System.Drawing.Size(40, 20);
-            this.fTrimAileron.TabIndex = 71;
+            this.label150.AutoSize = true;
+            this.label150.Location = new System.Drawing.Point(6, 68);
+            this.label150.Name = "label150";
+            this.label150.Size = new System.Drawing.Size(70, 13);
+            this.label150.TabIndex = 18;
+            this.label150.Text = "Aileron failure";
             // 
-            // label145
+            // label151
             // 
-            this.label145.AutoSize = true;
-            this.label145.Location = new System.Drawing.Point(6, 94);
-            this.label145.Name = "label145";
-            this.label145.Size = new System.Drawing.Size(61, 13);
-            this.label145.TabIndex = 70;
-            this.label145.Text = "Rudder trim";
+            this.label151.AutoSize = true;
+            this.label151.Location = new System.Drawing.Point(6, 42);
+            this.label151.Name = "label151";
+            this.label151.Size = new System.Drawing.Size(73, 13);
+            this.label151.TabIndex = 17;
+            this.label151.Text = "Rudder failure";
             // 
-            // fTrimRudder
+            // label152
             // 
-            this.fTrimRudder.Location = new System.Drawing.Point(105, 92);
-            this.fTrimRudder.Name = "fTrimRudder";
-            this.fTrimRudder.Size = new System.Drawing.Size(40, 20);
-            this.fTrimRudder.TabIndex = 69;
+            this.label152.AutoSize = true;
+            this.label152.Location = new System.Drawing.Point(6, 16);
+            this.label152.Name = "label152";
+            this.label152.Size = new System.Drawing.Size(77, 13);
+            this.label152.TabIndex = 16;
+            this.label152.Text = "Elevator failure";
             // 
-            // label146
+            // fControlAileron
             // 
-            this.label146.AutoSize = true;
-            this.label146.Location = new System.Drawing.Point(6, 68);
-            this.label146.Name = "label146";
-            this.label146.Size = new System.Drawing.Size(65, 13);
-            this.label146.TabIndex = 68;
-            this.label146.Text = "Elevator trim";
+            this.fControlAileron.Location = new System.Drawing.Point(105, 66);
+            this.fControlAileron.Name = "fControlAileron";
+            this.fControlAileron.Size = new System.Drawing.Size(40, 20);
+            this.fControlAileron.TabIndex = 15;
             // 
-            // fTrimElevator
+            // fControlRudder
             // 
-            this.fTrimElevator.Location = new System.Drawing.Point(105, 66);
-            this.fTrimElevator.Name = "fTrimElevator";
-            this.fTrimElevator.Size = new System.Drawing.Size(40, 20);
-            this.fTrimElevator.TabIndex = 67;
+            this.fControlRudder.Location = new System.Drawing.Point(105, 40);
+            this.fControlRudder.Name = "fControlRudder";
+            this.fControlRudder.Size = new System.Drawing.Size(40, 20);
+            this.fControlRudder.TabIndex = 14;
+            // 
+            // fControlElevator
+            // 
+            this.fControlElevator.Location = new System.Drawing.Point(105, 14);
+            this.fControlElevator.Name = "fControlElevator";
+            this.fControlElevator.Size = new System.Drawing.Size(40, 20);
+            this.fControlElevator.TabIndex = 13;
+            // 
+            // label153
+            // 
+            this.label153.AutoSize = true;
+            this.label153.Location = new System.Drawing.Point(512, 50);
+            this.label153.Name = "label153";
+            this.label153.Size = new System.Drawing.Size(15, 13);
+            this.label153.TabIndex = 95;
+            this.label153.Text = "%";
+            // 
+            // label154
+            // 
+            this.label154.AutoSize = true;
+            this.label154.Location = new System.Drawing.Point(412, 50);
+            this.label154.Name = "label154";
+            this.label154.Size = new System.Drawing.Size(48, 13);
+            this.label154.TabIndex = 94;
+            this.label154.Text = "P.F.C. to";
+            // 
+            // nruFlightControlSurfacesAll
+            // 
+            this.nruFlightControlSurfacesAll.Location = new System.Drawing.Point(466, 48);
+            this.nruFlightControlSurfacesAll.Name = "nruFlightControlSurfacesAll";
+            this.nruFlightControlSurfacesAll.Size = new System.Drawing.Size(40, 20);
+            this.nruFlightControlSurfacesAll.TabIndex = 93;
+            this.nruFlightControlSurfacesAll.ValueChanged += new System.EventHandler(this.nruFlightControlSurfacesAll_ValueChanged);
+            // 
+            // label155
+            // 
+            this.label155.AutoSize = true;
+            this.label155.Location = new System.Drawing.Point(185, 124);
+            this.label155.Name = "label155";
+            this.label155.Size = new System.Drawing.Size(163, 13);
+            this.label155.TabIndex = 4;
+            this.label155.Text = "or on Discord PL_Kanaron#5564";
             // 
             // Form1
             // 
@@ -3154,6 +3307,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.fCenterGear)).EndInit();
             this.gbAvionics.ResumeLayout(false);
             this.gbAvionics.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimAileron)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimRudder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fTrimElevator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fLeftFlap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fRightFlap)).EndInit();
             this.tpEngine1.ResumeLayout(false);
@@ -3229,9 +3385,12 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fTrimAileron)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fTrimRudder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fTrimElevator)).EndInit();
+            this.gbFlightControlSufraces.ResumeLayout(false);
+            this.gbFlightControlSufraces.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fControlAileron)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fControlRudder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fControlElevator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nruFlightControlSurfacesAll)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3509,6 +3668,20 @@
         private System.Windows.Forms.NumericUpDown fTrimRudder;
         private System.Windows.Forms.Label label146;
         private System.Windows.Forms.NumericUpDown fTrimElevator;
+        private System.Windows.Forms.Label label153;
+        private System.Windows.Forms.Label label154;
+        private System.Windows.Forms.NumericUpDown nruFlightControlSurfacesAll;
+        private System.Windows.Forms.GroupBox gbFlightControlSufraces;
+        private System.Windows.Forms.Label label147;
+        private System.Windows.Forms.Label label148;
+        private System.Windows.Forms.Label label149;
+        private System.Windows.Forms.Label label150;
+        private System.Windows.Forms.Label label151;
+        private System.Windows.Forms.Label label152;
+        private System.Windows.Forms.NumericUpDown fControlAileron;
+        private System.Windows.Forms.NumericUpDown fControlRudder;
+        private System.Windows.Forms.NumericUpDown fControlElevator;
+        private System.Windows.Forms.Label label155;
     }
 }
 

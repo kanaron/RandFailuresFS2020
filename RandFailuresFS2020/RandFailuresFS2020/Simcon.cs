@@ -201,7 +201,7 @@ namespace RandFailuresFS2020
             GroundTimer.Tick += new EventHandler(OnTickGround);
 
             ContinTimer = new DispatcherTimer();
-            ContinTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            ContinTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             ContinTimer.Tick += new EventHandler(OnTickContin);
 
             m_hWnd = form.Handle;
@@ -259,6 +259,9 @@ namespace RandFailuresFS2020
             createRegister(new SimVar(lSimVars.Count(), "RUDDER TRIM PCT", "fTrimRudder", POSSIBLE_FAIL_TYPE.STUCK));
             createRegister(new SimVar(lSimVars.Count(), "AILERON TRIM PCT", "fTrimAileron", POSSIBLE_FAIL_TYPE.STUCK));
 
+            createRegister(new SimVar(lSimVars.Count(), "ELEVATOR POSITION", "fControlElevator", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "RUDDER POSITION", "fControlRudder", POSSIBLE_FAIL_TYPE.STUCK));
+            createRegister(new SimVar(lSimVars.Count(), "AILERON POSITION", "fControlAileron", POSSIBLE_FAIL_TYPE.STUCK));
 
             createRegister(new SimVar(lSimVars.Count(), "GEAR CENTER POSITION", "fCenterGear", POSSIBLE_FAIL_TYPE.STUCK));
             createRegister(new SimVar(lSimVars.Count(), "GEAR LEFT POSITION", "fLeftGear", POSSIBLE_FAIL_TYPE.STUCK));
