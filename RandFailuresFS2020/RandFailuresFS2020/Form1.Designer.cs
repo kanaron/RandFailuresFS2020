@@ -314,6 +314,7 @@
             this.label154 = new System.Windows.Forms.Label();
             this.nruFlightControlSurfacesAll = new System.Windows.Forms.NumericUpDown();
             this.label155 = new System.Windows.Forms.Label();
+            this.label156 = new System.Windows.Forms.Label();
             this.tcFailures.SuspendLayout();
             this.tpList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nruMinSpeed)).BeginInit();
@@ -3122,6 +3123,7 @@
             // 
             // gbFlightControlSufraces
             // 
+            this.gbFlightControlSufraces.Controls.Add(this.label156);
             this.gbFlightControlSufraces.Controls.Add(this.label147);
             this.gbFlightControlSufraces.Controls.Add(this.label148);
             this.gbFlightControlSufraces.Controls.Add(this.label149);
@@ -3135,7 +3137,7 @@
             this.gbFlightControlSufraces.ForeColor = System.Drawing.Color.Red;
             this.gbFlightControlSufraces.Location = new System.Drawing.Point(8, 163);
             this.gbFlightControlSufraces.Name = "gbFlightControlSufraces";
-            this.gbFlightControlSufraces.Size = new System.Drawing.Size(167, 95);
+            this.gbFlightControlSufraces.Size = new System.Drawing.Size(167, 121);
             this.gbFlightControlSufraces.TabIndex = 22;
             this.gbFlightControlSufraces.TabStop = false;
             this.gbFlightControlSufraces.Text = "Primary flight controls";
@@ -3249,6 +3251,15 @@
             this.label155.Size = new System.Drawing.Size(163, 13);
             this.label155.TabIndex = 4;
             this.label155.Text = "or on Discord PL_Kanaron#5564";
+            // 
+            // label156
+            // 
+            this.label156.AutoSize = true;
+            this.label156.Location = new System.Drawing.Point(46, 89);
+            this.label156.Name = "label156";
+            this.label156.Size = new System.Drawing.Size(64, 13);
+            this.label156.TabIndex = 22;
+            this.label156.Text = "Beta tests";
             // 
             // Form1
             // 
@@ -3684,6 +3695,7 @@
         private System.Windows.Forms.NumericUpDown fControlRudder;
         private System.Windows.Forms.NumericUpDown fControlElevator;
         private System.Windows.Forms.Label label155;
+        private System.Windows.Forms.Label label156;
     }
 }
 
