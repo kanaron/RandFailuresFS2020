@@ -3131,6 +3131,8 @@
             this.gbFlightControlSufraces.Controls.Add(this.fControlAileron);
             this.gbFlightControlSufraces.Controls.Add(this.fControlRudder);
             this.gbFlightControlSufraces.Controls.Add(this.fControlElevator);
+            this.gbFlightControlSufraces.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.gbFlightControlSufraces.ForeColor = System.Drawing.Color.Red;
             this.gbFlightControlSufraces.Location = new System.Drawing.Point(8, 163);
             this.gbFlightControlSufraces.Name = "gbFlightControlSufraces";
             this.gbFlightControlSufraces.Size = new System.Drawing.Size(167, 95);
@@ -3143,7 +3145,7 @@
             this.label147.AutoSize = true;
             this.label147.Location = new System.Drawing.Point(151, 68);
             this.label147.Name = "label147";
-            this.label147.Size = new System.Drawing.Size(15, 13);
+            this.label147.Size = new System.Drawing.Size(16, 13);
             this.label147.TabIndex = 21;
             this.label147.Text = "%";
             // 
@@ -3152,7 +3154,7 @@
             this.label148.AutoSize = true;
             this.label148.Location = new System.Drawing.Point(151, 42);
             this.label148.Name = "label148";
-            this.label148.Size = new System.Drawing.Size(15, 13);
+            this.label148.Size = new System.Drawing.Size(16, 13);
             this.label148.TabIndex = 20;
             this.label148.Text = "%";
             // 
@@ -3161,7 +3163,7 @@
             this.label149.AutoSize = true;
             this.label149.Location = new System.Drawing.Point(151, 16);
             this.label149.Name = "label149";
-            this.label149.Size = new System.Drawing.Size(15, 13);
+            this.label149.Size = new System.Drawing.Size(16, 13);
             this.label149.TabIndex = 19;
             this.label149.Text = "%";
             // 
@@ -3170,7 +3172,7 @@
             this.label150.AutoSize = true;
             this.label150.Location = new System.Drawing.Point(6, 68);
             this.label150.Name = "label150";
-            this.label150.Size = new System.Drawing.Size(70, 13);
+            this.label150.Size = new System.Drawing.Size(85, 13);
             this.label150.TabIndex = 18;
             this.label150.Text = "Aileron failure";
             // 
@@ -3179,7 +3181,7 @@
             this.label151.AutoSize = true;
             this.label151.Location = new System.Drawing.Point(6, 42);
             this.label151.Name = "label151";
-            this.label151.Size = new System.Drawing.Size(73, 13);
+            this.label151.Size = new System.Drawing.Size(87, 13);
             this.label151.TabIndex = 17;
             this.label151.Text = "Rudder failure";
             // 
@@ -3188,7 +3190,7 @@
             this.label152.AutoSize = true;
             this.label152.Location = new System.Drawing.Point(6, 16);
             this.label152.Name = "label152";
-            this.label152.Size = new System.Drawing.Size(77, 13);
+            this.label152.Size = new System.Drawing.Size(93, 13);
             this.label152.TabIndex = 16;
             this.label152.Text = "Elevator failure";
             // 
