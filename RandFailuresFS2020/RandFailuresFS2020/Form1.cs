@@ -30,6 +30,24 @@ namespace RandFailuresFS2020
             oSimCon = new Simcon(this);
 
             setLastSettings();
+
+            //////////////////
+
+            try
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                string webData = wc.DownloadString("https://gist.githubusercontent.com/kanaron/31fa6f850af5659f97257038b9e17055/raw/1f279d7842ac9878b56b8a79c62f44620028ac0c/rftest");      
+
+                Console.WriteLine(webData);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            ////////////////////////
+
+
         }
 
         void setLastSettings()
