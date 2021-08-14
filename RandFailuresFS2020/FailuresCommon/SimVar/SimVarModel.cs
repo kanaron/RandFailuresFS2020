@@ -110,5 +110,21 @@ namespace FailuresCommon
         /// random object for turning on and off continous event failures
         /// </summary>
         public Random Random { get; set; }
+
+
+        /// <summary>
+        /// if failure enabled in current preset
+        /// </summary>
+        public bool Enable { get; set; }
+
+        /// <summary>
+        /// for Twitch. Price of failure
+        /// </summary>
+        public int Price { get; set; }
+
+        /// <summary>
+        /// for normal version. Failure percent
+        /// </summary>
+        public int FailPercent { get; set; }
     }
 }

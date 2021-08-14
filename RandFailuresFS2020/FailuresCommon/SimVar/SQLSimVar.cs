@@ -15,32 +15,35 @@ namespace FailuresCommon
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 string SQL = "SELECT * " +
-                    "FROM           SimVar s " +
-                    "LEFT JOIN      TwitchVar t " +
-                    "   ON          t.simvarID = s.SimVarID " +
-                    "LEFT JOIN      Presets p " +
-                    "   ON          t.presetID = p.PresetID " +
-                    $"WHERE         p.PresetID = { PresetID } " +
-                    $"OR            p.PresetID is null";
+                    "FROM           SimVar s, Presets p " +
+                    "LEFT JOIN      VarsInPreset v " +
+                    "   ON          v.simvarID = s.SimVarID " +
+                    "   AND         v.PresetID = p.PresetID " +
+                    $"WHERE         (p.PresetID = { PresetID } " +
+                    $"OR            p.PresetID is null) " +
+                    $"AND           s.IsFailable = 1";
                 var output = cnn.Query<SimVarModel>(SQL, new DynamicParameters());
                 return output.ToList();
             }
         }
 
-        /*public static void Insert(SimVarModel preset)
+        public static void Insert(List<SimVarModel> simVars, int presetID)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Presets (name) values (@name)", preset);
+                foreach (SimVarModel simVar in simVars)
+                {
+                    cnn.Execute($"insert into VarsInPreset (Enable, Price, FailPercent, SimVarID, PresetID) values (@Enable, @Price, @FailPercent, @SimVarID, {presetID})", simVar);
+                }
             }
         }
 
-        public static void Delete(SimVarModel preset)
+        public static void Delete(int presetID)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute($"delete from Presets where id = { preset.ID }");
+                cnn.Execute($"delete from VarsInPreset where PresetID = { presetID }");
             }
-        }*/
+        }
     }
 }
