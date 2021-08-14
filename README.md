@@ -32,7 +32,7 @@ Thanks!
 2. Unzip RandFailuresFS2020[version].zip archive to a directory
 
 # Requirements
-- Application requires .NET 4.7.2 
+- Application requires .NET 5
 
 # How to use
 - After opening MSFS2020 click "Connect". When connection is established (there will be in bottom left corner "SimConnect connected") you may prepare new flight.
