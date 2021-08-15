@@ -34,7 +34,7 @@ namespace FailuresCommon
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                if (cnn.Execute("update Options set OptionValue = @OptionValue where OptionName = @OptionName", option) <= 0 )
+                if (cnn.Execute("update Options set OptionValue = @OptionValue where OptionName = @OptionName", option) <= 0)
                 {
                     cnn.Execute("insert into Options (OptionName, OptionValue) values (@OptionName, @OptionValue)", option);
                 }
@@ -55,12 +55,15 @@ namespace FailuresCommon
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var query = cnn.Query<string>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName)).ToList();
-                if (query.Count > 0)
+                try
                 {
-                    return query[0];
+                    var query = cnn.QueryFirst<string>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName));
+                    return query;
                 }
-                return "";
+                catch
+                {
+                    return "";
+                }
             }
         }
     }

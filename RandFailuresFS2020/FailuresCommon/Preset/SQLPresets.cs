@@ -26,6 +26,14 @@ namespace FailuresCommon
             }
         }
 
+        public static new void Insert(string presetName)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"insert into Presets (PresetName) values ('{presetName}')");
+            }
+        }
+
         public static void Delete(PresetModel preset)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))

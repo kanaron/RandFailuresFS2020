@@ -15,14 +15,34 @@ namespace FailuresCommon
         private List<SimVarModel> SimVarFailableList;
         private List<SimVarModel> SimVarWillFailList;
 
+        private OptionsModel PresetOption;
+
         private SimVarLists()
         {
-
+            PresetOption = new OptionsModel("PresetID");
+            if (PresetOption.OptionValue != "")
+            {
+                int presetParse;
+                int.TryParse(PresetOption.OptionValue, out presetParse);
+                Preset = presetParse;
+            }
+            else
+            {
+                Preset = 1;
+            }
         }
 
         public static SimVarLists GetSimVarLists()
         {
             return instance;
+        }
+
+        public void LoadLists()
+        {
+            PresetOption.OptionValue = Preset.ToString();
+            PresetOption.Update();
+
+
         }
     }
 }
