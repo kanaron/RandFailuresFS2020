@@ -123,8 +123,27 @@ namespace FailuresCommon
         public int Price { get; set; }
 
         /// <summary>
+        /// for Twitch. Ammount of commands placed into failure
+        /// </summary>
+        public int Commands { get; set; }
+
+        /// <summary>
         /// for normal version. Failure percent
         /// </summary>
         public int FailPercent { get; set; }
+
+        public void FillEnums()
+        {
+            eDef = (DEFINITION)SimVarID;
+            eRequest = (REQUEST)SimVarID;
+        }
+
+        public void AddCommands(int Com)
+        {
+            if (Commands >= 0)
+            {
+                Commands += Com;
+            }
+        }
     }
 }

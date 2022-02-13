@@ -41,5 +41,13 @@ namespace FailuresCommon
                 cnn.Execute($"delete from Presets where PresetID = { preset.PresetID }");
             }
         }
+
+        public static void Delete(int presetID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"delete from Presets where PresetID = { presetID }");
+            }
+        }
     }
 }

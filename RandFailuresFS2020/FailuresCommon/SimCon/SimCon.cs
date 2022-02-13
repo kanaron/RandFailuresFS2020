@@ -29,6 +29,8 @@ namespace FailuresCommon
 
     public class SimCon
     {
+        private static readonly SimCon instance = new SimCon();
+
         public event EventHandler<string> simException;
 
         public bool connected { get; private set; } = false;
@@ -37,11 +39,26 @@ namespace FailuresCommon
         public IntPtr m_hWnd { get; set; }
         private SimConnect simconnect = null;
 
-        public List<SimVarModel> listSimVar { get; set; } = new List<SimVarModel>();
-
-        public SimCon(IntPtr handler)
+        private SimCon()
         {
-            m_hWnd = handler;
+            SimVarLists.GetSimVarLists().ListsLoaded += SimCon_ListsLoaded;
+        }
+
+        public static SimCon GetSimCon()
+        {
+            return instance;
+        }
+
+        private void SimCon_ListsLoaded(object sender, List<SimVarModel> e)
+        {
+            foreach (SimVarModel simVarModel in e)
+            {
+                if (simVarModel.IsEvent == false)
+                {
+                    simconnect.AddToDataDefinition(simVarModel.eDef, simVarModel.SimVariable, simVarModel.Unit, SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+                    simconnect.RegisterDataDefineStruct<double>(simVarModel.eDef);
+                }
+            }
         }
 
         public bool Connect()
@@ -91,12 +108,22 @@ namespace FailuresCommon
             connected = false;
         }
 
+        public void UpdateData(List<SimVarModel> list)
+        {
+            foreach (SimVarModel simVarModel in list)
+            {
+                if (simVarModel.IsEvent == false)
+                {
+                    simconnect.RequestDataOnSimObjectType(simVarModel.eRequest, simVarModel.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+                }
+            }
+        }
+
         private void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
         {
             uint iRequest = data.dwRequestID;
-            //uint iObject = data.dwObjectID;
 
-            foreach (SimVarModel oSimvarRequest in listSimVar)
+            foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetFailableList())
             {
                 if (iRequest == (uint)oSimvarRequest.eRequest)
                 {

@@ -9,13 +9,15 @@ namespace FailuresCommon
     public class SimVarLists
     {
         private static readonly SimVarLists instance = new SimVarLists();
-        public int Preset { get; set; }
+        public int PresetID { get; set; }
 
         private List<SimVarModel> SimVarDataList;
         private List<SimVarModel> SimVarFailableList;
-        private List<SimVarModel> SimVarWillFailList;
+        private List<SimVarModel> SimVarFailuresList;
 
         private OptionsModel PresetOption;
+
+        public event EventHandler<List<SimVarModel>> ListsLoaded;
 
         private SimVarLists()
         {
@@ -24,11 +26,11 @@ namespace FailuresCommon
             {
                 int presetParse;
                 int.TryParse(PresetOption.OptionValue, out presetParse);
-                Preset = presetParse;
+                PresetID = presetParse;
             }
             else
             {
-                Preset = 1;
+                PresetID = 1;
             }
         }
 
@@ -39,10 +41,26 @@ namespace FailuresCommon
 
         public void LoadLists()
         {
-            PresetOption.OptionValue = Preset.ToString();
+            PresetOption.OptionValue = PresetID.ToString();
             PresetOption.Update();
 
+            SimVarFailableList = SQLSimVar.LoadFailableSimVarsList(PresetID, true);
+            FillSimVarEnums(SimVarFailableList);
 
+            ListsLoaded?.Invoke(this, SimVarFailableList);
+        }
+
+        private void FillSimVarEnums(List<SimVarModel> list)
+        {
+            foreach (SimVarModel simVarModel in list)
+            {
+                simVarModel.FillEnums();
+            }
+        }
+
+        public List<SimVarModel> GetFailableList()
+        {
+            return SimVarFailableList;
         }
     }
 }

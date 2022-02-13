@@ -48,7 +48,6 @@ namespace FailuresCommon
         /// name of option to take value from
         /// </param>
         /// <returns>
-        /// "" if select returns no rows
         /// value of option if option exists
         /// </returns>
         public static string LoadOptionValue(string optionName)
@@ -62,7 +61,39 @@ namespace FailuresCommon
                 }
                 catch
                 {
-                    return "";
+                    throw new Exception("Query error " + optionName);
+                }
+            }
+        }
+
+        public static bool LoadOptionValueBool(string optionName)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                try
+                {
+                    var query = cnn.QueryFirst<int>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName));
+                    return query > 0 ? true : false;
+                }
+                catch
+                {
+                    throw new Exception("Query error " + optionName);
+                }
+            }
+        }
+
+        public static int LoadOptionValueInt(string optionName)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                try
+                {
+                    var query = cnn.QueryFirst<int>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName));
+                    return query;
+                }
+                catch
+                {
+                    throw new Exception("Query error " + optionName);
                 }
             }
         }
