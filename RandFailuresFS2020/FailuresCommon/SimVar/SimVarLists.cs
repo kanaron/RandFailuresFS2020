@@ -9,7 +9,7 @@ namespace FailuresCommon
     public class SimVarLists
     {
         private static readonly SimVarLists instance = new SimVarLists();
-        public int PresetID { get; set; }
+        public int PresetID { get; private set; }
 
         private List<SimVarModel> SimVarDataList;
         private List<SimVarModel> SimVarFailableList;
@@ -41,9 +41,6 @@ namespace FailuresCommon
 
         public void LoadLists()
         {
-            PresetOption.OptionValue = PresetID.ToString();
-            PresetOption.Update();
-
             SimVarFailableList = SQLSimVar.LoadFailableSimVarsList(PresetID, true);
             FillSimVarEnums(SimVarFailableList);
 
@@ -61,6 +58,13 @@ namespace FailuresCommon
         public List<SimVarModel> GetFailableList()
         {
             return SimVarFailableList;
+        }
+
+        public void SetPreset(int _presetID)
+        {
+            PresetID = _presetID;
+            PresetOption.OptionValue = PresetID.ToString();
+            PresetOption.Update();
         }
     }
 }
