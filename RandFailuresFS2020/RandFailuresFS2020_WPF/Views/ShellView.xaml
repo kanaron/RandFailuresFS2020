@@ -1,0 +1,36 @@
+﻿<Window x:Class="RandFailuresFS2020_WPF.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RandFailuresFS2020_WPF.Views"
+        mc:Ignorable="d"
+        Title="ShellView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>-->
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="Overview" Click="Overview_Click" Margin="5">Overview</Button>
+            <Button x:Name="Settings" Click="Settings_Click" Margin="5">Settings</Button>
+            <Button x:Name="Presets" Click="Presets_Click" Margin="5">Presets</Button>
+            <Button x:Name="Fail_list" Click="Fail_list_Click" Margin="5">Fail list</Button>
+            <Button x:Name="Help" Click="Help_Click" Margin="5">Help</Button>
+        </StackPanel>
+
+        <ContentControl x:Name="ActiveItem" Grid.Row="1" Content="{Binding}"/>
+    </Grid>
+</Window>

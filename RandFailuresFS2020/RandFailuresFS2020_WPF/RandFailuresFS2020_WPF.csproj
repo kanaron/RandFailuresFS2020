@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>RandFailuresFS2020</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="FailDB.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimConModels\SimConModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="FailDB.db">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
