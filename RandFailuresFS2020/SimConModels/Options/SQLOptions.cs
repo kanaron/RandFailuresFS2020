@@ -72,7 +72,7 @@ namespace SimConModels
                 }
                 catch
                 {
-                    throw new Exception("Query error " + optionName);
+                    throw;
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace SimConModels
                 }
                 catch
                 {
-                    throw new Exception("Query error " + optionName);
+                    throw;
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace SimConModels
                 }
                 catch
                 {
-                    throw new Exception("Query error " + optionName);
+                    throw;
                 }
             }
         }

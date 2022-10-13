@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "Version": 1,
   "SimVars": [
     {
       "SimVarID": 1,
@@ -7,11 +7,11 @@
       "SimVariable": "PLANE ALTITUDE",
       "Unit": "Feet",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 0
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": false
     },
     {
       "SimVarID": 2,
@@ -19,11 +19,11 @@
       "SimVariable": "GROUND VELOCITY",
       "Unit": "Knots",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 0
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": false
     },
     {
       "SimVarID": 3,
@@ -31,11 +31,11 @@
       "SimVariable": "PLANE LATITUDE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 0
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": false
     },
     {
       "SimVarID": 4,
@@ -43,11 +43,11 @@
       "SimVariable": "PLANE LONGITUDE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 0
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": false
     },
 
     {
@@ -56,11 +56,11 @@
       "SimVariable": "TRAILING EDGE FLAPS LEFT PERCENT",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 6,
@@ -68,11 +68,11 @@
       "SimVariable": "TRAILING EDGE FLAPS RIGHT PERCENT",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 7,
@@ -80,11 +80,11 @@
       "SimVariable": "ELEVATOR TRIM POSITION",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 8,
@@ -92,11 +92,11 @@
       "SimVariable": "RUDDER TRIM PCT",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 9,
@@ -104,11 +104,11 @@
       "SimVariable": "AILERON TRIM PCT",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 10,
@@ -116,11 +116,11 @@
       "SimVariable": "ELEVATOR POSITION",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 11,
@@ -128,11 +128,11 @@
       "SimVariable": "RUDDER POSITION",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 12,
@@ -140,11 +140,11 @@
       "SimVariable": "AILERON POSITION",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 13,
@@ -152,11 +152,11 @@
       "SimVariable": "GEAR CENTER POSITION",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 14,
@@ -164,11 +164,11 @@
       "SimVariable": "GEAR LEFT POSITION",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 15,
@@ -176,11 +176,11 @@
       "SimVariable": "GEAR RIGHT POSITION",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 1,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": true,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 16,
@@ -188,11 +188,11 @@
       "SimVariable": "FUEL TANK CENTER LEVEL",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 1,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": true,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 17,
@@ -200,11 +200,11 @@
       "SimVariable": "FUEL TANK LEFT MAIN LEVEL",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 1,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": true,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 18,
@@ -212,11 +212,11 @@
       "SimVariable": "FUEL TANK RIGHT MAIN LEVEL",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 1,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": true,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 19,
@@ -224,11 +224,11 @@
       "SimVariable": "PARTIAL PANEL AIRSPEED",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 20,
@@ -236,11 +236,11 @@
       "SimVariable": "PARTIAL PANEL ALTIMETER",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 21,
@@ -248,11 +248,11 @@
       "SimVariable": "PARTIAL PANEL ATTITUDE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 22,
@@ -260,11 +260,11 @@
       "SimVariable": "PARTIAL PANEL COMPASS",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 23,
@@ -272,11 +272,11 @@
       "SimVariable": "PARTIAL PANEL ELECTRICAL",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 24,
@@ -284,11 +284,11 @@
       "SimVariable": "PARTIAL PANEL AVIONICS",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 25,
@@ -296,11 +296,11 @@
       "SimVariable": "PARTIAL PANEL ENGINE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 26,
@@ -308,11 +308,11 @@
       "SimVariable": "PARTIAL PANEL FUEL INDICATOR",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 27,
@@ -320,11 +320,11 @@
       "SimVariable": "PARTIAL PANEL HEADING",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 28,
@@ -332,11 +332,11 @@
       "SimVariable": "PARTIAL PANEL VERTICAL VELOCITY",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 29,
@@ -344,11 +344,11 @@
       "SimVariable": "PARTIAL PANEL PITOT",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 30,
@@ -356,11 +356,11 @@
       "SimVariable": "PARTIAL PANEL TURN COORDINATOR",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 31,
@@ -368,11 +368,11 @@
       "SimVariable": "PARTIAL PANEL VACUUM",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 32,
@@ -380,11 +380,11 @@
       "SimVariable": "ENG ON FIRE:1",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 33,
@@ -392,11 +392,11 @@
       "SimVariable": "ENG ON FIRE:2",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 34,
@@ -404,11 +404,11 @@
       "SimVariable": "ENG ON FIRE:3",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 35,
@@ -416,11 +416,11 @@
       "SimVariable": "ENG ON FIRE:4",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 36,
@@ -428,11 +428,11 @@
       "SimVariable": "RECIP ENG COOLANT RESERVOIR PERCENT:1",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 1,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": true,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 37,
@@ -440,11 +440,11 @@
       "SimVariable": "RECIP ENG COOLANT RESERVOIR PERCENT:2",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 1,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": true,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 38,
@@ -452,11 +452,11 @@
       "SimVariable": "RECIP ENG COOLANT RESERVOIR PERCENT:3",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 1,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": true,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 39,
@@ -464,11 +464,11 @@
       "SimVariable": "RECIP ENG COOLANT RESERVOIR PERCENT:4",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 1,
-      "IsStuck": 0,
-      "IsComplete": 0,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": true,
+      "IsStuck": false,
+      "IsComplete": false,
+      "IsFailable": true
     },
     {
       "SimVarID": 40,
@@ -476,11 +476,11 @@
       "SimVariable": "RECIP ENG TURBOCHARGER FAILED:1",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 41,
@@ -488,11 +488,11 @@
       "SimVariable": "RECIP ENG TURBOCHARGER FAILED:2",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 42,
@@ -500,11 +500,11 @@
       "SimVariable": "RECIP ENG TURBOCHARGER FAILED:3",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 43,
@@ -512,11 +512,11 @@
       "SimVariable": "RECIP ENG TURBOCHARGER FAILED:4",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 0,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": false,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
 
     {
@@ -525,11 +525,11 @@
       "SimVariable": "TOGGLE_ENGINE1_FAILURE",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 45,
@@ -537,11 +537,11 @@
       "SimVariable": "TOGGLE_ENGINE2_FAILURE",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 46,
@@ -549,11 +549,11 @@
       "SimVariable": "TOGGLE_ENGINE3_FAILURE",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 47,
@@ -561,11 +561,11 @@
       "SimVariable": "TOGGLE_ENGINE4_FAILURE",
       "Unit": "",
       "Domain": "Engine",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 48,
@@ -573,11 +573,11 @@
       "SimVariable": "TOGGLE_RIGHT_BRAKE_FAILURE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 49,
@@ -585,11 +585,11 @@
       "SimVariable": "TOGGLE_LEFT_BRAKE_FAILURE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 50,
@@ -597,11 +597,11 @@
       "SimVariable": "TOGGLE_TOTAL_BRAKE_FAILURE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 51,
@@ -609,11 +609,11 @@
       "SimVariable": "TOGGLE_HYDRAULIC_FAILURE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 52,
@@ -621,11 +621,11 @@
       "SimVariable": "TOGGLE_STATIC_PORT_BLOCKAGE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 53,
@@ -633,11 +633,11 @@
       "SimVariable": "TOGGLE_PITOT_BLOCKAGE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 54,
@@ -645,11 +645,11 @@
       "SimVariable": "TOGGLE_ELECTRICAL_FAILURE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     },
     {
       "SimVarID": 55,
@@ -657,11 +657,11 @@
       "SimVariable": "TOGGLE_VACUUM_FAILURE",
       "Unit": "",
       "Domain": "",
-      "IsEvent": 1,
-      "IsLeak": 0,
-      "IsStuck": 0,
-      "IsComplete": 1,
-      "IsFailable": 1
+      "IsEvent": true,
+      "IsLeak": false,
+      "IsStuck": false,
+      "IsComplete": true,
+      "IsFailable": true
     }
   ]
 }

@@ -115,7 +115,7 @@ namespace SimConModels
         /// <summary>
         /// if failure enabled in current preset
         /// </summary>
-        public bool Enable { get; set; }
+        public bool Enable { get; set; } = true;
 
         /// <summary>
         /// for Twitch. Price of failure
@@ -130,7 +130,7 @@ namespace SimConModels
         /// <summary>
         /// for normal version. Failure percent
         /// </summary>
-        public int FailPercent { get; set; }
+        public int FailPercent { get; set; } = 1;
 
         public void FillEnums()
         {

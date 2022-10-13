@@ -9,20 +9,20 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <!--<ColumnDefinition Width="auto"/>-->
+            <!--<ColumnDefinition Width="auto"/>-->
+            <!--<ColumnDefinition Width="auto"/>-->
+            <!--<ColumnDefinition Width="*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <!--<RowDefinition Height="*"/>-->
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="*"/>-->
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 10">
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 10" HorizontalAlignment="Center">
             <TextBlock>Find preset:</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding PresetsList}" SelectedItem="{Binding SelectedPreset}" SelectedIndex="{Binding SelectedItemPreset}" MinWidth="150" Margin="8">
@@ -38,19 +38,19 @@
             </StackPanel>
         </StackPanel>
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding PresetVarsList}" CanUserAddRows="False"
-                  AutoGenerateColumns="False">
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding PresetVarsList}" CanUserAddRows="False"
+                  AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Domain" Binding="{Binding Domain}" IsReadOnly="True"/>
-                <DataGridTemplateColumn Header="Enabled" IsReadOnly="False">
+                <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True" Width="0.5*"/>
+                <DataGridTextColumn Header="Domain" Binding="{Binding Domain}" IsReadOnly="True" Width="0.2*"/>
+                <DataGridTemplateColumn Header="Enabled" IsReadOnly="False" Width="0.1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Path=Enable, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Fail possibility (0-1000)" Binding="{Binding FailPercent}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Fail possibility (0-1000)" Binding="{Binding FailPercent}" IsReadOnly="False" Width="0.2*"/>
             </DataGrid.Columns>
         </DataGrid>
 

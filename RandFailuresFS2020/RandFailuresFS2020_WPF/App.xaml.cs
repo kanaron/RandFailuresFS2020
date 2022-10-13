@@ -1,4 +1,5 @@
 ﻿using RandFailuresFS2020_WPF.Presenters;
+using SimConModels.DatabaseHelper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,6 +17,7 @@ namespace RandFailuresFS2020_WPF
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            new DatabaseHelper();
             new ShellPresenter();
         }
     }
