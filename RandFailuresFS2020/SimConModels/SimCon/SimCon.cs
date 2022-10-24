@@ -32,9 +32,6 @@ namespace SimConModels
     {
         private static readonly SimCon instance = new SimCon();
 
-        private System.Timers.Timer ConnectionTimer;
-        private System.Timers.Timer StartTimer;
-
         public event EventHandler<string> simException;
 
         public bool connected { get; private set; } = false;
@@ -49,43 +46,32 @@ namespace SimConModels
         private SimCon()
         {
             //SimVarLists.GetSimVarLists().ListsLoaded += SimCon_ListsLoaded;
-
-            ConnectionTimer = new System.Timers.Timer();
-            ConnectionTimer.Interval = 1000;
-            ConnectionTimer.Elapsed += ConnectionTimer_Elapsed;
-            ConnectionTimer.AutoReset = true;
-            ConnectionTimer.Enabled = true;
-            ConnectionTimer.Start();
-
-            StartTimer = new System.Timers.Timer();
-            StartTimer.Interval = 1000;
-            StartTimer.Elapsed += StartTimer_Elapsed;
-            StartTimer.AutoReset = true;
-            StartTimer.Enabled = false;
         }
 
-        private void StartTimer_Elapsed(object? sender, ElapsedEventArgs e)
+        public void SetHandle(IntPtr _ptr)
         {
-            //TODO wire it up
-            state = "Failures started";
-            StateChanged?.Invoke(this, state);
-            
-            StartTimer.Stop();
+            m_hWnd = _ptr;
         }
 
-        private void ConnectionTimer_Elapsed(object? sender, ElapsedEventArgs e)
+        public IntPtr ProcessSimCon(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-            Connect();
+            handled = false;
+
+            if (msg == 0x0402)
+            {
+                if (SimCon.GetSimCon().GetSimConnect() != null)
+                {
+                    SimCon.GetSimCon().GetSimConnect().ReceiveMessage();
+                    handled = true;
+                }
+            }
+            return (IntPtr)0;
         }
 
-        public static SimCon GetSimCon()
+        //TODO make first variable in json Sim on ground or something non setable
+        public void RegisterList(List<SimVarModel> list)
         {
-            return instance;
-        }
-
-        private void SimCon_ListsLoaded(object sender, List<SimVarModel> e)
-        {
-            foreach (SimVarModel simVarModel in e)
+            foreach (SimVarModel simVarModel in list)
             {
                 if (simVarModel.IsEvent == false)
                 {
@@ -110,12 +96,6 @@ namespace SimConModels
 
                 simconnect.OnRecvSimobjectDataBytype += new SimConnect.RecvSimobjectDataBytypeEventHandler(SimConnect_OnRecvSimobjectDataBytype);
 
-                ConnectionTimer.Stop();
-                StartTimer.Enabled = true;
-                StartTimer.Start();
-                connected = true;
-                state = "Sim connected";
-                StateChanged?.Invoke(this, state);
             }
             catch (COMException ex)
             {
@@ -123,7 +103,6 @@ namespace SimConModels
                 Console.WriteLine("Connection to KH failed: " + ex.Message);
             }
 
-            connected = true;
             return connected;
         }
 
@@ -140,7 +119,17 @@ namespace SimConModels
             connected = false;
         }
 
-        public void UpdateData(List<SimVarModel> list)
+        public void ChangeState(string _state)
+        {
+            state = _state;
+            StateChanged?.Invoke(this, state);
+        }
+
+        /// <summary>
+        /// Sends request to update every element on list
+        /// </summary>
+        /// <param name="list"></param>
+        public void UpdateData(List<SimVarModel> list) 
         {
             foreach (SimVarModel simVarModel in list)
             {
@@ -151,11 +140,25 @@ namespace SimConModels
             }
         }
 
+        /// <summary>
+        /// When data is received it searches through Failable list and updates its value 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="data"></param>
         private void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
         {
             uint iRequest = data.dwRequestID;
 
             foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetFailableList())
+            {
+                if (iRequest == (uint)oSimvarRequest.eRequest)
+                {
+                    double dValue = (double)data.dwData[0];
+                    oSimvarRequest.Value = dValue;
+                }
+            }
+
+            foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetDataList())
             {
                 if (iRequest == (uint)oSimvarRequest.eRequest)
                 {
@@ -177,6 +180,10 @@ namespace SimConModels
 
         private void SimConnect_OnRecvOpen(SimConnect sender, SIMCONNECT_RECV_OPEN data)
         {
+            connected = true;
+            state = "Sim connected";
+            StateChanged?.Invoke(this, state);
+
             Console.WriteLine("SimConnect_OnRecvOpen");
             Console.WriteLine("Connected to KH");
         }
@@ -195,6 +202,11 @@ namespace SimConModels
             Console.WriteLine("SimConnect_OnRecvException: " + eException.ToString());
 
             simException?.Invoke(this, eException.ToString());
+        }
+
+        public static SimCon GetSimCon()
+        {
+            return instance;
         }
 
         public SimConnect GetSimConnect()

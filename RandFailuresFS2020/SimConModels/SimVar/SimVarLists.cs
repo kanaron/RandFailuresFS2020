@@ -17,21 +17,11 @@ namespace SimConModels
 
         //private OptionsModel PresetOption;
 
-        public event EventHandler<List<SimVarModel>> ListsLoaded;
+        //public event EventHandler<List<SimVarModel>> ListsLoaded;
 
         private SimVarLists()
         {
-            //PresetOption = new OptionsModel("PresetID");
-            /*if (PresetOption.OptionValue != "")
-            {
-                int presetParse;
-                int.TryParse(PresetOption.OptionValue, out presetParse);
-                PresetID = presetParse;
-            }
-            else
-            {
-                PresetID = 1;
-            }*/
+
         }
 
         public static SimVarLists GetSimVarLists()
@@ -42,9 +32,11 @@ namespace SimConModels
         public void LoadLists(int presetID)
         {
             SimVarFailableList = SQLSimVar.LoadFailableSimVarsList(presetID, true);
+            SimVarDataList = SQLSimVar.LoadDataList();
+            FillSimVarEnums(SimVarDataList);
             FillSimVarEnums(SimVarFailableList);
 
-            ListsLoaded?.Invoke(this, SimVarFailableList);
+            SimCon.GetSimCon().RegisterList(SimVarDataList);
         }
 
         private void FillSimVarEnums(List<SimVarModel> list)
@@ -60,11 +52,6 @@ namespace SimConModels
             return SimVarFailableList;
         }
 
-        /*public void SetPreset(int _presetID)
-        {
-            PresetID = _presetID;
-            PresetOption.OptionValue = PresetID.ToString();
-            PresetOption.Update();
-        }*/
+        public List<SimVarModel> GetDataList() => SimVarDataList;
     }
 }

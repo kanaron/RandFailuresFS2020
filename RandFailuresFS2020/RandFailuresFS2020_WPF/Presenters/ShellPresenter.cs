@@ -1,9 +1,11 @@
 ﻿using RandFailuresFS2020_WPF.Views;
+using SimConModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 
 namespace RandFailuresFS2020_WPF.Presenters
 {
@@ -32,8 +34,12 @@ namespace RandFailuresFS2020_WPF.Presenters
             shellView.ActiveItem.Content = overviewPresenter.overviewView;
 
             shellView.Show();
-        }
 
+            SimCon.GetSimCon().SetHandle(new WindowInteropHelper(shellView).Handle);
+
+            HwndSource lHwndSource = HwndSource.FromHwnd(new WindowInteropHelper(shellView).Handle);
+            lHwndSource.AddHook(new HwndSourceHook(SimCon.GetSimCon().ProcessSimCon));
+        }
 
         private void ShellView_OverviewClick(object? sender, EventArgs e)
         {

@@ -25,11 +25,25 @@ namespace SimConModels
                 {
                     SQL += $"AND           s.IsFailable = 1 ";
                 }
+                else
+                {
+                    SQL += $"AND           s.IsFailable = 0 ";
+                }
 
                 if (OnlyEnabled)
                 {
                     SQL += $"AND           v.Enable = 1";
                 }
+                var output = cnn.Query<SimVarModel>(SQL, new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static List<SimVarModel> LoadDataList()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string SQL = "SELECT * FROM SimVar s WHERE s.IsFailable = 0 ";
                 var output = cnn.Query<SimVarModel>(SQL, new DynamicParameters());
                 return output.ToList();
             }

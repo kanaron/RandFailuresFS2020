@@ -24,7 +24,7 @@ namespace SimConModels.DatabaseHelper
             CheckAndLoadJson();
             CheckAndLoadDatabase();
 
-            if (jsonVersion != databaseVersion)
+            if (jsonVersion > databaseVersion)
             {
                 UpdateDatabase();
                 UpdateDatabaseVersion();

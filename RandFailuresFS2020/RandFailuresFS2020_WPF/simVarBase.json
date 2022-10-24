@@ -1,5 +1,5 @@
 {
-  "Version": 1,
+  "Version": 2,
   "SimVars": [
     {
       "SimVarID": 1,
@@ -29,7 +29,7 @@
       "SimVarID": 3,
       "SimVarName": "",
       "SimVariable": "PLANE LATITUDE",
-      "Unit": "",
+      "Unit": "degrees",
       "Domain": "",
       "IsEvent": false,
       "IsLeak": false,
@@ -41,7 +41,7 @@
       "SimVarID": 4,
       "SimVarName": "",
       "SimVariable": "PLANE LONGITUDE",
-      "Unit": "",
+      "Unit": "degrees",
       "Domain": "",
       "IsEvent": false,
       "IsLeak": false,
