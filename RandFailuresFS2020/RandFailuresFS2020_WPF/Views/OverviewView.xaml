@@ -45,7 +45,11 @@
             </ComboBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
+        <CheckBox IsChecked="{Binding AutostartEnabled}" Margin="0 0 10 0" Content="Failures autostart (restart after change)" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
+            <Button Margin="10" Padding="20 5 20 5" FontSize="20" IsEnabled="{Binding StartEnabled}" Click="Start_Click">Start</Button>
+            <Button Margin="10" Padding="20 5 20 5" FontSize="20" IsEnabled="{Binding StopEnabled}" Click="Stop_Click">Stop</Button>
             <Button Margin="10" Padding="20 5 20 5" FontSize="20" IsEnabled="{Binding ResetEnabled}" Click="Restart_Click">Restart</Button>
         </StackPanel>
 

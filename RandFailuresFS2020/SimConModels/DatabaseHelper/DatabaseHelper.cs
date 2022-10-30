@@ -61,7 +61,7 @@ namespace SimConModels.DatabaseHelper
                     cnn.Execute($"insert into " +
                         $"SimVar (SimVarID, SimVarName, SimVariable, Unit, Domain, IsEvent, IsLeak, IsStuck, IsComplete, IsFailable) " +
                         $"values (@SimVarID, @SimVarName, @SimVariable, @Unit, @Domain, {BoolToInt(sim.IsEvent)}, {BoolToInt(sim.IsLeak)}, " +
-                        $"{BoolToInt(sim.IsStuck)}, {BoolToInt(sim.IsCompleteFail)}, {BoolToInt(sim.IsFailable)})", sim);
+                        $"{BoolToInt(sim.IsStuck)}, {BoolToInt(sim.IsComplete)}, {BoolToInt(sim.IsFailable)})", sim);
                 }
             }
         }

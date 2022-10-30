@@ -18,7 +18,7 @@ namespace SimConModels
                     "LEFT JOIN      VarsInPreset v " +
                     "   ON          v.simvarID = s.SimVarID " +
                     "   AND         v.PresetID = p.PresetID " +
-                    $"WHERE         (p.PresetID = { PresetID } " +
+                    $"WHERE         (p.PresetID = {PresetID} " +
                     $"OR            p.PresetID is null) ";
 
                 if (OnlyFailable)
@@ -60,11 +60,19 @@ namespace SimConModels
             }
         }
 
+        public static void UpdateAllPercentage(int presetID, int failPercent)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"update VarsInPreset set FailPercent = {failPercent} where PresetID = {presetID}");
+            }
+        }
+
         public static void Delete(int presetID)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute($"delete from VarsInPreset where PresetID = { presetID }");
+                cnn.Execute($"delete from VarsInPreset where PresetID = {presetID}");
             }
         }
     }

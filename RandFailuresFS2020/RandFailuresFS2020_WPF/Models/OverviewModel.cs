@@ -17,9 +17,12 @@ namespace RandFailuresFS2020_WPF.Models
         private string _stateText;
         private Brush _stateColor;
         private bool _resetEnabled;
+        private bool _startEnabled;
+        private bool _stopEnabled;
         private List<PresetModel> _presetsList;
         private PresetModel _selectedPreset;
         private int _selectedItemPreset;
+        private bool _autostartEnabled;
 
 
         public List<PresetModel> PresetsList
@@ -78,6 +81,34 @@ namespace RandFailuresFS2020_WPF.Models
                 NotifyPropertyChanged();
             }
         }
+        public bool StartEnabled
+        {
+            get { return _startEnabled; }
+            set
+            {
+                _startEnabled = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public bool StopEnabled
+        {
+            get { return _stopEnabled; }
+            set
+            {
+                _stopEnabled = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public bool AutostartEnabled
+        {
+            get { return _autostartEnabled; }
+            set
+            {
+                _autostartEnabled = value;
+                NotifyPropertyChanged();
+                SQLOptions.UpdateOption("Autostart", BoolToInt(value).ToString());
+            }
+        }
 
 
         public OverviewModel()
@@ -86,6 +117,8 @@ namespace RandFailuresFS2020_WPF.Models
             StateText = "Sim not found";
             StateColor = Brushes.Red;
             ResetEnabled = false;
+            StartEnabled = false;
+            StopEnabled = false;
             Reload();
         }
 
@@ -115,14 +148,19 @@ namespace RandFailuresFS2020_WPF.Models
                 case "Sim connected":
                     {
                         StateColor = Brushes.Green;
+                        StartEnabled = true;
                         break;
                     }
                 case "Failures started":
                     {
                         ResetEnabled = true;
+                        StopEnabled = true;
+                        StartEnabled = false;
                         break;
                     }
             }
         }
+
+        private string BoolToInt(bool _b) => _b ? "1" : "0";
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimConModels.SimVar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -88,12 +89,20 @@ namespace SimConModels
         /// <summary>
         /// if failure type is once complete failure
         /// </summary>
-        public bool IsCompleteFail { get; set; }
+        public bool IsComplete { get; set; }
 
         /// <summary>
         /// if failure type is countinous changing failure (short circuit)
         /// </summary>
         public bool IsContinousFail { get; set; }
+
+        public WHEN_FAIL WhenFail { get; set; }
+
+        public int FailureAlt { get; set; }
+
+        public int FailureSpeed { get; set; }
+
+        public int FailureTime { get; set; }
 
 
         /// <summary>
@@ -136,6 +145,9 @@ namespace SimConModels
         {
             eDef = (DEFINITION)SimVarID;
             eRequest = (REQUEST)SimVarID;
+
+            if (IsEvent)
+                eEvent = (EVENT)Enum.Parse(typeof(EVENT), "KEY_" + SimVariable);
         }
 
         public void AddCommands(int Com)

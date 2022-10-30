@@ -9,15 +9,31 @@ namespace SimConModels
 {
     public class SimConHelper
     {
+        private static readonly SimConHelper instance = new SimConHelper();
+
+        public bool Autostart = false;
+
         private System.Timers.Timer ConnectionTimer;
         private System.Timers.Timer StartTimer;
 
         private System.Timers.Timer DataUpdateTimer;
         private System.Timers.Timer FailTimer;
 
-        public SimConHelper()
+        private SimConHelper()
         {
+
+        }
+
+        public void Initialize()
+        {
+            Autostart = SQLOptions.LoadOptionValueBool("Autostart");
             StartTimers();
+        }
+
+        public void ChangeAutostart()
+        {
+            Autostart = SQLOptions.LoadOptionValueBool("Autostart");
+
         }
 
         public void StartTimers()
@@ -48,19 +64,37 @@ namespace SimConModels
             FailTimer.Enabled = false;
         }
 
+        public void ManageFailTimer(bool enable)
+        {
+            if (enable)
+            {
+                SimVarLists.GetSimVarLists().RandomizeFailures();
+                FailTimer.Enabled = true;
+                FailTimer.Start();
+                SimCon.GetSimCon().ChangeState("Failures started");
+            }
+            else
+            {
+                FailTimer.Stop();
+            }
+        }
 
         private void ConnectionTimer_Elapsed(object? sender, ElapsedEventArgs e)
         {
             if (SimCon.GetSimCon().Connect())
             {
                 ConnectionTimer.Stop();
-                StartTimer.Enabled = true;
-                StartTimer.Start();
+
+                if (Autostart)
+                {
+                    StartTimer.Enabled = true;
+                    StartTimer.Start();
+                }
+
+                SimVarLists.GetSimVarLists().LoadDataList();
 
                 DataUpdateTimer.Enabled = true;
                 DataUpdateTimer.Start();
-
-                SimVarLists.GetSimVarLists().LoadLists(SQLOptions.LoadOptionValueInt("PresetID"));
             }
         }
 
@@ -69,21 +103,31 @@ namespace SimConModels
             double longtitude = SimVarLists.GetSimVarLists().GetDataList().Find(x => x.SimVariable == "PLANE LONGITUDE").Value;
             double latitude = SimVarLists.GetSimVarLists().GetDataList().Find(x => x.SimVariable == "PLANE LATITUDE").Value;
 
-            if (Math.Abs(longtitude) + Math.Abs(latitude) > 1) 
+            if (Math.Abs(longtitude) + Math.Abs(latitude) > 1)
             {
-                SimCon.GetSimCon().ChangeState("Failures started"); //TODO wire it up
                 StartTimer.Stop();
+
+                ManageFailTimer(true);
             }
         }
 
         private void DataUpdateTimer_Elapsed(object? sender, ElapsedEventArgs e)
         {
-            SimCon.GetSimCon().UpdateData(SimVarLists.GetSimVarLists().GetDataList());
+            if (!FailTimer.Enabled)
+            {
+                SimCon.GetSimCon().UpdateData(SimVarLists.GetSimVarLists().GetDataList());
+            }
+            else
+                SimVarLists.GetSimVarLists().AddFlyTime();
         }
 
         private void FailTimer_Elapsed(object? sender, ElapsedEventArgs e)
         {
-            SimCon.GetSimCon().UpdateData(SimVarLists.GetSimVarLists().GetFailableList());
+            SimCon.GetSimCon().UpdateData(SimVarLists.GetSimVarLists().GetDataList());
+            SimCon.GetSimCon().UpdateData(SimVarLists.GetSimVarLists().GetFailuresList());
+            SimVarLists.GetSimVarLists().SetFailures();
         }
+
+        public static SimConHelper GetSimVarLists() => instance;
     }
 }

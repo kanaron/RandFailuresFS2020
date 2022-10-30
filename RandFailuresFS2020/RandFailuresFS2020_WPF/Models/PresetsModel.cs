@@ -101,6 +101,7 @@ namespace RandFailuresFS2020_WPF.Models
         public void Reload()
         {
             SelectedItemPreset = PresetsList.FindIndex(a => a.PresetID.Equals(SQLOptions.LoadOptionValueInt("PresetID")));
+            LoadVarsList();
         }
     }
 }

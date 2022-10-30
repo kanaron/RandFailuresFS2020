@@ -23,9 +23,9 @@ namespace SimConModels
 
     public enum EVENT
     {
-        Dummy/*, KEY_TOGGLE_VACUUM_FAILURE, KEY_TOGGLE_ENGINE1_FAILURE, KEY_TOGGLE_ENGINE2_FAILURE, KEY_TOGGLE_ENGINE3_FAILURE, KEY_TOGGLE_ENGINE4_FAILURE,
+        Dummy, KEY_TOGGLE_VACUUM_FAILURE, KEY_TOGGLE_ENGINE1_FAILURE, KEY_TOGGLE_ENGINE2_FAILURE, KEY_TOGGLE_ENGINE3_FAILURE, KEY_TOGGLE_ENGINE4_FAILURE,
         KEY_TOGGLE_ELECTRICAL_FAILURE, KEY_TOGGLE_PITOT_BLOCKAGE, KEY_TOGGLE_STATIC_PORT_BLOCKAGE, KEY_TOGGLE_HYDRAULIC_FAILURE,
-        KEY_TOGGLE_TOTAL_BRAKE_FAILURE, KEY_TOGGLE_LEFT_BRAKE_FAILURE, KEY_TOGGLE_RIGHT_BRAKE_FAILURE*/
+        KEY_TOGGLE_TOTAL_BRAKE_FAILURE, KEY_TOGGLE_LEFT_BRAKE_FAILURE, KEY_TOGGLE_RIGHT_BRAKE_FAILURE
     };
 
     public class SimCon
@@ -45,7 +45,7 @@ namespace SimConModels
 
         private SimCon()
         {
-            //SimVarLists.GetSimVarLists().ListsLoaded += SimCon_ListsLoaded;
+
         }
 
         public void SetHandle(IntPtr _ptr)
@@ -61,8 +61,13 @@ namespace SimConModels
             {
                 if (SimCon.GetSimCon().GetSimConnect() != null)
                 {
-                    SimCon.GetSimCon().GetSimConnect().ReceiveMessage();
-                    handled = true;
+                    //try
+                    //{
+                        SimCon.GetSimCon().GetSimConnect().ReceiveMessage();
+                        handled = true;
+                    /*}
+                    catch
+                    { }*/
                 }
             }
             return (IntPtr)0;
@@ -129,13 +134,18 @@ namespace SimConModels
         /// Sends request to update every element on list
         /// </summary>
         /// <param name="list"></param>
-        public void UpdateData(List<SimVarModel> list) 
+        public void UpdateData(List<SimVarModel> list)
         {
             foreach (SimVarModel simVarModel in list)
             {
                 if (simVarModel.IsEvent == false)
                 {
-                    simconnect.RequestDataOnSimObjectType(simVarModel.eRequest, simVarModel.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+                    //try
+                    //{
+                        simconnect.RequestDataOnSimObjectType(simVarModel.eRequest, simVarModel.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+                    /*}
+                    catch
+                    { }*/
                 }
             }
         }
@@ -149,14 +159,15 @@ namespace SimConModels
         {
             uint iRequest = data.dwRequestID;
 
-            foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetFailableList())
-            {
-                if (iRequest == (uint)oSimvarRequest.eRequest)
+            if (SimVarLists.GetSimVarLists().GetFailableList() != null)
+                foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetFailableList())
                 {
-                    double dValue = (double)data.dwData[0];
-                    oSimvarRequest.Value = dValue;
+                    if (iRequest == (uint)oSimvarRequest.eRequest)
+                    {
+                        double dValue = (double)data.dwData[0];
+                        oSimvarRequest.Value = dValue;
+                    }
                 }
-            }
 
             foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetDataList())
             {
@@ -204,14 +215,8 @@ namespace SimConModels
             simException?.Invoke(this, eException.ToString());
         }
 
-        public static SimCon GetSimCon()
-        {
-            return instance;
-        }
+        public static SimCon GetSimCon() => instance;
 
-        public SimConnect GetSimConnect()
-        {
-            return simconnect;
-        }
+        public SimConnect GetSimConnect() => simconnect;
     }
 }

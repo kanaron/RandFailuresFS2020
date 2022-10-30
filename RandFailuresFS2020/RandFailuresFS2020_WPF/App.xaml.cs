@@ -19,7 +19,7 @@ namespace RandFailuresFS2020_WPF
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             new DatabaseHelper();
-            new SimConHelper();
+            SimConHelper.GetSimVarLists().Initialize();
             new ShellPresenter();
         }
     }

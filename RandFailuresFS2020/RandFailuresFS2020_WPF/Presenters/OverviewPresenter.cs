@@ -19,6 +19,8 @@ namespace RandFailuresFS2020_WPF.Presenters
         {
             overviewView = new OverviewView();
             overviewView.RestartClicked += OverviewView_RestartClicked;
+            overviewView.StartClicked += OverviewView_StartClicked;
+            overviewView.StopClicked += OverviewView_StopClicked;
 
             overviewModel = new OverviewModel();
 
@@ -28,6 +30,16 @@ namespace RandFailuresFS2020_WPF.Presenters
         public void Reload()
         {
             overviewModel.Reload();
+        }
+
+        private void OverviewView_StartClicked(object? sender, EventArgs e)
+        {
+            SimConHelper.GetSimVarLists().ManageFailTimer(true);
+        }
+
+        private void OverviewView_StopClicked(object? sender, EventArgs e)
+        {
+            SimConHelper.GetSimVarLists().ManageFailTimer(false);
         }
 
         private void OverviewView_RestartClicked(object? sender, EventArgs e)
