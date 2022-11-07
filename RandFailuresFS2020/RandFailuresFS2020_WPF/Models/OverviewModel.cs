@@ -119,6 +119,7 @@ namespace RandFailuresFS2020_WPF.Models
             ResetEnabled = false;
             StartEnabled = false;
             StopEnabled = false;
+            AutostartEnabled = SQLOptions.LoadOptionValueBool("Autostart");
             Reload();
         }
 

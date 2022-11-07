@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RandFailuresFS2020_WPF.Models
 {
-    public class FailListModel
+    public class FailListModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

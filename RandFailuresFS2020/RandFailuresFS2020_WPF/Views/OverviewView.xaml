@@ -32,7 +32,8 @@
         <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Right">
             State:
         </TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="3" FontSize="25" HorizontalAlignment="Center" Foreground="{Binding StateColor, UpdateSourceTrigger=PropertyChanged}" Text="{Binding StateText, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" FontSize="25" HorizontalAlignment="Center" Foreground="{Binding StateColor, UpdateSourceTrigger=PropertyChanged}" 
+                   Text="{Binding StateText, UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">Loaded preset: </TextBlock>
@@ -45,7 +46,8 @@
             </ComboBox>
         </StackPanel>
 
-        <CheckBox IsChecked="{Binding AutostartEnabled}" Margin="0 0 10 0" Content="Failures autostart (restart after change)" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
+        <CheckBox IsChecked="{Binding AutostartEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 10 0" Content="Failures autostart (restart after change)" 
+                  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
             <Button Margin="10" Padding="20 5 20 5" FontSize="20" IsEnabled="{Binding StartEnabled}" Click="Start_Click">Start</Button>
