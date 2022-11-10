@@ -1,4 +1,5 @@
-﻿using RandFailuresFS2020_WPF.Views;
+﻿using RandFailuresFS2020_WPF.Models;
+using RandFailuresFS2020_WPF.Views;
 using SimConModels;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace RandFailuresFS2020_WPF.Presenters
     public class ShellPresenter
     {
         private ShellView shellView;
+        public ShellModel shellModel { private set; get; }
 
         private OverviewPresenter overviewPresenter;
         private SettingsPresenter settingsPresenter;
@@ -26,6 +28,10 @@ namespace RandFailuresFS2020_WPF.Presenters
             shellView.PresetsClick += ShellView_PresetsClick;
             shellView.FailListClick += ShellView_FailListClick;
             shellView.HelpClick += ShellView_HelpClick;
+
+            shellModel = new ShellModel();
+
+            shellView.DataContext = shellModel;
 
             overviewPresenter = new OverviewPresenter();
             settingsPresenter = new SettingsPresenter();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.FlightSimulator.SimConnect;
+using Serilog;
 using SimConModels.SimVar;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,10 @@ namespace SimConModels
 
         public void LoadDataList()
         {
+            Log.Logger.Information("Loading data list");
             SimVarDataList = SQLSimVar.LoadDataList();
             FillSimVarEnums(SimVarDataList);
+            Log.Logger.Information("Data list loaded");
             SimCon.GetSimCon().RegisterList(SimVarDataList);
         }
 
@@ -38,6 +41,7 @@ namespace SimConModels
 
         public void RandomizeFailures()
         {
+            Log.Logger.Information("Randomizing failures");
             SimVarFailuresList = new();
             Random rnd = new Random();
             bool cont = false;
@@ -120,10 +124,12 @@ namespace SimConModels
                     }
 
                     SimVarFailuresList.Add(sv);
+                    Log.Logger.Information("Adding to failures: " + sv.SimVarName);
                 }
             }
 
             SimCon.GetSimCon().RegisterList(SimVarFailuresList);
+            Log.Logger.Information("Failures randomized");
         }
 
         public void SetFailures()
@@ -165,41 +171,44 @@ namespace SimConModels
 
         private void SetFail(SimVarModel simVarModel)
         {
-            /*try
-            {*/
-            if (simVarModel.IsStuck)
+            try
             {
-                if (!simVarModel.Started)
+                if (simVarModel.IsStuck)
                 {
-                    simVarModel.FailureValue = simVarModel.Value;
-                    simVarModel.Started = true;
-                }
-                simVarModel.Value = simVarModel.FailureValue;
-            }
-            else if (simVarModel.IsLeak)
-            {
-                simVarModel.Value -= simVarModel.FailureValue;
-            }
-            else if (simVarModel.IsComplete)
-            {
-                if (simVarModel.IsEvent)
-                {
-                    SimCon.GetSimCon().GetSimConnect().MapClientEventToSimEvent(simVarModel.eEvent, simVarModel.SimVariable);
-                    SimCon.GetSimCon().GetSimConnect().
-                        TransmitClientEvent(SimConnect.SIMCONNECT_OBJECT_ID_USER, simVarModel.eEvent, 0, GROUP.ID_PRIORITY_STANDARD, SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY);
-                }
-                else
+                    if (!simVarModel.Started)
+                    {
+                        simVarModel.FailureValue = simVarModel.Value;
+                        simVarModel.Started = true;
+                    }
                     simVarModel.Value = simVarModel.FailureValue;
+                }
+                else if (simVarModel.IsLeak)
+                {
+                    simVarModel.Value -= simVarModel.FailureValue;
+                }
+                else if (simVarModel.IsComplete)
+                {
+                    if (simVarModel.IsEvent)
+                    {
+                        SimCon.GetSimCon().GetSimConnect().MapClientEventToSimEvent(simVarModel.eEvent, simVarModel.SimVariable);
+                        SimCon.GetSimCon().GetSimConnect().
+                            TransmitClientEvent(SimConnect.SIMCONNECT_OBJECT_ID_USER, simVarModel.eEvent, 0, GROUP.ID_PRIORITY_STANDARD, SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY);
+                    }
+                    else
+                        simVarModel.Value = simVarModel.FailureValue;
 
-                simVarModel.Failed = true;
+                    simVarModel.Failed = true;
+                }
+
+
+                if (!simVarModel.IsEvent)
+                    SimCon.GetSimCon().GetSimConnect().SetDataOnSimObject(simVarModel.eDef, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_DATA_SET_FLAG.DEFAULT, simVarModel.Value);
             }
-
-
-            if (!simVarModel.IsEvent)
-                SimCon.GetSimCon().GetSimConnect().SetDataOnSimObject(simVarModel.eDef, SimConnect.SIMCONNECT_OBJECT_ID_USER, SIMCONNECT_DATA_SET_FLAG.DEFAULT, simVarModel.Value);
-            /*}
-            catch
-            { }*/
+            catch (Exception ex)
+            {
+                Log.Logger.Error("SetFail");
+                Log.Logger.Error(ex, ex.StackTrace);
+            }
         }
 
         public void AddFlyTime()

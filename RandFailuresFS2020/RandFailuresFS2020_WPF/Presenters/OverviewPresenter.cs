@@ -34,17 +34,17 @@ namespace RandFailuresFS2020_WPF.Presenters
 
         private void OverviewView_StartClicked(object? sender, EventArgs e)
         {
-            SimConHelper.GetSimVarLists().ManageFailTimer(true);
+            SimConHelper.GetSimConHelper().ManageFailTimer(true);
         }
 
         private void OverviewView_StopClicked(object? sender, EventArgs e)
         {
-            SimConHelper.GetSimVarLists().ManageFailTimer(false);
+            SimConHelper.GetSimConHelper().ManageFailTimer(false);
         }
 
         private void OverviewView_RestartClicked(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SimConHelper.GetSimConHelper().SimConnectClosed();
         }
     }
 }

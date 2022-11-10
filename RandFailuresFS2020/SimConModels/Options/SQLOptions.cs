@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data;
 using System.Data.SQLite;
 using Dapper;
+using Serilog;
 
 namespace SimConModels
 {
@@ -32,6 +33,7 @@ namespace SimConModels
         /// </param>
         public static void UpdateOption(OptionsModel option)
         {
+            Log.Logger.Information("UpdateOption " + option.OptionName + " with value: " + option.OptionValue);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 if (cnn.Execute("update Options set OptionValue = @OptionValue where OptionName = @OptionName", option) <= 0)
@@ -43,6 +45,7 @@ namespace SimConModels
 
         public static void UpdateOption(string optionName, string optionValue)
         {
+            Log.Logger.Information("UpdateOption " + optionName + " with value: " + optionValue);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 if (cnn.Execute($"update Options set OptionValue = {optionValue} where OptionName = \"{optionName}\"") <= 0)
@@ -63,15 +66,18 @@ namespace SimConModels
         /// </returns>
         public static string LoadOptionValue(string optionName)
         {
+            Log.Logger.Information("LoadOptionValue " + optionName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 try
                 {
                     var query = cnn.QueryFirst<string>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName));
+                    Log.Logger.Information("LoadOptionValue result: " + query);
                     return query;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Log.Logger.Error(ex, ex.StackTrace);
                     throw;
                 }
             }
@@ -79,15 +85,18 @@ namespace SimConModels
 
         public static bool LoadOptionValueBool(string optionName)
         {
+            Log.Logger.Information("LoadOptionValueBool " + optionName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 try
                 {
                     var query = cnn.QueryFirst<int>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName));
+                    Log.Logger.Information("LoadOptionValueBool result: " + query);
                     return query > 0 ? true : false;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Log.Logger.Error(ex, ex.StackTrace);
                     throw;
                 }
             }
@@ -95,15 +104,18 @@ namespace SimConModels
 
         public static int LoadOptionValueInt(string optionName)
         {
+            Log.Logger.Information("LoadOptionValueInt " + optionName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 try
                 {
                     var query = cnn.QueryFirst<int>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName));
+                    Log.Logger.Information("LoadOptionValueInt result: " + query);
                     return query;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Log.Logger.Error(ex, ex.StackTrace);
                     throw;
                 }
             }

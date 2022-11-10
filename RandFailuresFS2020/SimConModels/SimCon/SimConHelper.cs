@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,9 @@ namespace SimConModels
     {
         private static readonly SimConHelper instance = new SimConHelper();
 
-        public bool Autostart = false;
+        public event EventHandler<bool> FailuresInProgressEvent;
+
+        //public bool Autostart = false;
 
         private System.Timers.Timer ConnectionTimer;
         private System.Timers.Timer StartTimer;
@@ -26,18 +29,20 @@ namespace SimConModels
 
         public void Initialize()
         {
-            Autostart = SQLOptions.LoadOptionValueBool("Autostart");
+            Log.Logger.Information("Initializing SimConHelper");
+            //Autostart = SQLOptions.LoadOptionValueBool("Autostart");
             StartTimers();
         }
 
-        public void ChangeAutostart()
+        /*public void ChangeAutostart()
         {
             Autostart = SQLOptions.LoadOptionValueBool("Autostart");
 
-        }
+        }*/
 
         public void StartTimers()
         {
+            Log.Logger.Information("Starting timers");
             ConnectionTimer = new System.Timers.Timer();
             ConnectionTimer.Interval = 1000;
             ConnectionTimer.Elapsed += ConnectionTimer_Elapsed;
@@ -64,17 +69,36 @@ namespace SimConModels
             FailTimer.Enabled = false;
         }
 
+        public void SimConnectClosed()
+        {
+            Log.Logger.Information("SimConnectClosed");
+            FailTimer.Stop();
+            DataUpdateTimer.Stop();
+            StartTimer.Stop();
+            ConnectionTimer.Start();
+
+            FailuresInProgressEvent?.Invoke(this, false);
+
+            SimCon.GetSimCon().ChangeState("Sim not found");
+        }
+
         public void ManageFailTimer(bool enable)
         {
             if (enable)
             {
+                Log.Logger.Information("Starting failures");
                 SimVarLists.GetSimVarLists().RandomizeFailures();
                 FailTimer.Enabled = true;
                 FailTimer.Start();
+                FailuresInProgressEvent?.Invoke(this, true);
                 SimCon.GetSimCon().ChangeState("Failures started");
+                Log.Logger.Information("Failures started");
             }
             else
             {
+                FailuresInProgressEvent?.Invoke(this, false);
+                SimCon.GetSimCon().ChangeState("Failures stopped");
+                Log.Logger.Information("Failures stopped");
                 FailTimer.Stop();
             }
         }
@@ -85,11 +109,11 @@ namespace SimConModels
             {
                 ConnectionTimer.Stop();
 
-                if (Autostart)
-                {
-                    StartTimer.Enabled = true;
-                    StartTimer.Start();
-                }
+                //if (Autostart)
+                //{
+                StartTimer.Enabled = true;
+                StartTimer.Start();
+                //}
 
                 SimVarLists.GetSimVarLists().LoadDataList();
 
@@ -100,10 +124,7 @@ namespace SimConModels
 
         private void StartTimer_Elapsed(object? sender, ElapsedEventArgs e)
         {
-            double longtitude = SimVarLists.GetSimVarLists().GetDataList().Find(x => x.SimVariable == "PLANE LONGITUDE").Value;
-            double latitude = SimVarLists.GetSimVarLists().GetDataList().Find(x => x.SimVariable == "PLANE LATITUDE").Value;
-
-            if (Math.Abs(longtitude) + Math.Abs(latitude) > 1)
+            if (!isAtMainMenu())
             {
                 StartTimer.Stop();
 
@@ -118,7 +139,17 @@ namespace SimConModels
                 SimCon.GetSimCon().UpdateData(SimVarLists.GetSimVarLists().GetDataList());
             }
             else
+            {
                 SimVarLists.GetSimVarLists().AddFlyTime();
+                if (isAtMainMenu())
+                {
+                    FailTimer.Stop();
+                    StartTimer.Start();
+                    SimCon.GetSimCon().ChangeState("Sim connected");
+                    FailuresInProgressEvent?.Invoke(this, false);
+                    Log.Logger.Information("Back at main menu. Simcon connected");
+                }
+            }
         }
 
         private void FailTimer_Elapsed(object? sender, ElapsedEventArgs e)
@@ -128,6 +159,14 @@ namespace SimConModels
             SimVarLists.GetSimVarLists().SetFailures();
         }
 
-        public static SimConHelper GetSimVarLists() => instance;
+        private bool isAtMainMenu()
+        {
+            double longtitude = SimVarLists.GetSimVarLists().GetDataList().Find(x => x.SimVariable == "PLANE LONGITUDE").Value;
+            double latitude = SimVarLists.GetSimVarLists().GetDataList().Find(x => x.SimVariable == "PLANE LATITUDE").Value;
+
+            return Math.Abs(longtitude) + Math.Abs(latitude) < 1;
+        }
+
+        public static SimConHelper GetSimConHelper() => instance;
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data;
 using System.Data.SQLite;
 using Dapper;
+using Serilog;
 
 namespace SimConModels
 {
@@ -20,6 +21,7 @@ namespace SimConModels
 
         public static PresetModel LoadPreset(int presetID)
         {
+            Log.Logger.Information("SQLPreset.LoadPreset " + presetID);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.QueryFirst<PresetModel>($"select * from Presets where PresetID = {presetID}", new DynamicParameters());
@@ -29,6 +31,7 @@ namespace SimConModels
 
         public static void UpdatePreset(PresetModel preset)
         {
+            Log.Logger.Information("SQLPreset.UpdatePreset " + preset.PresetName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 if (cnn.Execute("update Presets set PresetName = @PresetName, SpeedEnabled = @SpeedEnabled, SpeedMin = @SpeedMin, SpeedMax = @SpeedMax," +
@@ -42,6 +45,7 @@ namespace SimConModels
 
         public static void Insert(PresetModel preset)
         {
+            Log.Logger.Information("SQLPreset.Insert " + preset.PresetName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("insert into Presets (PresetName) values (@PresetName)", preset);
@@ -50,6 +54,7 @@ namespace SimConModels
 
         public static new void Insert(string presetName)
         {
+            Log.Logger.Information("SQLPreset.Insert " + presetName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute($"insert into Presets (PresetName) values ('{presetName}')");
@@ -58,6 +63,7 @@ namespace SimConModels
 
         public static void Delete(PresetModel preset)
         {
+            Log.Logger.Information("SQLPreset.Delete " + preset.PresetName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute($"delete from Presets where PresetID = {preset.PresetID}");
@@ -66,6 +72,7 @@ namespace SimConModels
 
         public static void Delete(int presetID)
         {
+            Log.Logger.Information("SQLPreset.Delete " + presetID);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute($"delete from Presets where PresetID = {presetID}");

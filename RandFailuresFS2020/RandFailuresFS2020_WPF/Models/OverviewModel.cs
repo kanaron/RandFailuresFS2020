@@ -119,7 +119,6 @@ namespace RandFailuresFS2020_WPF.Models
             ResetEnabled = false;
             StartEnabled = false;
             StopEnabled = false;
-            AutostartEnabled = SQLOptions.LoadOptionValueBool("Autostart");
             Reload();
         }
 
@@ -148,15 +147,24 @@ namespace RandFailuresFS2020_WPF.Models
                     }
                 case "Sim connected":
                     {
-                        StateColor = Brushes.Green;
+                        StateColor = Brushes.Blue;
                         StartEnabled = true;
                         break;
                     }
                 case "Failures started":
                     {
+                        StateColor = Brushes.Green;
                         ResetEnabled = true;
                         StopEnabled = true;
                         StartEnabled = false;
+                        break;
+                    }
+                case "Failures stopped":
+                    {
+                        StateColor = Brushes.Red;
+                        ResetEnabled = true;
+                        StopEnabled = false;
+                        StartEnabled = true;
                         break;
                     }
             }

@@ -3,6 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Timers;
+using Serilog;
 
 namespace SimConModels
 {
@@ -59,11 +60,11 @@ namespace SimConModels
 
             if (msg == 0x0402)
             {
-                if (SimCon.GetSimCon().GetSimConnect() != null)
+                if (simconnect != null)
                 {
                     //try
                     //{
-                        SimCon.GetSimCon().GetSimConnect().ReceiveMessage();
+                        simconnect.ReceiveMessage();
                         handled = true;
                     /*}
                     catch
@@ -76,6 +77,7 @@ namespace SimConModels
         //TODO make first variable in json Sim on ground or something non setable
         public void RegisterList(List<SimVarModel> list)
         {
+            Log.Logger.Information("RegisterList " + nameof(list));
             foreach (SimVarModel simVarModel in list)
             {
                 if (simVarModel.IsEvent == false)
@@ -84,6 +86,7 @@ namespace SimConModels
                     simconnect.RegisterDataDefineStruct<double>(simVarModel.eDef);
                 }
             }
+            Log.Logger.Information("List registrated");
         }
 
         public bool Connect()
@@ -114,6 +117,7 @@ namespace SimConModels
         public void Disconnect()
         {
             Console.WriteLine("Disconnect");
+            Log.Logger.Information("Simconnect disconnected");
 
             if (simconnect != null)
             {
@@ -121,11 +125,14 @@ namespace SimConModels
                 simconnect = null;
             }
 
+            SimConHelper.GetSimConHelper().SimConnectClosed();
+
             connected = false;
         }
 
         public void ChangeState(string _state)
         {
+            Log.Logger.Information("ChangeState " + _state);
             state = _state;
             StateChanged?.Invoke(this, state);
         }
@@ -140,12 +147,15 @@ namespace SimConModels
             {
                 if (simVarModel.IsEvent == false)
                 {
-                    //try
-                    //{
+                    try
+                    {
                         simconnect.RequestDataOnSimObjectType(simVarModel.eRequest, simVarModel.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
-                    /*}
-                    catch
-                    { }*/
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Logger.Error("UpdateData exception");
+                        Log.Logger.Error(ex, ex.StackTrace);
+                    }
                 }
             }
         }
@@ -159,13 +169,16 @@ namespace SimConModels
         {
             uint iRequest = data.dwRequestID;
 
-            if (SimVarLists.GetSimVarLists().GetFailableList() != null)
-                foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetFailableList())
+            //if (SimVarLists.GetSimVarLists().GetFailableList() != null)
+            //foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetFailableList())
+            if (SimVarLists.GetSimVarLists().GetFailuresList() != null)
+                foreach (SimVarModel oSimvarRequest in SimVarLists.GetSimVarLists().GetFailuresList())
                 {
                     if (iRequest == (uint)oSimvarRequest.eRequest)
                     {
                         double dValue = (double)data.dwData[0];
                         oSimvarRequest.Value = dValue;
+                        break;
                     }
                 }
 
@@ -175,6 +188,7 @@ namespace SimConModels
                 {
                     double dValue = (double)data.dwData[0];
                     oSimvarRequest.Value = dValue;
+                    break;
                 }
             }
         }
@@ -191,6 +205,7 @@ namespace SimConModels
 
         private void SimConnect_OnRecvOpen(SimConnect sender, SIMCONNECT_RECV_OPEN data)
         {
+            Log.Logger.Information("Sim connected");
             connected = true;
             state = "Sim connected";
             StateChanged?.Invoke(this, state);
@@ -201,6 +216,7 @@ namespace SimConModels
 
         private void SimConnect_OnRecvQuit(SimConnect sender, SIMCONNECT_RECV data)
         {
+            Log.Logger.Information("Simconnect quit");
             Console.WriteLine("SimConnect_OnRecvQuit");
             Console.WriteLine("KH has exited");
 
@@ -213,6 +229,7 @@ namespace SimConModels
             Console.WriteLine("SimConnect_OnRecvException: " + eException.ToString());
 
             simException?.Invoke(this, eException.ToString());
+            Log.Logger.Error("Simconnect exception: " + eException.ToString());
         }
 
         public static SimCon GetSimCon() => instance;
