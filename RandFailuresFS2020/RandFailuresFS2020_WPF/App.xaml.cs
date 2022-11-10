@@ -4,11 +4,6 @@ using Serilog;
 using SimConModels;
 using SimConModels.DatabaseHelper;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace RandFailuresFS2020_WPF

@@ -1,11 +1,6 @@
 ﻿using Microsoft.FlightSimulator.SimConnect;
 using Serilog;
 using SimConModels.SimVar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimConModels
 {

@@ -1,9 +1,6 @@
 ﻿using Microsoft.FlightSimulator.SimConnect;
-using System;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
-using System.Timers;
 using Serilog;
+using System.Runtime.InteropServices;
 
 namespace SimConModels
 {
@@ -64,8 +61,8 @@ namespace SimConModels
                 {
                     //try
                     //{
-                        simconnect.ReceiveMessage();
-                        handled = true;
+                    simconnect.ReceiveMessage();
+                    handled = true;
                     /*}
                     catch
                     { }*/

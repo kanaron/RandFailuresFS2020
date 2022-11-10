@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Dapper;
+using Serilog;
 using System.Data;
 using System.Data.SQLite;
-using Dapper;
-using Serilog;
 
 namespace SimConModels
 {

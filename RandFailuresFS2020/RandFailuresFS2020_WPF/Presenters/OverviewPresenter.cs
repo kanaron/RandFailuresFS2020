@@ -2,11 +2,6 @@
 using RandFailuresFS2020_WPF.Views;
 using SimConModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 
 namespace RandFailuresFS2020_WPF.Presenters
 {
