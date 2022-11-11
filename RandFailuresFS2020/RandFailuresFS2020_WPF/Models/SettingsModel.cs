@@ -9,7 +9,7 @@ namespace RandFailuresFS2020_WPF.Models
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private PresetModel _preset;
+        private PresetModel? _preset;
         private int _setAllPercent;
 
         public int SetAllPercent
@@ -24,7 +24,7 @@ namespace RandFailuresFS2020_WPF.Models
         }
         public PresetModel Preset
         {
-            get { return _preset; }
+            get { return _preset!; }
             set
             {
                 _preset = value;
@@ -55,9 +55,7 @@ namespace RandFailuresFS2020_WPF.Models
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

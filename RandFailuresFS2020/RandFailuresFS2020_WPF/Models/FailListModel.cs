@@ -10,9 +10,9 @@ namespace RandFailuresFS2020_WPF.Models
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private string _failuresText;
+        private string? _failuresText;
 
-        public string FailuresText
+        public string? FailuresText
         {
             get { return _failuresText; }
             set
@@ -30,11 +30,10 @@ namespace RandFailuresFS2020_WPF.Models
         public void ShowFailures()
         {
             FailuresText = "";
-            string altTime = "";
-
             if (SimVarLists.GetSimVarLists().GetFailuresList() != null)
                 foreach (var sv in SimVarLists.GetSimVarLists().GetFailuresList())
                 {
+                    string altTime;
                     if (sv.WhenFail == WHEN_FAIL.ALT)
                     {
                         altTime = "at " + sv.FailureAlt.ToString() + " ft";
@@ -58,9 +57,7 @@ namespace RandFailuresFS2020_WPF.Models
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -89,7 +89,7 @@ namespace SimConModels
                 {
                     var query = cnn.QueryFirst<int>(String.Format("select OptionValue from Options where OptionName = '{0}'", optionName));
                     Log.Logger.Information("LoadOptionValueBool result: " + query);
-                    return query > 0 ? true : false;
+                    return query > 0;
                 }
                 catch (Exception ex)
                 {

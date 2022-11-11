@@ -10,8 +10,8 @@ namespace SimConModels.DatabaseHelper
     {
         private int jsonVersion = 0;
         private int databaseVersion = 0;
-        private JsonModel jsonModel;
-        private string jsonString;
+        private JsonModel? jsonModel;
+        private string? jsonString;
 
 
         public DatabaseHelper()
@@ -46,9 +46,15 @@ namespace SimConModels.DatabaseHelper
             databaseVersion = SQLOptions.LoadOptionValueInt("DatabaseVersion");
         }
 
-        private void CheckAndMoveDatabaseFile()
+        private static void CheckAndMoveDatabaseFile()
         {
             Log.Logger.Information("Checking if database file exists in database folder");
+
+            if (!Directory.Exists(".\\database"))
+            {
+                _ = Directory.CreateDirectory(".\\database");
+            }
+
             if (!File.Exists(".\\database\\FailDB.db"))
             {
                 Log.Logger.Information("Copying database file into database folder");
@@ -64,7 +70,7 @@ namespace SimConModels.DatabaseHelper
                 cnn.Execute($"delete from SimVar");
                 cnn.Execute($"delete from sqlite_sequence where name='SimVar'");
 
-                foreach (var sim in jsonModel.SimVars)
+                foreach (var sim in jsonModel!.SimVars!)
                 {
                     Log.Logger.Information("Inserting into SimVar " + sim.SimVarName);
                     cnn.Execute($"insert into " +
@@ -75,7 +81,7 @@ namespace SimConModels.DatabaseHelper
             }
         }
 
-        private string BoolToInt(bool _b) => _b ? "1" : "0";
+        private static string BoolToInt(bool _b) => _b ? "1" : "0";
 
         private void UpdateDatabaseVersion()
         {

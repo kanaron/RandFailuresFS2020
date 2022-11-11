@@ -7,24 +7,24 @@ namespace RandFailuresFS2020_WPF.Presenters
 {
     public class OverviewPresenter
     {
-        public OverviewView overviewView { private set; get; }
-        public OverviewModel overviewModel { private set; get; }
+        public OverviewView OverviewView { private set; get; }
+        public OverviewModel OverviewModel { private set; get; }
 
         public OverviewPresenter()
         {
-            overviewView = new OverviewView();
-            overviewView.RestartClicked += OverviewView_RestartClicked;
-            overviewView.StartClicked += OverviewView_StartClicked;
-            overviewView.StopClicked += OverviewView_StopClicked;
+            OverviewView = new OverviewView();
+            OverviewView.RestartClicked += OverviewView_RestartClicked;
+            OverviewView.StartClicked += OverviewView_StartClicked;
+            OverviewView.StopClicked += OverviewView_StopClicked;
 
-            overviewModel = new OverviewModel();
+            OverviewModel = new OverviewModel();
 
-            overviewView.DataContext = overviewModel;
+            OverviewView.DataContext = OverviewModel;
         }
 
         public void Reload()
         {
-            overviewModel.Reload();
+            OverviewModel.Reload();
         }
 
         private void OverviewView_StartClicked(object? sender, EventArgs e)

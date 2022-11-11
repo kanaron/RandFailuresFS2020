@@ -11,20 +11,19 @@ namespace RandFailuresFS2020_WPF.Models
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private string _stateText;
-        private Brush _stateColor;
+        private string? _stateText;
+        private Brush? _stateColor;
         private bool _resetEnabled;
         private bool _startEnabled;
         private bool _stopEnabled;
-        private List<PresetModel> _presetsList;
-        private PresetModel _selectedPreset;
+        private List<PresetModel>? _presetsList;
+        private PresetModel? _selectedPreset;
         private int _selectedItemPreset;
-        private bool _autostartEnabled;
 
 
         public List<PresetModel> PresetsList
         {
-            get { return _presetsList; }
+            get { return _presetsList!; }
             set
             {
                 _presetsList = value;
@@ -33,7 +32,7 @@ namespace RandFailuresFS2020_WPF.Models
         }
         public PresetModel SelectedPreset
         {
-            get { return _selectedPreset; }
+            get { return _selectedPreset!; }
             set
             {
                 _selectedPreset = value;
@@ -53,7 +52,7 @@ namespace RandFailuresFS2020_WPF.Models
         }
         public string StateText
         {
-            get { return _stateText; }
+            get { return _stateText!; }
             set
             {
                 _stateText = value;
@@ -62,7 +61,7 @@ namespace RandFailuresFS2020_WPF.Models
         }
         public Brush StateColor
         {
-            get { return _stateColor; }
+            get { return _stateColor!; }
             set
             {
                 _stateColor = value;
@@ -96,17 +95,6 @@ namespace RandFailuresFS2020_WPF.Models
                 NotifyPropertyChanged();
             }
         }
-        public bool AutostartEnabled
-        {
-            get { return _autostartEnabled; }
-            set
-            {
-                _autostartEnabled = value;
-                NotifyPropertyChanged();
-                SQLOptions.UpdateOption("Autostart", BoolToInt(value).ToString());
-            }
-        }
-
 
         public OverviewModel()
         {
@@ -121,9 +109,7 @@ namespace RandFailuresFS2020_WPF.Models
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void Reload()
@@ -166,7 +152,5 @@ namespace RandFailuresFS2020_WPF.Models
                     }
             }
         }
-
-        private string BoolToInt(bool _b) => _b ? "1" : "0";
     }
 }

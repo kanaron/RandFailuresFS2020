@@ -27,22 +27,22 @@ namespace SimConModels
         /// <summary>
         /// name of SimVar
         /// </summary>
-        public string SimVarName { get; set; }
+        public string? SimVarName { get; set; }
 
         /// <summary>
         /// represents sim variable string known by SimConnect
         /// </summary>
-        public string SimVariable { get; set; }
+        public string? SimVariable { get; set; }
 
         /// <summary>
         /// unit of sim variable in case if nessecary
         /// </summary>
-        public string Unit { get; set; }
+        public string? Unit { get; set; }
 
         /// <summary>
         /// domain of simVar (engine, avionics, fuel...)
         /// </summary>
-        public string Domain { get; set; }
+        public string? Domain { get; set; }
 
         /// <summary>
         /// current value of simVar
@@ -113,7 +113,7 @@ namespace SimConModels
         /// <summary>
         /// random object for turning on and off continous event failures
         /// </summary>
-        public Random Random { get; set; }
+        public Random? Random { get; set; }
 
 
         /// <summary>

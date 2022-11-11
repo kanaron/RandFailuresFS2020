@@ -10,15 +10,15 @@ namespace RandFailuresFS2020_WPF.Models
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private List<PresetModel> _presetsList;
-        private PresetModel _selectedPreset;
-        private int _selectedItemPreset;
-        private List<SimVarModel> _presetVarsList;
+        private List<PresetModel>? _presetsList;
+        private PresetModel? _selectedPreset;
+        private List<SimVarModel>? _presetVarsList;
+        private int _selectedIndexPreset;
 
 
         public List<PresetModel> PresetsList
         {
-            get { return _presetsList; }
+            get { return _presetsList!; }
             set
             {
                 _presetsList = value;
@@ -27,7 +27,7 @@ namespace RandFailuresFS2020_WPF.Models
         }
         public PresetModel SelectedPreset
         {
-            get { return _selectedPreset; }
+            get { return _selectedPreset!; }
             set
             {
                 _selectedPreset = value;
@@ -35,18 +35,18 @@ namespace RandFailuresFS2020_WPF.Models
                 LoadVarsList();
             }
         }
-        public int SelectedItemPreset
+        public int SelectedIndexPreset
         {
-            get { return _selectedItemPreset; }
+            get { return _selectedIndexPreset; }
             set
             {
-                _selectedItemPreset = value;
+                _selectedIndexPreset = value;
                 NotifyPropertyChanged();
             }
         }
         public List<SimVarModel> PresetVarsList
         {
-            get { return _presetVarsList; }
+            get { return _presetVarsList!; }
             set
             {
                 _presetVarsList = value;
@@ -59,14 +59,12 @@ namespace RandFailuresFS2020_WPF.Models
         public PresetsModel()
         {
             PresetsList = SQLPresets.LoadPresets();
-            SelectedItemPreset = PresetsList.FindIndex(a => a.PresetID.Equals(SQLOptions.LoadOptionValueInt("PresetID")));
+            SelectedIndexPreset = PresetsList.FindIndex(a => a.PresetID.Equals(SQLOptions.LoadOptionValueInt("PresetID")));
         }
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void DeletePreset()
@@ -75,6 +73,7 @@ namespace RandFailuresFS2020_WPF.Models
             {
                 SQLPresets.Delete(SelectedPreset);
                 PresetsList = SQLPresets.LoadPresets();
+                SelectedPreset = PresetsList[0];
             }
         }
 
@@ -82,11 +81,13 @@ namespace RandFailuresFS2020_WPF.Models
         {
             SQLPresets.Insert(name);
             PresetsList = SQLPresets.LoadPresets();
+            SelectedPreset = PresetsList[^1];
         }
 
         public void LoadVarsList()
         {
-            PresetVarsList = SQLSimVar.LoadFailableSimVarsList(SelectedPreset.PresetID);
+            //if (SelectedPreset != null)
+                PresetVarsList = SQLSimVar.LoadFailableSimVarsList(SelectedPreset.PresetID);
         }
 
         public void SaveVarsInPreset()
@@ -97,7 +98,7 @@ namespace RandFailuresFS2020_WPF.Models
 
         public void Reload()
         {
-            SelectedItemPreset = PresetsList.FindIndex(a => a.PresetID.Equals(SQLOptions.LoadOptionValueInt("PresetID")));
+            SelectedIndexPreset = PresetsList.FindIndex(a => a.PresetID.Equals(SQLOptions.LoadOptionValueInt("PresetID")));
             LoadVarsList();
         }
     }

@@ -25,18 +25,18 @@ namespace RandFailuresFS2020_WPF
             Log.Logger.Information("Application started");
 
             Log.Logger.Information("Creating Database helper");
-            new DatabaseHelper();
+            _ = new DatabaseHelper();
 
             SimConHelper.GetSimConHelper().Initialize();
 
             Log.Logger.Information("Starting Shell view");
-            new ShellPresenter();
+            _ = new ShellPresenter();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Log.Logger.Error("Unhandled exception");
-            Log.Logger.Error(e.ToString(), sender.ToString());
+            Log.Logger.Error(e.ToString()!, sender.ToString());
         }
     }
 }

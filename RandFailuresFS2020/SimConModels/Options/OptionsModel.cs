@@ -5,11 +5,11 @@
         /// <summary>
         /// name of option
         /// </summary>
-        public string OptionName { get; set; }
+        public string? OptionName { get; set; }
         /// <summary>
         /// value of option
         /// </summary>
-        public string OptionValue { get; set; }
+        public string? OptionValue { get; set; }
 
         /// <summary>
         /// default constructor

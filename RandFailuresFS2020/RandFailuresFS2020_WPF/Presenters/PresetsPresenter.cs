@@ -6,47 +6,47 @@ namespace RandFailuresFS2020_WPF.Presenters
 {
     public class PresetsPresenter
     {
-        public PresetsView presetsView { private set; get; }
+        public PresetsView PresetsView { private set; get; }
 
-        public PresetsModel presetsModel { private set; get; }
+        public PresetsModel PresetsModel { private set; get; }
 
         public PresetsPresenter()
         {
-            presetsView = new PresetsView();
-            presetsView.DeletePreset += PresetsView_DeletePreset;
-            presetsView.NewPreset += PresetsView_NewPreset;
-            presetsView.SaveVars += PresetsView_SaveVars;
+            PresetsView = new PresetsView();
+            PresetsView.DeletePreset += PresetsView_DeletePreset;
+            PresetsView.NewPreset += PresetsView_NewPreset;
+            PresetsView.SaveVars += PresetsView_SaveVars;
 
-            presetsModel = new PresetsModel();
+            PresetsModel = new PresetsModel();
 
-            presetsView.DataContext = presetsModel;
+            PresetsView.DataContext = PresetsModel;
         }
 
         private void PresetsView_SaveVars(object? sender, bool e)
         {
             if (e == false)
             {
-                presetsModel.LoadVarsList();
+                PresetsModel.LoadVarsList();
             }
             else
             {
-                presetsModel.SaveVarsInPreset();
+                PresetsModel.SaveVarsInPreset();
             }
         }
 
         private void PresetsView_NewPreset(object? sender, string e)
         {
-            presetsModel.NewPreset(e);
+            PresetsModel.NewPreset(e);
         }
 
         private void PresetsView_DeletePreset(object? sender, EventArgs e)
         {
-            presetsModel.DeletePreset();
+            PresetsModel.DeletePreset();
         }
 
         public void Reload()
         {
-            presetsModel.Reload();
+            PresetsModel.Reload();
         }
     }
 }

@@ -6,23 +6,23 @@ namespace RandFailuresFS2020_WPF.Presenters
 {
     public class SettingsPresenter
     {
-        public SettingsView settingsView { private set; get; }
+        public SettingsView SettingsView { private set; get; }
 
-        public SettingsModel settingsModel { private set; get; }
+        public SettingsModel SettingsModel { private set; get; }
 
         public SettingsPresenter()
         {
-            settingsView = new SettingsView();
-            settingsView.SaveClicked += SettingsView_SaveClicked;
+            SettingsView = new SettingsView();
+            SettingsView.SaveClicked += SettingsView_SaveClicked;
 
-            settingsModel = new SettingsModel();
+            SettingsModel = new SettingsModel();
 
-            settingsView.DataContext = settingsModel;
+            SettingsView.DataContext = SettingsModel;
         }
 
         private void SettingsView_SaveClicked(object? sender, EventArgs e)
         {
-            settingsModel.SavePreset();
+            SettingsModel.SavePreset();
         }
     }
 }

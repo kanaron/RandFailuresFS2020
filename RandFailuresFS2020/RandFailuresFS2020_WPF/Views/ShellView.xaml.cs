@@ -8,11 +8,11 @@ namespace RandFailuresFS2020_WPF.Views
     /// </summary>
     public partial class ShellView : Window
     {
-        public event EventHandler OverviewClick;
-        public event EventHandler SettingsClick;
-        public event EventHandler PresetsClick;
-        public event EventHandler FailListClick;
-        public event EventHandler HelpClick;
+        public event EventHandler? OverviewClick;
+        public event EventHandler? SettingsClick;
+        public event EventHandler? PresetsClick;
+        public event EventHandler? FailListClick;
+        public event EventHandler? HelpClick;
 
         public ShellView()
         {

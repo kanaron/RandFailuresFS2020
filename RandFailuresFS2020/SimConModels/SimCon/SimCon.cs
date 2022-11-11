@@ -28,18 +28,18 @@ namespace SimConModels
 
     public class SimCon
     {
-        private static readonly SimCon instance = new SimCon();
+        private static readonly SimCon instance = new();
 
-        public event EventHandler<string> simException;
+        public event EventHandler<string>? SimException;
 
-        public bool connected { get; private set; } = false;
+        public bool Connected { get; private set; } = false;
 
         private string state = "Sim not found";
-        public event EventHandler<string> StateChanged;
+        public event EventHandler<string>? StateChanged;
 
         public const int WM_USER_SIMCONNECT = 0x0402;
-        public IntPtr m_hWnd { get; set; }
-        private SimConnect simconnect = null;
+        public IntPtr MHWnd { get; set; }
+        private SimConnect? simconnect = null;
 
         private SimCon()
         {
@@ -48,10 +48,10 @@ namespace SimConModels
 
         public void SetHandle(IntPtr _ptr)
         {
-            m_hWnd = _ptr;
+            MHWnd = _ptr;
         }
 
-        public IntPtr ProcessSimCon(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        public IntPtr ProcessSimCon(IntPtr _hwnd, int msg, IntPtr _wParam, IntPtr _lParam, ref bool handled)
         {
             handled = false;
 
@@ -79,8 +79,8 @@ namespace SimConModels
             {
                 if (simVarModel.IsEvent == false)
                 {
-                    simconnect.AddToDataDefinition(simVarModel.eDef, simVarModel.SimVariable, simVarModel.Unit, SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
-                    simconnect.RegisterDataDefineStruct<double>(simVarModel.eDef);
+                    simconnect!.AddToDataDefinition(simVarModel.eDef, simVarModel.SimVariable, simVarModel.Unit, SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+                    simconnect!.RegisterDataDefineStruct<double>(simVarModel.eDef);
                 }
             }
             Log.Logger.Information("List registrated");
@@ -92,7 +92,7 @@ namespace SimConModels
 
             try
             {
-                simconnect = new SimConnect("RandFailuresFS2020", m_hWnd, WM_USER_SIMCONNECT, null, 0);
+                simconnect = new SimConnect("RandFailuresFS2020", MHWnd, WM_USER_SIMCONNECT, null, 0);
 
                 simconnect.OnRecvOpen += new SimConnect.RecvOpenEventHandler(SimConnect_OnRecvOpen);
                 simconnect.OnRecvQuit += new SimConnect.RecvQuitEventHandler(SimConnect_OnRecvQuit);
@@ -108,7 +108,7 @@ namespace SimConModels
                 Console.WriteLine("Connection to KH failed: " + ex.Message);
             }
 
-            return connected;
+            return Connected;
         }
 
         public void Disconnect()
@@ -124,7 +124,7 @@ namespace SimConModels
 
             SimConHelper.GetSimConHelper().SimConnectClosed();
 
-            connected = false;
+            Connected = false;
         }
 
         public void ChangeState(string _state)
@@ -146,7 +146,7 @@ namespace SimConModels
                 {
                     try
                     {
-                        simconnect.RequestDataOnSimObjectType(simVarModel.eRequest, simVarModel.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
+                        simconnect!.RequestDataOnSimObjectType(simVarModel.eRequest, simVarModel.eDef, 0, SIMCONNECT_SIMOBJECT_TYPE.USER);
                     }
                     catch (Exception ex)
                     {
@@ -190,7 +190,7 @@ namespace SimConModels
             }
         }
 
-        public int GetUserSimConnectWinEvent()
+        public static int GetUserSimConnectWinEvent()
         {
             return WM_USER_SIMCONNECT;
         }
@@ -203,7 +203,7 @@ namespace SimConModels
         private void SimConnect_OnRecvOpen(SimConnect sender, SIMCONNECT_RECV_OPEN data)
         {
             Log.Logger.Information("Sim connected");
-            connected = true;
+            Connected = true;
             state = "Sim connected";
             StateChanged?.Invoke(this, state);
 
@@ -225,12 +225,12 @@ namespace SimConModels
             SIMCONNECT_EXCEPTION eException = (SIMCONNECT_EXCEPTION)data.dwException;
             Console.WriteLine("SimConnect_OnRecvException: " + eException.ToString());
 
-            simException?.Invoke(this, eException.ToString());
+            SimException?.Invoke(this, eException.ToString());
             Log.Logger.Error("Simconnect exception: " + eException.ToString());
         }
 
         public static SimCon GetSimCon() => instance;
 
-        public SimConnect GetSimConnect() => simconnect;
+        public SimConnect GetSimConnect() => simconnect!;
     }
 }

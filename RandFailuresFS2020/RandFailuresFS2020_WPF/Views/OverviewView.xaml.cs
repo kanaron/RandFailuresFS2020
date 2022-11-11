@@ -9,9 +9,9 @@ namespace RandFailuresFS2020_WPF.Views
     /// </summary>
     public partial class OverviewView : UserControl
     {
-        public event EventHandler RestartClicked;
-        public event EventHandler StartClicked;
-        public event EventHandler StopClicked;
+        public event EventHandler? RestartClicked;
+        public event EventHandler? StartClicked;
+        public event EventHandler? StopClicked;
 
         public OverviewView()
         {

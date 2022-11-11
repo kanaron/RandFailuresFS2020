@@ -6,11 +6,11 @@ namespace SimConModels
 {
     public class SimVarLists
     {
-        private static readonly SimVarLists instance = new SimVarLists();
+        private static readonly SimVarLists instance = new();
 
-        private List<SimVarModel> SimVarDataList;
-        private List<SimVarModel> SimVarFailableList;
-        private List<SimVarModel> SimVarFailuresList;
+        private List<SimVarModel>? SimVarDataList;
+        private List<SimVarModel>? SimVarFailableList;
+        private List<SimVarModel>? SimVarFailuresList;
 
         private int flyTime = 0;
 
@@ -38,14 +38,13 @@ namespace SimConModels
         {
             Log.Logger.Information("Randomizing failures");
             SimVarFailuresList = new();
-            Random rnd = new Random();
-            bool cont = false;
+            Random rnd = new();
             LoadFailableList(SQLOptions.LoadOptionValueInt("PresetID"));
             flyTime = 0;
 
             PresetModel preset = SQLPresets.LoadPreset(SQLOptions.LoadOptionValueInt("PresetID"));
 
-            foreach (var sv in SimVarFailableList)
+            foreach (var sv in SimVarFailableList!)
             {
                 if (sv.IsFailable && rnd.Next(1000) < sv.FailPercent)
                 {
@@ -55,6 +54,7 @@ namespace SimConModels
                     if (sv.IsLeak)
                         sv.FailureValue = 0.000001 + (rnd.Next(0, 80) / 10000000);
 
+                    bool cont;
                     do
                     {
                         cont = false;
@@ -129,7 +129,7 @@ namespace SimConModels
 
         public void SetFailures()
         {
-            foreach (var sv in SimVarFailuresList)
+            foreach (var sv in SimVarFailuresList!)
             {
                 if (!sv.Failed)
                 {
@@ -143,7 +143,7 @@ namespace SimConModels
                             }
                         case WHEN_FAIL.ALT:
                             {
-                                if (SimVarDataList.First(x => x.SimVariable == "PLANE ALTITUDE").Value >= sv.FailureAlt)
+                                if (SimVarDataList!.First(x => x.SimVariable == "PLANE ALTITUDE").Value >= sv.FailureAlt)
                                     SetFail(sv);
                                 break;
                             }
@@ -155,7 +155,7 @@ namespace SimConModels
                             }
                         case WHEN_FAIL.SPEED:
                             {
-                                if (SimVarDataList.First(x => x.SimVariable == "GROUND VELOCITY").Value >= sv.FailureSpeed)
+                                if (SimVarDataList!.First(x => x.SimVariable == "GROUND VELOCITY").Value >= sv.FailureSpeed)
                                     SetFail(sv);
                                 break;
                             }
@@ -164,7 +164,7 @@ namespace SimConModels
             }
         }
 
-        private void SetFail(SimVarModel simVarModel)
+        private static void SetFail(SimVarModel simVarModel)
         {
             try
             {
@@ -211,7 +211,7 @@ namespace SimConModels
             flyTime++;
         }
 
-        private void FillSimVarEnums(List<SimVarModel> list)
+        private static void FillSimVarEnums(List<SimVarModel> list)
         {
             foreach (SimVarModel simVarModel in list)
             {
@@ -221,12 +221,10 @@ namespace SimConModels
 
         public static SimVarLists GetSimVarLists() => instance;
 
-        public List<SimVarModel> GetDataList() => SimVarDataList;
+        public List<SimVarModel> GetDataList() => SimVarDataList!;
 
-        public List<SimVarModel> GetFailableList() => SimVarFailableList;
+        public List<SimVarModel> GetFailableList() => SimVarFailableList!;
 
-        public List<SimVarModel> GetFailuresList() => SimVarFailuresList;
-
-        private string BoolToInt(bool _b) => _b ? "1" : "0";
+        public List<SimVarModel> GetFailuresList() => SimVarFailuresList!;
     }
 }

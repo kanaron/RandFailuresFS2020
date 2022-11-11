@@ -8,26 +8,26 @@ namespace RandFailuresFS2020_WPF.Presenters
 {
     public class ShellPresenter
     {
-        private ShellView shellView;
-        public ShellModel shellModel { private set; get; }
+        private ShellView ShellView { set; get; }
+        public ShellModel ShellModel { private set; get; }
 
-        private OverviewPresenter overviewPresenter;
-        private SettingsPresenter settingsPresenter;
-        private PresetsPresenter presetsPresenter;
-        private FailListPresenter failListPresenter;
+        private readonly OverviewPresenter overviewPresenter;
+        private readonly SettingsPresenter settingsPresenter;
+        private readonly PresetsPresenter presetsPresenter;
+        private readonly FailListPresenter failListPresenter;
 
         public ShellPresenter()
         {
-            shellView = new ShellView();
-            shellView.OverviewClick += ShellView_OverviewClick;
-            shellView.SettingsClick += ShellView_SettingsClick;
-            shellView.PresetsClick += ShellView_PresetsClick;
-            shellView.FailListClick += ShellView_FailListClick;
-            shellView.HelpClick += ShellView_HelpClick;
+            ShellView = new ShellView();
+            ShellView.OverviewClick += ShellView_OverviewClick;
+            ShellView.SettingsClick += ShellView_SettingsClick;
+            ShellView.PresetsClick += ShellView_PresetsClick;
+            ShellView.FailListClick += ShellView_FailListClick;
+            ShellView.HelpClick += ShellView_HelpClick;
 
-            shellModel = new ShellModel();
+            ShellModel = new ShellModel();
 
-            shellView.DataContext = shellModel;
+            ShellView.DataContext = ShellModel;
 
             overviewPresenter = new OverviewPresenter();
             settingsPresenter = new SettingsPresenter();
@@ -35,37 +35,37 @@ namespace RandFailuresFS2020_WPF.Presenters
             failListPresenter = new FailListPresenter();
 
 
-            shellView.ActiveItem.Content = overviewPresenter.overviewView;
+            ShellView.ActiveItem.Content = overviewPresenter.OverviewView;
 
-            shellView.Show();
+            ShellView.Show();
 
-            SimCon.GetSimCon().SetHandle(new WindowInteropHelper(shellView).Handle);
+            SimCon.GetSimCon().SetHandle(new WindowInteropHelper(ShellView).Handle);
 
-            HwndSource lHwndSource = HwndSource.FromHwnd(new WindowInteropHelper(shellView).Handle);
+            HwndSource lHwndSource = HwndSource.FromHwnd(new WindowInteropHelper(ShellView).Handle);
             lHwndSource.AddHook(new HwndSourceHook(SimCon.GetSimCon().ProcessSimCon));
         }
 
         private void ShellView_OverviewClick(object? sender, EventArgs e)
         {
             overviewPresenter.Reload();
-            shellView.ActiveItem.Content = overviewPresenter.overviewView;
+            ShellView.ActiveItem.Content = overviewPresenter.OverviewView;
         }
 
         private void ShellView_SettingsClick(object? sender, EventArgs e)
         {
-            settingsPresenter.settingsModel.Reload();
-            shellView.ActiveItem.Content = settingsPresenter.settingsView;
+            settingsPresenter.SettingsModel.Reload();
+            ShellView.ActiveItem.Content = settingsPresenter.SettingsView;
         }
 
         private void ShellView_PresetsClick(object? sender, EventArgs e)
         {
             presetsPresenter.Reload();
-            shellView.ActiveItem.Content = presetsPresenter.presetsView;
+            ShellView.ActiveItem.Content = presetsPresenter.PresetsView;
         }
 
         private void ShellView_FailListClick(object? sender, EventArgs e)
         {
-            shellView.ActiveItem.Content = failListPresenter.failListView;
+            ShellView.ActiveItem.Content = failListPresenter.FailListView;
         }
 
         private void ShellView_HelpClick(object? sender, EventArgs e)

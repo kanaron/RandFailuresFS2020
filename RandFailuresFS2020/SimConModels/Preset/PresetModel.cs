@@ -4,7 +4,7 @@
     {
         public int PresetID { get; private set; }
 
-        public string PresetName { get; set; }
+        public string? PresetName { get; set; }
         public int SpeedEnabled { get; set; }
         public int SpeedMin { get; set; }
         public int SpeedMax { get; set; }

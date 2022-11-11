@@ -23,19 +23,6 @@ namespace SimConModels
             }
         }
 
-        /*public static string LoadFirstValue(string select, string from, string where)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var query = cnn.QueryFirst<string>($"SELECT { select } FROM { from } WHERE { where} ").ToString();
-                if (query != null)
-                {
-                    return query;
-                }
-                return "";
-            }
-        }*/
-
         public static string LoadFirstValue(string sql)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))

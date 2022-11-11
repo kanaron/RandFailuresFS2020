@@ -9,7 +9,7 @@ namespace RandFailuresFS2020_WPF.Views
     /// </summary>
     public partial class FailListView : UserControl
     {
-        public event EventHandler ShowFailuresClicked;
+        public event EventHandler? ShowFailuresClicked;
 
         public FailListView()
         {
