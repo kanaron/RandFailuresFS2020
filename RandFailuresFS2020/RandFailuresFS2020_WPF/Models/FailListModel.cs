@@ -1,15 +1,11 @@
 ﻿using SimConModels;
 using SimConModels.SimVar;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace RandFailuresFS2020_WPF.Models
 {
-    public class FailListModel : INotifyPropertyChanged
+    public class FailListModel : BaseModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private string? _failuresText;
 
         public string? FailuresText
@@ -53,11 +49,6 @@ namespace RandFailuresFS2020_WPF.Models
 
                     FailuresText += "Name: " + sv.SimVarName + " when will fail: " + sv.WhenFail + " " + altTime + Environment.NewLine;
                 }
-        }
-
-        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

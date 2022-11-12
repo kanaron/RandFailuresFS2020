@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RandFailuresFS2020_WPF.Views"
              mc:Ignorable="d" Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -37,7 +36,7 @@
         </TextBlock>
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
-            <TextBlock>Loaded preset: </TextBlock>
+            <TextBlock>Loaded preset:</TextBlock>
             <TextBlock Margin="5 0" Text="{Binding Preset.PresetName}"/>
         </StackPanel>
 
@@ -75,9 +74,12 @@
                 <TextBox Text="{Binding SetAllPercent}" Margin="5 0 2 0" Width="50"/>
                 <TextBlock >%</TextBlock>
             </StackPanel>
-            
+
         </StackPanel>
 
-        <Button x:Name="SaveBtn" Grid.Column="2" Grid.Row="9" Click="SaveBtn_Click">Save</Button>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center">
+            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Width="80" Margin="8">Save</Button>
+            <Button x:Name="CancelBtn" Click="CancelBtn_Click"  Width="80" Margin="8">Cancel</Button>
+        </StackPanel>
     </Grid>
 </UserControl>

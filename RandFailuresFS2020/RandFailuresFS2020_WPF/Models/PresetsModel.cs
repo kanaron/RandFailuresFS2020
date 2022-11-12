@@ -1,20 +1,14 @@
 ﻿using SimConModels;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace RandFailuresFS2020_WPF.Models
 {
-    public class PresetsModel : INotifyPropertyChanged
+    public class PresetsModel : BaseModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private List<PresetModel>? _presetsList;
         private PresetModel? _selectedPreset;
         private List<SimVarModel>? _presetVarsList;
         private int _selectedIndexPreset;
-
 
         public List<PresetModel> PresetsList
         {
@@ -54,17 +48,10 @@ namespace RandFailuresFS2020_WPF.Models
             }
         }
 
-
-
         public PresetsModel()
         {
             PresetsList = SQLPresets.LoadPresets();
             SelectedIndexPreset = PresetsList.FindIndex(a => a.PresetID.Equals(SQLOptions.LoadOptionValueInt("PresetID")));
-        }
-
-        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void DeletePreset()
@@ -86,8 +73,7 @@ namespace RandFailuresFS2020_WPF.Models
 
         public void LoadVarsList()
         {
-            //if (SelectedPreset != null)
-                PresetVarsList = SQLSimVar.LoadFailableSimVarsList(SelectedPreset.PresetID);
+            PresetVarsList = SQLSimVar.LoadFailableSimVarsList(SelectedPreset.PresetID);
         }
 
         public void SaveVarsInPreset()

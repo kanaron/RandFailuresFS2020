@@ -59,19 +59,13 @@ namespace SimConModels
             {
                 if (simconnect != null)
                 {
-                    //try
-                    //{
                     simconnect.ReceiveMessage();
                     handled = true;
-                    /*}
-                    catch
-                    { }*/
                 }
             }
             return (IntPtr)0;
         }
 
-        //TODO make first variable in json Sim on ground or something non setable
         public void RegisterList(List<SimVarModel> list)
         {
             Log.Logger.Information("RegisterList " + nameof(list));
@@ -104,7 +98,6 @@ namespace SimConModels
             }
             catch (COMException ex)
             {
-                //simException?.Invoke(this, ex.Message);
                 Console.WriteLine("Connection to KH failed: " + ex.Message);
             }
 

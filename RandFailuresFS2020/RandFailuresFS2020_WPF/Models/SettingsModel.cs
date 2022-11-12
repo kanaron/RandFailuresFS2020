@@ -1,14 +1,9 @@
 ﻿using SimConModels;
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace RandFailuresFS2020_WPF.Models
 {
-    public class SettingsModel : INotifyPropertyChanged
+    public class SettingsModel : BaseModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private PresetModel? _preset;
         private int _setAllPercent;
 
@@ -18,7 +13,6 @@ namespace RandFailuresFS2020_WPF.Models
             set
             {
                 _setAllPercent = value;
-                SetAll();
                 NotifyPropertyChanged();
             }
         }
@@ -32,7 +26,6 @@ namespace RandFailuresFS2020_WPF.Models
             }
         }
 
-
         public SettingsModel()
         {
             Preset = SQLPresets.LoadPreset(SQLOptions.LoadOptionValueInt("PresetID"));
@@ -41,21 +34,13 @@ namespace RandFailuresFS2020_WPF.Models
         public void Reload()
         {
             Preset = SQLPresets.LoadPreset(SQLOptions.LoadOptionValueInt("PresetID"));
+            SetAllPercent = 0;
         }
 
         public void SavePreset()
         {
             SQLPresets.UpdatePreset(Preset);
-        }
-
-        private void SetAll()
-        {
             SQLSimVar.UpdateAllPercentage(Preset.PresetID, SetAllPercent);
-        }
-
-        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

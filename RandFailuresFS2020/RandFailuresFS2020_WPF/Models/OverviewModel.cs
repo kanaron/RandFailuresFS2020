@@ -1,16 +1,11 @@
 ﻿using SimConModels;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Media;
 
 namespace RandFailuresFS2020_WPF.Models
 {
-    public class OverviewModel : INotifyPropertyChanged
+    public class OverviewModel : BaseModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private string? _stateText;
         private Brush? _stateColor;
         private bool _resetEnabled;
@@ -105,11 +100,6 @@ namespace RandFailuresFS2020_WPF.Models
             StartEnabled = false;
             StopEnabled = false;
             Reload();
-        }
-
-        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void Reload()

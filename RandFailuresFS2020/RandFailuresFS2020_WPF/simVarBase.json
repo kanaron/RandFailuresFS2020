@@ -4,8 +4,8 @@
     {
       "SimVarID": 1,
       "SimVarName": "",
-      "SimVariable": "PLANE ALTITUDE",
-      "Unit": "Feet",
+      "SimVariable": "GROUND VELOCITY",
+      "Unit": "Knots",
       "Domain": "",
       "IsEvent": false,
       "IsLeak": false,
@@ -16,8 +16,8 @@
     {
       "SimVarID": 2,
       "SimVarName": "",
-      "SimVariable": "GROUND VELOCITY",
-      "Unit": "Knots",
+      "SimVariable": "PLANE ALTITUDE",
+      "Unit": "Feet",
       "Domain": "",
       "IsEvent": false,
       "IsLeak": false,

@@ -1,18 +1,12 @@
 ﻿using SimConModels;
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace RandFailuresFS2020_WPF.Models
 {
-    public class ShellModel : INotifyPropertyChanged
+    public class ShellModel : BaseModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private bool _toolTipEnabled;
         private bool _settingsEnabled;
         private bool _presetsEnabled;
-
 
         public bool ToolTipEnabled
         {
@@ -42,7 +36,6 @@ namespace RandFailuresFS2020_WPF.Models
             }
         }
 
-
         public ShellModel()
         {
             ToolTipEnabled = false;
@@ -66,11 +59,6 @@ namespace RandFailuresFS2020_WPF.Models
                 SettingsEnabled = true;
                 PresetsEnabled = true;
             }
-        }
-
-        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

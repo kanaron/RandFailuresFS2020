@@ -3,22 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RandFailuresFS2020_WPF.Views"
              mc:Ignorable="d" Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <!--<ColumnDefinition Width="auto"/>-->
-            <!--<ColumnDefinition Width="auto"/>-->
-            <!--<ColumnDefinition Width="auto"/>-->
-            <!--<ColumnDefinition Width="*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <!--<RowDefinition Height="*"/>-->
             <RowDefinition Height="*"/>
-            <!--<RowDefinition Height="*"/>-->
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
@@ -41,7 +34,7 @@
         <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding PresetVarsList}" CanUserAddRows="False"
                   AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True" Width="0.5*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True" Width="0.48*"/>
                 <DataGridTextColumn Header="Domain" Binding="{Binding Domain}" IsReadOnly="True" Width="0.2*"/>
                 <DataGridTemplateColumn Header="Enabled" IsReadOnly="False" Width="0.1*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -50,7 +43,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Fail possibility (0-1000)" Binding="{Binding FailPercent, ValidatesOnDataErrors=True}" IsReadOnly="False" Width="0.2*"/>
+                <DataGridTextColumn Header="Fail possibility (0-1000)" Binding="{Binding FailPercent, ValidatesOnDataErrors=True}" IsReadOnly="False" Width="0.22*"/>
             </DataGrid.Columns>
         </DataGrid>
 

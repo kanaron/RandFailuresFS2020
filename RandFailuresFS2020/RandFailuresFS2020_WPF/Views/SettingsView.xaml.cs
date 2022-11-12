@@ -10,6 +10,7 @@ namespace RandFailuresFS2020_WPF.Views
     public partial class SettingsView : UserControl
     {
         public event EventHandler? SaveClicked;
+        public event EventHandler? CancelClicked;
         public SettingsView()
         {
             InitializeComponent();
@@ -18,6 +19,11 @@ namespace RandFailuresFS2020_WPF.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             SaveClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CancelClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
