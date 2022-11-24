@@ -34,13 +34,14 @@ namespace RandFailuresFS2020_WPF.Models
         public void Reload()
         {
             Preset = SQLPresets.LoadPreset(SQLOptions.LoadOptionValueInt("PresetID"));
-            SetAllPercent = 0;
+            SetAllPercent = -1;
         }
 
         public void SavePreset()
         {
             SQLPresets.UpdatePreset(Preset);
-            SQLSimVar.UpdateAllPercentage(Preset.PresetID, SetAllPercent);
+            if (SetAllPercent >= 0)
+                SQLSimVar.UpdateAllPercentage(Preset.PresetID, SetAllPercent);
         }
     }
 }

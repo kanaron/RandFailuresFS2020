@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" Background="White"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,19 +25,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center">
-            RandFailures FS2020
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ResourceKey=OverviewText}" HorizontalAlignment="Center">
+            Overview
         </TextBlock>
 
-        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Right">
+        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=OverviewText}" HorizontalAlignment="Right">
             State:
         </TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="3" FontSize="25" HorizontalAlignment="Center" Foreground="{Binding StateColor, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="3" Grid.Column="3" Style="{StaticResource ResourceKey=OverviewText}"  HorizontalAlignment="Center"
+                   Foreground="{Binding StateColor, UpdateSourceTrigger=PropertyChanged}" 
                    Text="{Binding StateText, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
-            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">Loaded preset:</TextBlock>
-            <ComboBox ItemsSource="{Binding PresetsList}" SelectedItem="{Binding SelectedPreset}" SelectedIndex="{Binding SelectedItemPreset}" MinWidth="150" Margin="10">
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ResourceKey=OverviewText}" >Loaded preset:</TextBlock>
+            <ComboBox ItemsSource="{Binding PresetsList}" SelectedItem="{Binding SelectedPreset}" SelectedIndex="{Binding SelectedItemPreset}"
+                      MinWidth="150" Margin="10" FontSize="25">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding PresetName}"/>
@@ -46,10 +48,10 @@
             </ComboBox>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
-            <Button Margin="10" Padding="20 5 20 5" FontSize="20" IsEnabled="{Binding StartEnabled}" Click="Start_Click">Start</Button>
-            <Button Margin="10" Padding="20 5 20 5" FontSize="20" IsEnabled="{Binding StopEnabled}" Click="Stop_Click">Stop</Button>
-            <Button Margin="10" Padding="20 5 20 5" FontSize="20" IsEnabled="{Binding ResetEnabled}" Click="Restart_Click">Restart</Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+            <Button Style="{StaticResource ResourceKey=OverviewButton}" IsEnabled="{Binding StartStopEnabled}" Content="{Binding StartStopText}" 
+                    Foreground="{Binding StartStopTextColor}" Click="StartStopButton_Click"/>
+            <Button Style="{StaticResource ResourceKey=OverviewButton}" IsEnabled="{Binding ResetEnabled}" Click="Restart_Click" Foreground="#85a2c0">Restart</Button>
         </StackPanel>
 
     </Grid>

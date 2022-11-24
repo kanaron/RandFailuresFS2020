@@ -36,7 +36,7 @@ namespace RandFailuresFS2020_WPF
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Log.Logger.Error("Unhandled exception");
-            Log.Logger.Error(e.ToString()!, sender.ToString());
+            Log.Logger.Error(e.ToString()!);
         }
     }
 }

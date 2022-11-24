@@ -3,35 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Background="#00324b"
         Title="ShellView" Height="450" Width="800">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0">
-            <Button x:Name="Overview" Click="Overview_Click" Margin="5 20 5 20">Overview</Button>
-            
-            <Button x:Name="Settings" Click="Settings_Click" Margin="5 20 5 20" IsEnabled="{Binding SettingsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                    ToolTip="Exit flight before changing settings" 
-                    ToolTipService.ShowOnDisabled="True" ToolTipService.IsEnabled="{Binding ToolTipEnabled, UpdateSourceTrigger=PropertyChanged}">Settings</Button>
-            
-            <Button x:Name="Presets" Click="Presets_Click" Margin="5 20 5 20" IsEnabled="{Binding PresetsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                    ToolTip="Exit flight before changing presets" 
-                    ToolTipService.ShowOnDisabled="True" ToolTipService.IsEnabled="{Binding ToolTipEnabled, UpdateSourceTrigger=PropertyChanged}">Presets</Button>
-            
-            <Button x:Name="Fail_list" Click="Fail_list_Click" Margin="5 20 5 20">Fail list</Button>
-            <Button x:Name="Help" Click="Help_Click" Margin="5 20 5 20" IsEnabled="False">Help</Button>
-        </StackPanel>
+        <Button x:Name="Overview" Click="Overview_Click" Grid.Row="1" Style="{StaticResource ResourceKey=ShellButton}">OVERVIEW</Button>
 
-        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.RowSpan="2" Content="{Binding}"/>
+        <Button x:Name="Settings" Click="Settings_Click" Grid.Row="2" IsEnabled="{Binding SettingsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="Exit flight before changing settings" 
+                    ToolTipService.ShowOnDisabled="True" ToolTipService.IsEnabled="{Binding ToolTipEnabled, UpdateSourceTrigger=PropertyChanged}" 
+                    Style="{StaticResource ResourceKey=ShellButton}">SETTINGS</Button>
+
+        <Button x:Name="Presets" Click="Presets_Click" Grid.Row="3" IsEnabled="{Binding PresetsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="Exit flight before changing presets" 
+                    ToolTipService.ShowOnDisabled="True" ToolTipService.IsEnabled="{Binding ToolTipEnabled, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource ResourceKey=ShellButton}">PRESETS</Button>
+
+        <Button x:Name="Fail_list" Click="Fail_list_Click" Grid.Row="4" Style="{StaticResource ResourceKey=ShellButton}">FAIL LIST</Button>
+        <Button x:Name="Help" Click="Help_Click" IsEnabled="False" Grid.Row="5" Style="{StaticResource ResourceKey=ShellButton}">HELP</Button>
+
+        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.RowSpan="6" Content="{Binding}"/>
     </Grid>
 </Window>

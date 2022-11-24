@@ -9,11 +9,12 @@ namespace RandFailuresFS2020_WPF.Models
         private string? _stateText;
         private Brush? _stateColor;
         private bool _resetEnabled;
-        private bool _startEnabled;
-        private bool _stopEnabled;
+        private bool _startStopEnabled;
         private List<PresetModel>? _presetsList;
         private PresetModel? _selectedPreset;
         private int _selectedItemPreset;
+        private string? _startStopText;
+        private Brush? _startStopTextColor;
 
 
         public List<PresetModel> PresetsList
@@ -72,21 +73,30 @@ namespace RandFailuresFS2020_WPF.Models
                 NotifyPropertyChanged();
             }
         }
-        public bool StartEnabled
+        public bool StartStopEnabled
         {
-            get { return _startEnabled; }
+            get { return _startStopEnabled; }
             set
             {
-                _startEnabled = value;
+                _startStopEnabled = value;
                 NotifyPropertyChanged();
             }
         }
-        public bool StopEnabled
+        public string StartStopText
         {
-            get { return _stopEnabled; }
+            get { return _startStopText; }
             set
             {
-                _stopEnabled = value;
+                _startStopText = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Brush StartStopTextColor
+        {
+            get { return _startStopTextColor!; }
+            set
+            {
+                _startStopTextColor = value;
                 NotifyPropertyChanged();
             }
         }
@@ -97,8 +107,9 @@ namespace RandFailuresFS2020_WPF.Models
             StateText = "Sim not found";
             StateColor = Brushes.Red;
             ResetEnabled = false;
-            StartEnabled = false;
-            StopEnabled = false;
+            StartStopEnabled = false;
+            StartStopText = "Start";
+            StartStopTextColor = Brushes.Green;
             Reload();
         }
 
@@ -116,30 +127,50 @@ namespace RandFailuresFS2020_WPF.Models
                 case "Sim not found":
                     {
                         StateColor = Brushes.Red;
+                        StartStopEnabled = false;
+                        ResetEnabled = false;
                         break;
                     }
                 case "Sim connected":
                     {
                         StateColor = Brushes.Blue;
-                        StartEnabled = true;
+                        StartStopEnabled = true;
+                        ResetEnabled = true;
+                        StartStopText = "Start";
                         break;
                     }
                 case "Failures started":
                     {
                         StateColor = Brushes.Green;
                         ResetEnabled = true;
-                        StopEnabled = true;
-                        StartEnabled = false;
+                        StartStopEnabled = true;
+                        StartStopText = "Stop";
                         break;
                     }
                 case "Failures stopped":
                     {
                         StateColor = Brushes.Red;
                         ResetEnabled = true;
-                        StopEnabled = false;
-                        StartEnabled = true;
+                        StartStopEnabled = true;
+                        StartStopText = "Start";
                         break;
                     }
+            }
+        }
+
+        public void StartStopClicked()
+        {
+            if (StartStopText == "Start")
+            {
+                SimConHelper.GetSimConHelper().ManageFailTimer(true);
+                StartStopText = "Stop";
+                StartStopTextColor = Brushes.Red;
+            }
+            else
+            {
+                SimConHelper.GetSimConHelper().ManageFailTimer(false);
+                StartStopText = "Start";
+                StartStopTextColor = Brushes.Green;
             }
         }
     }

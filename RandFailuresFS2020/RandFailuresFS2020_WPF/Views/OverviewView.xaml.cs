@@ -10,8 +10,7 @@ namespace RandFailuresFS2020_WPF.Views
     public partial class OverviewView : UserControl
     {
         public event EventHandler? RestartClicked;
-        public event EventHandler? StartClicked;
-        public event EventHandler? StopClicked;
+        public event EventHandler? StartStopClicked;
 
         public OverviewView()
         {
@@ -23,14 +22,9 @@ namespace RandFailuresFS2020_WPF.Views
             RestartClicked?.Invoke(this, e);
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e)
+        private void StartStopButton_Click(object sender, RoutedEventArgs e)
         {
-            StartClicked?.Invoke(this, e);
-        }
-
-        private void Stop_Click(object sender, RoutedEventArgs e)
-        {
-            StopClicked?.Invoke(this, e);
+            StartStopClicked?.Invoke(this, e);
         }
     }
 }
