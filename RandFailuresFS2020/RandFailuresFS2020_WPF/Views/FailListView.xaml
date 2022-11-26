@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Background="White"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,12 +15,16 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="ShowFailures" Content="Show failures" Width="150" Margin="8" Click="ShowFailures_Click" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ResourceKey=FailListText}" HorizontalAlignment="Center" Margin="0 40 0 0">
+            Failures List
+        </TextBlock>
 
         <TextBox Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" 
                  Text="{Binding FailuresText, UpdateSourceTrigger=PropertyChanged}"
-                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
+                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 10">
         </TextBox>
+        
+        <Button x:Name="ShowFailures" Grid.Row="2" Content="Show failures" Style="{StaticResource ResourceKey=FailListButton}" Click="ShowFailures_Click" />
 
     </Grid>
 </UserControl>

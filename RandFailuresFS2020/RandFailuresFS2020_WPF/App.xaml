@@ -9,6 +9,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ShellButtons.xaml" />
                 <ResourceDictionary Source="Styles/OverwievStyle.xaml"/>
+                <ResourceDictionary Source="Styles/FailListStyle.xaml"/>
+                <ResourceDictionary Source="Styles/SettingsStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

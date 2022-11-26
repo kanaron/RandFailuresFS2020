@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Background="White"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
@@ -27,59 +27,59 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center">
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 40 0 0" Style="{StaticResource SettingsText}">
             Settings
         </TextBlock>
 
-        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="25" HorizontalAlignment="Center">
+        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SettingsSmallerText}" HorizontalAlignment="Center">
             Set up possible failure triggers
         </TextBlock>
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
-            <TextBlock>Loaded preset:</TextBlock>
-            <TextBlock Margin="5 0" Text="{Binding Preset.PresetName}"/>
+            <TextBlock Style="{StaticResource SettingsSmallerText}">Loaded preset:</TextBlock>
+            <TextBlock Style="{StaticResource SettingsSmallerText}" Margin="5 0" Text="{Binding Preset.PresetName}"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <CheckBox IsChecked="{Binding Preset.SpeedEnabled}" Margin="0 0 10 0"/>
-                <TextBlock Width="40">Speed</TextBlock>
-                <TextBlock Margin="10 0">Min:</TextBlock>
+                <TextBlock Width="40" Style="{StaticResource SettingsCheckboxText}">Speed</TextBlock>
+                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Min:</TextBlock>
                 <TextBox Text="{Binding Preset.SpeedMin}" Margin="5 0" Width="50"/>
-                <TextBlock Margin="10 0">Max:</TextBlock>
+                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Max:</TextBlock>
                 <TextBox Text="{Binding Preset.SpeedMax}" Margin="5 0" Width="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <CheckBox IsChecked="{Binding Preset.AltEnabled}" Margin="0 0 10 0"/>
-                <TextBlock Width="40">Alt</TextBlock>
-                <TextBlock Margin="10 0">Min:</TextBlock>
+                <TextBlock Width="40" Style="{StaticResource SettingsCheckboxText}">Alt</TextBlock>
+                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Min:</TextBlock>
                 <TextBox Text="{Binding Preset.AltMin}" Margin="5 0" Width="50"/>
-                <TextBlock Margin="10 0">Max:</TextBlock>
+                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Max:</TextBlock>
                 <TextBox Text="{Binding Preset.AltMax}" Margin="5 0" Width="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <CheckBox IsChecked="{Binding Preset.TimeEnabled}" Margin="0 0 10 0"/>
-                <TextBlock Width="40">Time</TextBlock>
-                <TextBlock Margin="10 0">Min:</TextBlock>
+                <TextBlock Width="40" Style="{StaticResource SettingsCheckboxText}">Time</TextBlock>
+                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Min:</TextBlock>
                 <TextBox Text="{Binding Preset.TimeMin}" Margin="5 0" Width="50"/>
-                <TextBlock Margin="10 0">Max:</TextBlock>
+                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Max:</TextBlock>
                 <TextBox Text="{Binding Preset.TimeMax}" Margin="5 0" Width="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <CheckBox IsChecked="{Binding Preset.InstantEnabled}" Margin="0 0 10 0"/>
-                <TextBlock >Instant failure</TextBlock>
+                <TextBlock Style="{StaticResource SettingsCheckboxText}">Instant failure</TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
-                <TextBlock Margin="10 0">Set all failures percentage to:</TextBlock>
+                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Set all failures percentage to:</TextBlock>
                 <TextBox Text="{Binding SetAllPercent}" Margin="5 0 2 0" Width="50"/>
-                <TextBlock >%</TextBlock>
+                <TextBlock Style="{StaticResource SettingsCheckboxText}">%</TextBlock>
             </StackPanel>
 
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center">
-            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Width="80" Margin="8">Save</Button>
-            <Button x:Name="CancelBtn" Click="CancelBtn_Click"  Width="80" Margin="8">Cancel</Button>
+            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Style="{StaticResource SettingsButton}">Save</Button>
+            <Button x:Name="CancelBtn" Click="CancelBtn_Click" Style="{StaticResource SettingsButton}">Cancel</Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -21,6 +21,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Image Grid.Row="0" Source="/Assets/RandFailuresLogo.png" Margin="5"/>
+
         <Button x:Name="Overview" Click="Overview_Click" Grid.Row="1" Style="{StaticResource ResourceKey=ShellButton}">OVERVIEW</Button>
 
         <Button x:Name="Settings" Click="Settings_Click" Grid.Row="2" IsEnabled="{Binding SettingsEnabled, UpdateSourceTrigger=PropertyChanged}"
