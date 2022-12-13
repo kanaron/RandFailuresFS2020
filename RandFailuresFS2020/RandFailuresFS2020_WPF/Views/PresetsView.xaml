@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Background="White"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -11,14 +11,20 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 10" HorizontalAlignment="Center">
-            <TextBlock>Find preset:</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 40 0 0" Style="{StaticResource PresetsText}">
+            Settings
+        </TextBlock>
+        
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 10" HorizontalAlignment="Center">
+            <!--<TextBlock Style="{StaticResource PresetsSmallerText}">Find preset:</TextBlock>-->
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding PresetsList}" SelectedItem="{Binding SelectedPreset}" SelectedIndex="{Binding SelectedIndexPreset}" MinWidth="150" Margin="8">
+                <TextBlock Style="{StaticResource PresetsSmallerText}" VerticalAlignment="Center">Find preset:</TextBlock>
+                <ComboBox ItemsSource="{Binding PresetsList}" SelectedItem="{Binding SelectedPreset}" SelectedIndex="{Binding SelectedIndexPreset}" MinWidth="150" Margin="8" FontSize="18">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PresetName}"/>
@@ -26,12 +32,12 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <Button x:Name="NewPresetButton" Width="50" Content="New" Margin="0 8" Click="NewPresetButton_Click" />
-                <Button x:Name="DeletePresetButton" Width="50" Content="Delete" Margin="8" Click="DeletePresetButton_Click" />
+                <Button x:Name="NewPresetButton" Style="{StaticResource PresetsSmallerButton}" Content="New" Margin="0 8" Click="NewPresetButton_Click" />
+                <Button x:Name="DeletePresetButton" Style="{StaticResource PresetsSmallerButton}" Content="Delete" Margin="8" Click="DeletePresetButton_Click" />
             </StackPanel>
         </StackPanel>
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding PresetVarsList}" CanUserAddRows="False"
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding PresetVarsList}" CanUserAddRows="False"
                   AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True" Width="0.48*"/>
@@ -47,9 +53,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Orientation="Horizontal" Margin="0 10" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
-            <Button x:Name="SaveButton" Width="80" Content="Save" Margin="0 8" Click="SaveButton_Click" />
-            <Button x:Name="CancelButton" Width="80" Content="Cancel" Margin="8" Click="CancelButton_Click" />
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+            <Button x:Name="SaveButton" Style="{StaticResource PresetsButton}" Content="Save" Click="SaveButton_Click" />
+            <Button x:Name="CancelButton" Style="{StaticResource PresetsButton}" Content="Cancel" Click="CancelButton_Click" />
         </StackPanel>
 
         <Popup x:Name="DeletePopup" Width="300" Height="150" StaysOpen="True" AllowsTransparency="True" IsEnabled="True" Placement="Center">

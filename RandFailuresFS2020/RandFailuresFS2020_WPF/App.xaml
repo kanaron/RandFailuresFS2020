@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Styles/OverwievStyle.xaml"/>
                 <ResourceDictionary Source="Styles/FailListStyle.xaml"/>
                 <ResourceDictionary Source="Styles/SettingsStyle.xaml"/>
+                <ResourceDictionary Source="Styles/PresetsStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
