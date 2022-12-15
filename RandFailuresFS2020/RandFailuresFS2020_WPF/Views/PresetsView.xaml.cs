@@ -10,8 +10,8 @@ namespace RandFailuresFS2020_WPF.Views
     public partial class PresetsView : UserControl
     {
         public event EventHandler? DeletePreset;
+        public event EventHandler<string>? FailuresClicked;
         public event EventHandler<string>? NewPreset;
-        public event EventHandler<bool>? SaveVars;
 
         public PresetsView()
         {
@@ -53,14 +53,38 @@ namespace RandFailuresFS2020_WPF.Views
             NewPreset?.Invoke(this, NewPresetText.Text);
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void Flight_controls_Click(object sender, RoutedEventArgs e)
         {
-            SaveVars?.Invoke(this, true);
+            FailuresClicked?.Invoke(this, "Flight controls");
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void Gear_Click(object sender, RoutedEventArgs e)
         {
-            SaveVars?.Invoke(this, false);
+            FailuresClicked?.Invoke(this, "Gear");
+        }
+
+        private void Fuel_Click(object sender, RoutedEventArgs e)
+        {
+            FailuresClicked?.Invoke(this, "Fuel");
+        }
+
+        private void Panel_Click(object sender, RoutedEventArgs e)
+        {
+            FailuresClicked?.Invoke(this, "Panel");
+        }
+        private void Engine_Click(object sender, RoutedEventArgs e)
+        {
+            FailuresClicked?.Invoke(this, "Engine");
+        }
+
+        private void Brake_Click(object sender, RoutedEventArgs e)
+        {
+            FailuresClicked?.Invoke(this, "Brake");
+        }
+
+        private void Other_Click(object sender, RoutedEventArgs e)
+        {
+            FailuresClicked?.Invoke(this, "Other");
         }
     }
 }

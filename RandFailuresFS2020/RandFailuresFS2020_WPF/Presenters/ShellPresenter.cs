@@ -15,6 +15,7 @@ namespace RandFailuresFS2020_WPF.Presenters
         private readonly SettingsPresenter settingsPresenter;
         private readonly PresetsPresenter presetsPresenter;
         private readonly FailListPresenter failListPresenter;
+        private FailuresPresenter? failuresPresenter;
 
         public ShellPresenter()
         {
@@ -34,6 +35,7 @@ namespace RandFailuresFS2020_WPF.Presenters
             presetsPresenter = new PresetsPresenter();
             failListPresenter = new FailListPresenter();
 
+            presetsPresenter.PresetsView.FailuresClicked += PresetsView_FailuresClicked;
 
             ShellView.ActiveItem.Content = overviewPresenter.OverviewView;
 
@@ -43,6 +45,21 @@ namespace RandFailuresFS2020_WPF.Presenters
 
             HwndSource lHwndSource = HwndSource.FromHwnd(new WindowInteropHelper(ShellView).Handle);
             lHwndSource.AddHook(new HwndSourceHook(SimCon.GetSimCon().ProcessSimCon));
+        }
+
+        private void PresetsView_FailuresClicked(object? sender, string e)
+        {
+            failuresPresenter = null;
+            failuresPresenter = new(e, presetsPresenter.PresetsModel.PresetVarsList, presetsPresenter.PresetsModel.SelectedPreset.PresetID);
+            ShellView.ActiveItem.Content = failuresPresenter.failuresView;
+            failuresPresenter.CloseFailuresView += FailuresPresenter_CloseFailuresView;
+        }
+
+        private void FailuresPresenter_CloseFailuresView(object? sender, EventArgs e)
+        {
+            failuresPresenter = null;
+            presetsPresenter.Reload();
+            ShellView.ActiveItem.Content = presetsPresenter.PresetsView;
         }
 
         private void ShellView_OverviewClick(object? sender, EventArgs e)

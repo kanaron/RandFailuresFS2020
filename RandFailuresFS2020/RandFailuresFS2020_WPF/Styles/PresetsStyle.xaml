@@ -15,15 +15,15 @@
         </Style.Resources>
     </Style>
 
-    <Style TargetType="Button" x:Key="PresetsSmallerButton">
+    <Style TargetType="Button" x:Key="PresetsSmallerButton" BasedOn="{StaticResource PresetsButton}">
         <Setter Property="Padding" Value="10 5 10 5"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Width" Value="70"/>
-        <Style.Resources>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="5" />
-            </Style>
-        </Style.Resources>
+    </Style>
+
+    <Style TargetType="Button" x:Key="PresetsFailuresButton" BasedOn="{StaticResource PresetsButton}">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Width" Value="150"/>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="PresetsText">

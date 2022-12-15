@@ -17,11 +17,10 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 40 0 0" Style="{StaticResource PresetsText}">
-            Settings
+            Presets
         </TextBlock>
-        
+
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 10" HorizontalAlignment="Center">
-            <!--<TextBlock Style="{StaticResource PresetsSmallerText}">Find preset:</TextBlock>-->
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource PresetsSmallerText}" VerticalAlignment="Center">Find preset:</TextBlock>
                 <ComboBox ItemsSource="{Binding PresetsList}" SelectedItem="{Binding SelectedPreset}" SelectedIndex="{Binding SelectedIndexPreset}" MinWidth="150" Margin="8" FontSize="18">
@@ -37,11 +36,27 @@
             </StackPanel>
         </StackPanel>
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding PresetVarsList}" CanUserAddRows="False"
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 10" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <StackPanel Orientation="Horizontal" Margin="0 10" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Button Style="{StaticResource PresetsFailuresButton}" Content="Flight controls" Click="Flight_controls_Click"/>
+                <Button Style="{StaticResource PresetsFailuresButton}" Content="Gear" Click="Gear_Click"/>
+                <Button Style="{StaticResource PresetsFailuresButton}" Content="Fuel" Click="Fuel_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 10" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Button Style="{StaticResource PresetsFailuresButton}" Content="Panel" Click="Panel_Click"/>
+                <Button Style="{StaticResource PresetsFailuresButton}" Content="Engine" Click="Engine_Click"/>
+                <Button Style="{StaticResource PresetsFailuresButton}" Content="Brake" Click="Brake_Click"/>
+                <Button Style="{StaticResource PresetsFailuresButton}" Content="Other" Click="Other_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!--<DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding PresetVarsList}" CanUserAddRows="False"
                   AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True" Width="0.48*"/>
-                <DataGridTextColumn Header="Domain" Binding="{Binding Domain}" IsReadOnly="True" Width="0.2*"/>
+                <DataGridTextColumn Header="Domain" Binding="{Binding Domain}" IsReadOnly="True" Width="0.2*">
+                    
+                </DataGridTextColumn>
                 <DataGridTemplateColumn Header="Enabled" IsReadOnly="False" Width="0.1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -51,12 +66,12 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Fail possibility (0-1000)" Binding="{Binding FailPercent, ValidatesOnDataErrors=True}" IsReadOnly="False" Width="0.22*"/>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
 
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
             <Button x:Name="SaveButton" Style="{StaticResource PresetsButton}" Content="Save" Click="SaveButton_Click" />
             <Button x:Name="CancelButton" Style="{StaticResource PresetsButton}" Content="Cancel" Click="CancelButton_Click" />
-        </StackPanel>
+        </StackPanel>-->
 
         <Popup x:Name="DeletePopup" Width="300" Height="150" StaysOpen="True" AllowsTransparency="True" IsEnabled="True" Placement="Center">
             <Grid>
