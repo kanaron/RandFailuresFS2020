@@ -45,25 +45,25 @@
                 <CheckBox IsChecked="{Binding Preset.SpeedEnabled}" Margin="0 0 10 0"/>
                 <TextBlock Width="40" Style="{StaticResource SettingsCheckboxText}">Speed</TextBlock>
                 <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Min:</TextBlock>
-                <TextBox Text="{Binding Preset.SpeedMin}" Margin="5 0" Width="50"/>
+                <TextBox Text="{Binding Preset.SpeedMin}" Style="{StaticResource SettingsTextBox}" Tag="1" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
                 <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Max:</TextBlock>
-                <TextBox Text="{Binding Preset.SpeedMax}" Margin="5 0" Width="50"/>
+                <TextBox Text="{Binding Preset.SpeedMax}" Style="{StaticResource SettingsTextBox}" Tag="1" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <CheckBox IsChecked="{Binding Preset.AltEnabled}" Margin="0 0 10 0"/>
                 <TextBlock Width="40" Style="{StaticResource SettingsCheckboxText}">Alt</TextBlock>
                 <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Min:</TextBlock>
-                <TextBox Text="{Binding Preset.AltMin}" Margin="5 0" Width="50"/>
+                <TextBox Text="{Binding Preset.AltMin}" Style="{StaticResource SettingsTextBox}" Tag="2" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
                 <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Max:</TextBlock>
-                <TextBox Text="{Binding Preset.AltMax}" Margin="5 0" Width="50"/>
+                <TextBox Text="{Binding Preset.AltMax}" Style="{StaticResource SettingsTextBox}" Tag="2" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <CheckBox IsChecked="{Binding Preset.TimeEnabled}" Margin="0 0 10 0"/>
                 <TextBlock Width="40" Style="{StaticResource SettingsCheckboxText}">Time</TextBlock>
                 <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Min:</TextBlock>
-                <TextBox Text="{Binding Preset.TimeMin}" Margin="5 0" Width="50"/>
+                <TextBox Text="{Binding Preset.TimeMin}" Style="{StaticResource SettingsTextBox}" Tag="3" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
                 <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Max:</TextBlock>
-                <TextBox Text="{Binding Preset.TimeMax}" Margin="5 0" Width="50"/>
+                <TextBox Text="{Binding Preset.TimeMax}" Style="{StaticResource SettingsTextBox}" Tag="3" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <CheckBox IsChecked="{Binding Preset.InstantEnabled}" Margin="0 0 10 0"/>
@@ -71,7 +71,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10" >
                 <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Set all failures percentage to:</TextBlock>
-                <TextBox Text="{Binding SetAllPercent}" Margin="5 0 2 0" Width="50"/>
+                <TextBox Text="{Binding SetAllPercent}" Margin="5 0 2 0" Style="{StaticResource SettingsTextBox}" Tag="4"
+                         PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
                 <TextBlock Style="{StaticResource SettingsCheckboxText}">%</TextBlock>
             </StackPanel>
 

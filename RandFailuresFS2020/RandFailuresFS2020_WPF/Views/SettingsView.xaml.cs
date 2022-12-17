@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,6 +12,9 @@ namespace RandFailuresFS2020_WPF.Views
     {
         public event EventHandler? SaveClicked;
         public event EventHandler? CancelClicked;
+        private static readonly Regex _regex = new("[0-9-]+");
+        private string? oldValue;
+
         public SettingsView()
         {
             InitializeComponent();
@@ -24,6 +28,58 @@ namespace RandFailuresFS2020_WPF.Views
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             CancelClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            oldValue = (e.OriginalSource as TextBox)!.Text;
+            e.Handled = !_regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                int result = int.Parse((e.OriginalSource as TextBox)!.Text);
+                //int.TryParse((e.OriginalSource as TextBox)!.Text, out int result);
+                if ((e.OriginalSource as TextBox)!.Tag.ToString() == "1")
+                {
+                    if (result > 1000)
+                        (e.OriginalSource as TextBox)!.Text = "1000";
+                    else if (result < 0)
+                        (e.OriginalSource as TextBox)!.Text = "0";
+                }
+                else if ((e.OriginalSource as TextBox)!.Tag.ToString() == "2")
+                {
+                    if (result > 100000)
+                        (e.OriginalSource as TextBox)!.Text = "100000";
+                    else if (result < 0)
+                        (e.OriginalSource as TextBox)!.Text = "0";
+                }
+                else if ((e.OriginalSource as TextBox)!.Tag.ToString() == "3")
+                {
+                    if (result > 43200)
+                        (e.OriginalSource as TextBox)!.Text = "43200";
+                    else if (result < 0)
+                        (e.OriginalSource as TextBox)!.Text = "0";
+                }
+                else if ((e.OriginalSource as TextBox)!.Tag.ToString() == "4")
+                {
+                    if (result > 1000)
+                        (e.OriginalSource as TextBox)!.Text = "1000";
+                    else if (result < -1)
+                        (e.OriginalSource as TextBox)!.Text = "-1";
+                }
+            }
+            catch
+            {
+                if ((e.OriginalSource as TextBox)!.Text != "-")
+                    (e.OriginalSource as TextBox)!.Text = oldValue;
+            }
+            finally
+            {
+                oldValue = null;
+            }
         }
     }
 }

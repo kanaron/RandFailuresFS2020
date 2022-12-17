@@ -26,8 +26,7 @@
                   AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True" Width="0.48*"/>
-                <!--<DataGridTextColumn Header="Domain" Binding="{Binding Domain}" IsReadOnly="True" Width="0.2*"/>-->
-                
+
                 <DataGridTemplateColumn Header="Enabled" IsReadOnly="False" Width="0.1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -36,7 +35,13 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 
-                <DataGridTextColumn Header="Fail possibility (0-1000)" Binding="{Binding FailPercent, ValidatesOnDataErrors=True}" IsReadOnly="False" Width="0.22*"/>
+                <DataGridTemplateColumn Header="Fail possibility (0-1000)" IsReadOnly="False" Width="0.22*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding FailPercent, ValidatesOnDataErrors=True}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
