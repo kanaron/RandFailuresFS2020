@@ -55,6 +55,12 @@ namespace RandFailuresFS2020_WPF.Models
 
         public void SaveVarsInPreset()
         {
+            foreach (var simVar in FilteredVarsList)
+            {
+                int index = PresetVarsList.FindIndex(x => x.SimVarID == simVar.SimVarID);
+                PresetVarsList[index] = simVar;
+            }
+
             SQLSimVar.Delete(PresetID);
             SQLSimVar.Insert(PresetVarsList, PresetID);
         }

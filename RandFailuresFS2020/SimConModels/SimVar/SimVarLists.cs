@@ -131,7 +131,11 @@ namespace SimConModels
         {
             foreach (var sv in SimVarFailuresList!)
             {
-                if (!sv.Failed)
+                if (sv.Started)
+                {
+                    SetFail(sv);
+                }
+                else if (!sv.Failed)
                 {
                     switch (sv.WhenFail)
                     {
@@ -179,6 +183,7 @@ namespace SimConModels
                 }
                 else if (simVarModel.IsLeak)
                 {
+                    simVarModel.Started = true;
                     simVarModel.Value -= simVarModel.FailureValue;
                 }
                 else if (simVarModel.IsComplete)

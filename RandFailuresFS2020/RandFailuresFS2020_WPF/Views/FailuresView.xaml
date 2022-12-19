@@ -22,7 +22,8 @@
 
 
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AlternatingRowBackground="LightSkyBlue" ItemsSource="{Binding FilteredVarsList}" CanUserAddRows="False"
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AlternatingRowBackground="LightSkyBlue" 
+                  ItemsSource="{Binding FilteredVarsList}" CanUserAddRows="False"
                   AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding SimVarName}" IsReadOnly="True" Width="0.48*"/>
@@ -38,7 +39,7 @@
                 <DataGridTemplateColumn Header="Fail possibility (0-1000)" IsReadOnly="False" Width="0.22*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding FailPercent, ValidatesOnDataErrors=True}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
+                            <TextBox Text="{Binding FailPercent, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
