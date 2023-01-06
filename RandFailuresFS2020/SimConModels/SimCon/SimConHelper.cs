@@ -9,8 +9,6 @@ namespace SimConModels
 
         public event EventHandler<bool>? FailuresInProgressEvent;
 
-        //public bool Autostart = false;
-
         private System.Timers.Timer? ConnectionTimer;
         private System.Timers.Timer? StartTimer;
 
@@ -25,15 +23,8 @@ namespace SimConModels
         public void Initialize()
         {
             Log.Logger.Information("Initializing SimConHelper");
-            //Autostart = SQLOptions.LoadOptionValueBool("Autostart");
             StartTimers();
         }
-
-        /*public void ChangeAutostart()
-        {
-            Autostart = SQLOptions.LoadOptionValueBool("Autostart");
-
-        }*/
 
         public void StartTimers()
         {
@@ -112,11 +103,8 @@ namespace SimConModels
             {
                 ConnectionTimer!.Stop();
 
-                //if (Autostart)
-                //{
                 StartTimer!.Enabled = true;
                 StartTimer!.Start();
-                //}
 
                 SimVarLists.GetSimVarLists().LoadDataList();
 

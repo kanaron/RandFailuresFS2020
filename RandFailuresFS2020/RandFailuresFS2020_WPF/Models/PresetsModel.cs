@@ -73,7 +73,8 @@ namespace RandFailuresFS2020_WPF.Models
 
         public void LoadVarsList()
         {
-            PresetVarsList = SQLSimVar.LoadFailableSimVarsList(SelectedPreset.PresetID);
+            if (SelectedPreset != null)
+                PresetVarsList = SQLSimVar.LoadFailableSimVarsList(SelectedPreset.PresetID);
         }
 
         public void Reload()
