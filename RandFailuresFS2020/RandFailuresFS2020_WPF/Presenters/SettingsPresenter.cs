@@ -15,10 +15,16 @@ namespace RandFailuresFS2020_WPF.Presenters
             SettingsView = new SettingsView();
             SettingsView.SaveClicked += SettingsView_SaveClicked;
             SettingsView.CancelClicked += SettingsView_CancelClicked;
+            SettingsView.PopupButtonClicked += SettingsView_PopupButtonClicked;
 
             SettingsModel = new SettingsModel();
 
             SettingsView.DataContext = SettingsModel;
+        }
+
+        private void SettingsView_PopupButtonClicked(object? sender, EventArgs e)
+        {
+            SettingsModel.HidePopup();
         }
 
         private void SettingsView_CancelClicked(object? sender, EventArgs e)

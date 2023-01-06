@@ -12,6 +12,7 @@ namespace RandFailuresFS2020_WPF.Views
     {
         public event EventHandler? SaveClicked;
         public event EventHandler? CancelClicked;
+        public event EventHandler? PopupButtonClicked;
         private static readonly Regex _regex = new("[0-9-]+");
         private string? oldValue;
 
@@ -41,7 +42,6 @@ namespace RandFailuresFS2020_WPF.Views
             try
             {
                 int result = int.Parse((e.OriginalSource as TextBox)!.Text);
-                //int.TryParse((e.OriginalSource as TextBox)!.Text, out int result);
                 if ((e.OriginalSource as TextBox)!.Tag.ToString() == "1")
                 {
                     if (result > 1000)
@@ -80,6 +80,11 @@ namespace RandFailuresFS2020_WPF.Views
             {
                 oldValue = null;
             }
+        }
+
+        private void SettingsPopupButton_Click(object sender, RoutedEventArgs e)
+        {
+            PopupButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
