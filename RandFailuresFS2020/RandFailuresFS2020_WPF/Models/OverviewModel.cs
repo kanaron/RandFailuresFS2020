@@ -15,6 +15,7 @@ namespace RandFailuresFS2020_WPF.Models
         private int _selectedItemPreset;
         private string? _startStopText;
         private Brush? _startStopTextColor;
+        private bool _presetListEnabled;
 
 
         public List<PresetModel> PresetsList
@@ -100,6 +101,15 @@ namespace RandFailuresFS2020_WPF.Models
                 NotifyPropertyChanged();
             }
         }
+        public bool PresetListEnabled
+        {
+            get { return _presetListEnabled; }
+            set
+            {
+                _presetListEnabled = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public OverviewModel()
         {
@@ -110,6 +120,7 @@ namespace RandFailuresFS2020_WPF.Models
             StartStopEnabled = false;
             StartStopText = "Start";
             StartStopTextColor = Brushes.Green;
+            PresetListEnabled = true;
             Reload();
         }
 
@@ -117,6 +128,7 @@ namespace RandFailuresFS2020_WPF.Models
         {
             PresetsList = SQLPresets.LoadPresets();
             SelectedItemPreset = PresetsList.FindIndex(a => a.PresetID.Equals(SQLOptions.LoadOptionValueInt("PresetID")));
+            PresetListEnabled = true;
         }
 
         private void OverviewPresenter_StateChanged(object? sender, string e)
@@ -129,14 +141,16 @@ namespace RandFailuresFS2020_WPF.Models
                         StateColor = Brushes.Red;
                         StartStopEnabled = false;
                         ResetEnabled = false;
+                        PresetListEnabled = true;
                         break;
                     }
                 case "Sim connected":
                     {
-                        StateColor = Brushes.Blue;
+                        StateColor = Brushes.Yellow;
                         StartStopEnabled = true;
                         ResetEnabled = true;
                         StartStopText = "Start";
+                        PresetListEnabled = true;
                         break;
                     }
                 case "Failures started":
@@ -145,6 +159,7 @@ namespace RandFailuresFS2020_WPF.Models
                         ResetEnabled = true;
                         StartStopEnabled = true;
                         StartStopText = "Stop";
+                        PresetListEnabled = false;
                         break;
                     }
                 case "Failures stopped":
@@ -153,6 +168,7 @@ namespace RandFailuresFS2020_WPF.Models
                         ResetEnabled = true;
                         StartStopEnabled = true;
                         StartStopText = "Start";
+                        PresetListEnabled = true;
                         break;
                     }
             }

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Background="#00324b"
-        Title="ShellView" Height="450" Width="800">
+        Title="ShellView" Height="450" Width="900">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -39,7 +39,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ResourceKey=OverviewText}" >Loaded preset:</TextBlock>
             <ComboBox ItemsSource="{Binding PresetsList}" SelectedItem="{Binding SelectedPreset}" SelectedIndex="{Binding SelectedItemPreset}"
-                      MinWidth="150" Margin="10" FontSize="25">
+                      MinWidth="150" Margin="10" FontSize="25" IsEnabled="{Binding PresetListEnabled}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding PresetName}"/>
