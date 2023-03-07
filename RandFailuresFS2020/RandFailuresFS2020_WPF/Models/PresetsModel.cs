@@ -69,6 +69,7 @@ namespace RandFailuresFS2020_WPF.Models
             SQLPresets.Insert(name);
             PresetsList = SQLPresets.LoadPresets();
             SelectedPreset = PresetsList[^1];
+            SQLSimVar.Insert(PresetVarsList, SelectedPreset.PresetID);
         }
 
         public void LoadVarsList()
