@@ -12,6 +12,7 @@ namespace RandFailuresFS2020_WPF.Views
         public event EventHandler? DeletePreset;
         public event EventHandler<string>? FailuresClicked;
         public event EventHandler<string>? NewPreset;
+        public event EventHandler? SettingsClicked;
 
         public PresetsView()
         {
@@ -85,6 +86,11 @@ namespace RandFailuresFS2020_WPF.Views
         private void Other_Click(object sender, RoutedEventArgs e)
         {
             FailuresClicked?.Invoke(this, "Other");
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -12,16 +12,15 @@ namespace RandFailuresFS2020_WPF.Presenters
         public ShellModel ShellModel { private set; get; }
 
         private readonly OverviewPresenter overviewPresenter;
-        private readonly SettingsPresenter settingsPresenter;
         private readonly PresetsPresenter presetsPresenter;
         private readonly FailListPresenter failListPresenter;
+        private SettingsPresenter? settingsPresenter;
         private FailuresPresenter? failuresPresenter;
 
         public ShellPresenter()
         {
             ShellView = new ShellView();
             ShellView.OverviewClick += ShellView_OverviewClick;
-            ShellView.SettingsClick += ShellView_SettingsClick;
             ShellView.PresetsClick += ShellView_PresetsClick;
             ShellView.FailListClick += ShellView_FailListClick;
             ShellView.HelpClick += ShellView_HelpClick;
@@ -31,11 +30,11 @@ namespace RandFailuresFS2020_WPF.Presenters
             ShellView.DataContext = ShellModel;
 
             overviewPresenter = new OverviewPresenter();
-            settingsPresenter = new SettingsPresenter();
             presetsPresenter = new PresetsPresenter();
             failListPresenter = new FailListPresenter();
 
             presetsPresenter.PresetsView.FailuresClicked += PresetsView_FailuresClicked;
+            presetsPresenter.SettingsOpen += PresetsPresenter_SettingsOpen;
 
             ShellView.ActiveItem.Content = overviewPresenter.OverviewView;
 
@@ -45,6 +44,21 @@ namespace RandFailuresFS2020_WPF.Presenters
 
             HwndSource lHwndSource = HwndSource.FromHwnd(new WindowInteropHelper(ShellView).Handle);
             lHwndSource.AddHook(new HwndSourceHook(SimCon.GetSimCon().ProcessSimCon));
+        }
+
+        private void PresetsPresenter_SettingsOpen(object? sender, int e)
+        {
+            settingsPresenter = null;
+            settingsPresenter = new(e);
+            ShellView.ActiveItem.Content = settingsPresenter.SettingsView;
+            settingsPresenter.CloseSettings += SettingsPresenter_CloseSettings;
+        }
+
+        private void SettingsPresenter_CloseSettings(object? sender, EventArgs e)
+        {
+            settingsPresenter = null;
+            presetsPresenter.Reload();
+            ShellView.ActiveItem.Content = presetsPresenter.PresetsView;
         }
 
         private void PresetsView_FailuresClicked(object? sender, string e)
@@ -66,12 +80,6 @@ namespace RandFailuresFS2020_WPF.Presenters
         {
             overviewPresenter.Reload();
             ShellView.ActiveItem.Content = overviewPresenter.OverviewView;
-        }
-
-        private void ShellView_SettingsClick(object? sender, EventArgs e)
-        {
-            settingsPresenter.SettingsModel.Reload();
-            ShellView.ActiveItem.Content = settingsPresenter.SettingsView;
         }
 
         private void ShellView_PresetsClick(object? sender, EventArgs e)

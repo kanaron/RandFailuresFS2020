@@ -9,7 +9,6 @@ namespace RandFailuresFS2020_WPF.Views
     public partial class ShellView : Window
     {
         public event EventHandler? OverviewClick;
-        public event EventHandler? SettingsClick;
         public event EventHandler? PresetsClick;
         public event EventHandler? FailListClick;
         public event EventHandler? HelpClick;
@@ -22,11 +21,6 @@ namespace RandFailuresFS2020_WPF.Views
         private void Overview_Click(object sender, RoutedEventArgs e)
         {
             OverviewClick?.Invoke(this, e);
-        }
-
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsClick?.Invoke(this, e);
         }
 
         private void Presets_Click(object sender, RoutedEventArgs e)

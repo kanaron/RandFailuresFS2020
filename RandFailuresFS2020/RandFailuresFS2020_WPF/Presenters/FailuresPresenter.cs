@@ -18,9 +18,15 @@ namespace RandFailuresFS2020_WPF.Presenters
         {
             failuresView = new();
             failuresView.SaveVars += FailuresView_SaveVars;
+            failuresView.ApplyClicked += FailuresView_ApplyClicked;
 
             failuresModel = new(_domain, _simVarList, _presetID);
             failuresView.DataContext = failuresModel;
+        }
+
+        private void FailuresView_ApplyClicked(object? sender, EventArgs e)
+        {
+            failuresModel.SettAllPercentage();
         }
 
         private void FailuresView_SaveVars(object? sender, bool e)

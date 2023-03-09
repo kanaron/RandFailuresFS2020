@@ -8,6 +8,7 @@ namespace RandFailuresFS2020_WPF.Models
         private int _setAllPercent;
         private bool _showPopup;
         private string? _popupText;
+        private readonly int _presetID;
 
         public string PopupText
         {
@@ -46,15 +47,11 @@ namespace RandFailuresFS2020_WPF.Models
             }
         }
 
-        public SettingsModel()
+        public SettingsModel(int presetID)
         {
-            Preset = SQLPresets.LoadPreset(SQLOptions.LoadOptionValueInt("PresetID"));
+            _presetID = presetID;
+            Preset = SQLPresets.LoadPreset(_presetID);
             ShowPopup = false;
-        }
-
-        public void Reload()
-        {
-            Preset = SQLPresets.LoadPreset(SQLOptions.LoadOptionValueInt("PresetID"));
             SetAllPercent = -1;
         }
 

@@ -8,7 +8,6 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -25,18 +24,13 @@
 
         <Button x:Name="Overview" Click="Overview_Click" Grid.Row="1" Style="{StaticResource ResourceKey=ShellButton}">OVERVIEW</Button>
 
-        <Button x:Name="Settings" Click="Settings_Click" Grid.Row="2" IsEnabled="{Binding SettingsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                    ToolTip="Exit flight before changing settings" 
-                    ToolTipService.ShowOnDisabled="True" ToolTipService.IsEnabled="{Binding ToolTipEnabled, UpdateSourceTrigger=PropertyChanged}" 
-                    Style="{StaticResource ResourceKey=ShellButton}">SETTINGS</Button>
-
-        <Button x:Name="Presets" Click="Presets_Click" Grid.Row="3" IsEnabled="{Binding PresetsEnabled, UpdateSourceTrigger=PropertyChanged}"
+        <Button x:Name="Presets" Click="Presets_Click" Grid.Row="2" IsEnabled="{Binding PresetsEnabled, UpdateSourceTrigger=PropertyChanged}"
                     ToolTip="Exit flight before changing presets" 
                     ToolTipService.ShowOnDisabled="True" ToolTipService.IsEnabled="{Binding ToolTipEnabled, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource ResourceKey=ShellButton}">PRESETS</Button>
 
-        <Button x:Name="Fail_list" Click="Fail_list_Click" Grid.Row="4" Style="{StaticResource ResourceKey=ShellButton}">FAIL LIST</Button>
-        <Button x:Name="Help" Click="Help_Click" IsEnabled="False" Grid.Row="5" Style="{StaticResource ResourceKey=ShellButton}">HELP</Button>
+        <Button x:Name="Fail_list" Click="Fail_list_Click" Grid.Row="3" Style="{StaticResource ResourceKey=ShellButton}">FAIL LIST</Button>
+        <Button x:Name="Help" Click="Help_Click" IsEnabled="False" Grid.Row="4" Style="{StaticResource ResourceKey=ShellButton}">HELP</Button>
 
         <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.RowSpan="6" Content="{Binding}"/>
     </Grid>

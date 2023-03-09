@@ -6,6 +6,8 @@ namespace RandFailuresFS2020_WPF.Presenters
 {
     public class PresetsPresenter
     {
+        public event EventHandler<int>? SettingsOpen;
+
         public PresetsView PresetsView { private set; get; }
 
         public PresetsModel PresetsModel { private set; get; }
@@ -15,10 +17,16 @@ namespace RandFailuresFS2020_WPF.Presenters
             PresetsView = new PresetsView();
             PresetsView.DeletePreset += PresetsView_DeletePreset;
             PresetsView.NewPreset += PresetsView_NewPreset;
+            PresetsView.SettingsClicked += PresetsView_SettingsClicked;
 
             PresetsModel = new PresetsModel();
 
             PresetsView.DataContext = PresetsModel;
+        }
+
+        private void PresetsView_SettingsClicked(object? sender, EventArgs e)
+        {
+            SettingsOpen?.Invoke(this, PresetsModel.SelectedPreset.PresetID);
         }
 
         private void PresetsView_NewPreset(object? sender, string e)

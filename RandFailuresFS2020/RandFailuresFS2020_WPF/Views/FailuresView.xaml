@@ -12,8 +12,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
@@ -22,7 +22,7 @@
 
 
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" AlternatingRowBackground="LightSkyBlue" 
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" AlternatingRowBackground="LightSkyBlue" 
                   ItemsSource="{Binding FilteredVarsList}" CanUserAddRows="False"
                   AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="30 0">
             <DataGrid.Columns>
@@ -46,7 +46,13 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+            <TextBlock FontWeight="Bold" Text="{Binding SetAllPercentageToText}" Style="{StaticResource PresetsSmallerText}" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding SetAllPercentageTextBox}" Style="{StaticResource PresetsTextBox}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" VerticalAlignment="Center"/>
+            <Button  Style="{StaticResource PresetsSmallerButton}" Content="Apply and save" Click="ApplyAllPercentage_Click" VerticalAlignment="Center" Width="100"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
             <Button x:Name="SaveButton" Style="{StaticResource PresetsButton}" Content="Save" Click="SaveButton_Click" />
             <Button x:Name="CancelButton" Style="{StaticResource PresetsButton}" Content="Cancel" Click="CancelButton_Click" />
         </StackPanel>

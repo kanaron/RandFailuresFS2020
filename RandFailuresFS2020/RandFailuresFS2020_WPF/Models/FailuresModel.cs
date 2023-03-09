@@ -9,6 +9,8 @@ namespace RandFailuresFS2020_WPF.Models
         private List<SimVarModel>? _presetVarsList;
         private List<SimVarModel>? _filteredVarsList;
         private string? _domainName;
+        private string? _setAllPercentageToText;
+        private string? _setAllPercentageTextBox;
         private int _presetID;
 
         public int PresetID
@@ -22,6 +24,24 @@ namespace RandFailuresFS2020_WPF.Models
             set
             {
                 _domainName = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public string SetAllPercentageToText
+        {
+            get { return _setAllPercentageToText!; }
+            set
+            {
+                _setAllPercentageToText = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public string SetAllPercentageTextBox
+        {
+            get { return _setAllPercentageTextBox!; }
+            set
+            {
+                _setAllPercentageTextBox = value;
                 NotifyPropertyChanged();
             }
         }
@@ -49,8 +69,9 @@ namespace RandFailuresFS2020_WPF.Models
             DomainName = _domain;
             PresetVarsList = _simVarList;
             PresetID = _presetID;
+            SetAllPercentageToText = "Set all for " + DomainName + " to:";
 
-            FilteredVarsList = PresetVarsList.Where(x => x.Domain!.Equals(DomainName)).ToList();
+            LoadList();
         }
 
         public void SaveVarsInPreset()
@@ -63,6 +84,32 @@ namespace RandFailuresFS2020_WPF.Models
 
             SQLSimVar.Delete(PresetID);
             SQLSimVar.Insert(PresetVarsList, PresetID);
+        }
+
+        public void SettAllPercentage()
+        {
+            foreach (var simVar in FilteredVarsList)
+            {
+                int index = PresetVarsList.FindIndex(x => x.SimVarID == simVar.SimVarID);
+                PresetVarsList[index] = simVar;
+                int.TryParse(SetAllPercentageTextBox, out int val);
+                PresetVarsList[index].FailPercent = val;
+            }
+
+            SQLSimVar.Delete(PresetID);
+            SQLSimVar.Insert(PresetVarsList, PresetID);
+
+            Reload();
+        }
+
+        public void LoadList()
+        {
+            FilteredVarsList = PresetVarsList.Where(x => x.Domain!.Equals(DomainName)).ToList();
+        }
+
+        public void Reload()
+        {
+            LoadList();
         }
     }
 }

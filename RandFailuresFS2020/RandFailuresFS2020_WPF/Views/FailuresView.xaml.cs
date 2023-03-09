@@ -11,6 +11,8 @@ namespace RandFailuresFS2020_WPF.Views
     public partial class FailuresView : UserControl
     {
         public event EventHandler<bool>? SaveVars;
+        public event EventHandler? ApplyClicked;
+
         private static readonly Regex _regex = new("[^0-9]+");
 
         public FailuresView()
@@ -35,11 +37,16 @@ namespace RandFailuresFS2020_WPF.Views
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int.TryParse((e.OriginalSource as TextBox)!.Text, out int result);
+            _ = int.TryParse((e.OriginalSource as TextBox)!.Text, out int result);
             if (result > 1000)
             {
                 (e.OriginalSource as TextBox)!.Text = "1000";
             }
+        }
+
+        private void ApplyAllPercentage_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
