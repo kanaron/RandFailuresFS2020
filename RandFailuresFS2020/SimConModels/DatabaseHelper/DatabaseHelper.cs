@@ -12,10 +12,14 @@ namespace SimConModels.DatabaseHelper
         private int databaseVersion = 0;
         private JsonModel? jsonModel;
         private string? jsonString;
+        private readonly string databaseDirectoryPath;
+        private readonly string databaseName = "FailDB.db";
 
 
         public DatabaseHelper()
         {
+            databaseDirectoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RandFailures", "Database");
+
             CheckAndMoveDatabaseFile();
             CheckAndLoadJson();
             CheckAndLoadDatabase();
@@ -46,19 +50,19 @@ namespace SimConModels.DatabaseHelper
             databaseVersion = SQLOptions.LoadOptionValueInt("DatabaseVersion");
         }
 
-        private static void CheckAndMoveDatabaseFile()
+        private void CheckAndMoveDatabaseFile()
         {
             Log.Logger.Information("Checking if database file exists in database folder");
 
-            if (!Directory.Exists(".\\database"))
+            if (!Directory.Exists(databaseDirectoryPath))
             {
-                _ = Directory.CreateDirectory(".\\database");
+                _ = Directory.CreateDirectory(databaseDirectoryPath!);
             }
 
-            if (!File.Exists(".\\database\\FailDB.db"))
+            if (!File.Exists(Path.Combine(databaseDirectoryPath, databaseName)))
             {
                 Log.Logger.Information("Copying database file into database folder");
-                File.Copy("FailDB.db", ".\\database\\FailDB.db");
+                File.Copy("FailDB.db", Path.Combine(databaseDirectoryPath, databaseName));
             }
         }
 

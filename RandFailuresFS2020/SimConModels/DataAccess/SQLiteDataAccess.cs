@@ -47,7 +47,8 @@ namespace SimConModels
         /// </returns>
         public static string LoadConnectionString(string id = "Default")
         {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString
+                .Replace("%databasePath%", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RandFailures", "Database"));
         }
     }
 }
