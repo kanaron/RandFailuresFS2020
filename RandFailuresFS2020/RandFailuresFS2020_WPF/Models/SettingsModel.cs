@@ -5,7 +5,6 @@ namespace RandFailuresFS2020_WPF.Models
     public class SettingsModel : BaseModel
     {
         private PresetModel? _preset;
-        private int _setAllPercent;
         private bool _showPopup;
         private string? _popupText;
         private readonly int _presetID;
@@ -28,15 +27,6 @@ namespace RandFailuresFS2020_WPF.Models
                 NotifyPropertyChanged();
             }
         }
-        public int SetAllPercent
-        {
-            get { return _setAllPercent; }
-            set
-            {
-                _setAllPercent = value;
-                NotifyPropertyChanged();
-            }
-        }
         public PresetModel Preset
         {
             get { return _preset!; }
@@ -52,7 +42,6 @@ namespace RandFailuresFS2020_WPF.Models
             _presetID = presetID;
             Preset = SQLPresets.LoadPreset(_presetID);
             ShowPopup = false;
-            SetAllPercent = -1;
         }
 
         public void SavePreset()
@@ -63,9 +52,6 @@ namespace RandFailuresFS2020_WPF.Models
 
                 PopupText = "Preset settings saved";
                 ShowPopup = true;
-
-                if (SetAllPercent >= 0)
-                    SQLSimVar.UpdateAllPercentage(Preset.PresetID, SetAllPercent);
             }
             else
             {

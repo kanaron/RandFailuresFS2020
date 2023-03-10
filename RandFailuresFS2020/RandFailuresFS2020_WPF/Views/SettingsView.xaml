@@ -69,12 +69,6 @@
                 <CheckBox IsChecked="{Binding Preset.InstantEnabled}" Margin="0 0 10 0"/>
                 <TextBlock Style="{StaticResource SettingsCheckboxText}">Instant failure</TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10" >
-                <TextBlock Margin="10 0" Style="{StaticResource SettingsCheckboxText}">Set all failures percentage to:</TextBlock>
-                <TextBox Text="{Binding SetAllPercent}" Margin="5 0 2 0" Style="{StaticResource SettingsTextBox}" Tag="4"
-                         PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
-                <TextBlock Style="{StaticResource SettingsCheckboxText}">%</TextBlock>
-            </StackPanel>
 
         </StackPanel>
 
