@@ -7,6 +7,8 @@ namespace SimConModels
 {
     public class SQLiteDataAccess
     {
+        protected static readonly string databaseName = "FailDB.db";
+
         public static void Update(string sql)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -48,7 +50,7 @@ namespace SimConModels
         public static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString
-                .Replace("%databasePath%", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RandFailures", "Database"));
+                .Replace("%databasePath%", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RandFailures", "Database", databaseName));
         }
     }
 }

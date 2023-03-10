@@ -13,8 +13,6 @@ namespace SimConModels.DatabaseHelper
         private JsonModel? jsonModel;
         private string? jsonString;
         private readonly string databaseDirectoryPath;
-        private readonly string databaseName = "FailDB.db";
-
 
         public DatabaseHelper()
         {
@@ -62,7 +60,7 @@ namespace SimConModels.DatabaseHelper
             if (!File.Exists(Path.Combine(databaseDirectoryPath, databaseName)))
             {
                 Log.Logger.Information("Copying database file into database folder");
-                File.Copy("FailDB.db", Path.Combine(databaseDirectoryPath, databaseName));
+                File.Copy(databaseName, Path.Combine(databaseDirectoryPath, databaseName));
             }
         }
 
