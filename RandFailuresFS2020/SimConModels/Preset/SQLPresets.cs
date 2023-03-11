@@ -33,9 +33,13 @@ namespace SimConModels
             {
                 if (cnn.Execute("update Presets set PresetName = @PresetName, SpeedEnabled = @SpeedEnabled, SpeedMin = @SpeedMin, SpeedMax = @SpeedMax," +
                     "AltEnabled = @AltEnabled, AltMin = @AltMin, AltMax = @AltMax, TimeEnabled = @TimeEnabled," +
-                    "TimeMin = @TimeMin, TimeMax = @TimeMax, InstantEnabled = @InstantEnabled where PresetID = @PresetID", preset) <= 0)
+                    "TimeMin = @TimeMin, TimeMax = @TimeMax, InstantEnabled = @InstantEnabled, NoOfMaxPossibleFailures = @NoOfMaxPossibleFailures " +
+                    "where PresetID = @PresetID", preset) <= 0)
                 {
-                    cnn.Execute("insert into Presets (PresetName, SpeedEnabled, SpeedMin, SpeedMax, ) values (@OptionName, @OptionValue)", preset);
+                    cnn.Execute("insert into Presets (PresetName, SpeedEnabled, SpeedMin, SpeedMax, AltEnabled, AltMin, AltMax, TimeEnabled, TimeMin, TimeMax, " +
+                        "InstantEnabled, NoOfMaxPossibleFailures) values (@PresetName, @SpeedEnabled, @SpeedMin, @SpeedMax, " +
+                        "@AltEnabled, @AltMin, @AltMax, @TimeEnabled, @TimeMin, @TimeMax, " +
+                        "@InstantEnabled, @NoOfMaxPossibleFailures)", preset);
                 }
             }
         }
@@ -45,7 +49,10 @@ namespace SimConModels
             Log.Logger.Information("SQLPreset.Insert " + preset.PresetName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Presets (PresetName) values (@PresetName)", preset);
+                cnn.Execute("insert into Presets (PresetName, SpeedEnabled, SpeedMin, SpeedMax, AltEnabled, AltMin, AltMax, TimeEnabled, TimeMin, TimeMax, " +
+                        "InstantEnabled, NoOfMaxPossibleFailures) values (@PresetName, @SpeedEnabled, @SpeedMin, @SpeedMax, " +
+                        "@AltEnabled, @AltMin, @AltMax, @TimeEnabled, @TimeMin, @TimeMax, " +
+                        "@InstantEnabled, @NoOfMaxPossibleFailures)", preset);
             }
         }
 

@@ -63,6 +63,13 @@ namespace RandFailuresFS2020_WPF.Views
                     else if (result < 0)
                         (e.OriginalSource as TextBox)!.Text = "0";
                 }
+                else if ((e.OriginalSource as TextBox)!.Tag.ToString() == "4")
+                {
+                    if (result > 99)
+                        (e.OriginalSource as TextBox)!.Text = "99";
+                    else if (result < 1)
+                        (e.OriginalSource as TextBox)!.Text = "1";
+                }
             }
             catch
             {

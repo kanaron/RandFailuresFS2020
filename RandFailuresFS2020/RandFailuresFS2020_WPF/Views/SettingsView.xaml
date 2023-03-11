@@ -69,6 +69,11 @@
                 <CheckBox IsChecked="{Binding Preset.InstantEnabled}" Margin="0 0 10 0"/>
                 <TextBlock Style="{StaticResource SettingsCheckboxText}">Instant failure</TextBlock>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
+                <TextBlock Style="{StaticResource SettingsCheckboxText}">Limit number of failures</TextBlock>
+                <TextBox Text="{Binding Preset.NoOfMaxPossibleFailures}" Style="{StaticResource SettingsTextBox}" 
+                         Tag="4" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" HorizontalAlignment="Right" Margin="10 0"/>
+            </StackPanel>
 
         </StackPanel>
 

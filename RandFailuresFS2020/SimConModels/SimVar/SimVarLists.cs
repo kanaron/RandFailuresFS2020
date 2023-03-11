@@ -123,6 +123,11 @@ namespace SimConModels
                 }
             }
 
+            while (SimVarFailuresList.Count > preset.NoOfMaxPossibleFailures)
+            {
+                SimVarFailuresList.RemoveAt(rnd.Next(SimVarFailuresList.Count));
+            }
+
             SimCon.GetSimCon().RegisterList(SimVarFailuresList);
             Log.Logger.Information("Failures randomized");
         }

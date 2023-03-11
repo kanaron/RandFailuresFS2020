@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <None Remove="Assets\RandFailuresLogo.png" />
-    <None Remove="FailDB.db" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,12 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="FailDB.db">
+    <None Update="FailDB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
+    </None>
     <None Update="SimVarBase.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

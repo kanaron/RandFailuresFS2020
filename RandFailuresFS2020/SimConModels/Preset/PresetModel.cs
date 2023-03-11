@@ -15,5 +15,6 @@
         public int TimeMin { get; set; }
         public int TimeMax { get; set; }
         public int InstantEnabled { get; set; }
+        public int NoOfMaxPossibleFailures { get; set; }
     }
 }
