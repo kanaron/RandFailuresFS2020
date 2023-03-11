@@ -70,6 +70,7 @@ namespace SimConModels
             Log.Logger.Information("SQLPreset.Delete " + preset.PresetName);
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
+                cnn.Execute($"delete from VarsInPreset where PresetID = {preset.PresetID}");
                 cnn.Execute($"delete from Presets where PresetID = {preset.PresetID}");
             }
         }

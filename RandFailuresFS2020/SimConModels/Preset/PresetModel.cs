@@ -5,16 +5,16 @@
         public int PresetID { get; private set; }
 
         public string? PresetName { get; set; }
-        public int SpeedEnabled { get; set; }
-        public int SpeedMin { get; set; }
-        public int SpeedMax { get; set; }
-        public int AltEnabled { get; set; }
-        public int AltMin { get; set; }
-        public int AltMax { get; set; }
-        public int TimeEnabled { get; set; }
-        public int TimeMin { get; set; }
-        public int TimeMax { get; set; }
-        public int InstantEnabled { get; set; }
-        public int NoOfMaxPossibleFailures { get; set; }
+        public int SpeedEnabled { get; set; } = 1;
+        public int SpeedMin { get; set; } = 50;
+        public int SpeedMax { get; set; } = 150; 
+        public int AltEnabled { get; set; } = 1;
+        public int AltMin { get; set; } = 2000; 
+        public int AltMax { get; set; } = 10000;
+        public int TimeEnabled { get; set; } = 1;
+        public int TimeMin { get; set; } = 20; 
+        public int TimeMax { get; set; } = 3600;
+        public int InstantEnabled { get; set; } = 1;
+        public int NoOfMaxPossibleFailures { get; set; } = 99;
     }
 }
