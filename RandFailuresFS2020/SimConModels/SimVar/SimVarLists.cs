@@ -52,7 +52,7 @@ namespace SimConModels
                         sv.FailureValue = 1;
 
                     if (sv.IsLeak)
-                        sv.FailureValue = 0.000001 + (rnd.Next(0, 80) / 10000000);
+                        sv.FailureValue = rnd.Next(1, 10) / 1000000d;
 
                     bool cont;
                     do
@@ -189,7 +189,8 @@ namespace SimConModels
                 else if (simVarModel.IsLeak)
                 {
                     simVarModel.Started = true;
-                    simVarModel.Value -= simVarModel.FailureValue;
+                    if (simVarModel.Value > 0.01)
+                        simVarModel.Value -= simVarModel.FailureValue;
                 }
                 else if (simVarModel.IsComplete)
                 {
