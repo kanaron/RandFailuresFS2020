@@ -69,7 +69,7 @@ namespace RandFailuresFS2020_WPF.Models
             DomainName = _domain;
             PresetVarsList = _simVarList;
             PresetID = _presetID;
-            SetAllPercentageToText = "Set all for " + DomainName + " to:";
+            SetAllPercentageToText = "Set all ‰ for " + DomainName + " to:";
 
             LoadList();
         }

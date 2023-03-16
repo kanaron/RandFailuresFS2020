@@ -1,0 +1,33 @@
+RandFailures is an application for Miscrosoft Flight Simulator 2020, which adds real flight failures experiences to it - created for all aviation enthusiasts.
+
+If you don't have flight simulator running yet, the state will be 'Sim not found', but after opening simulator it will change to 'Connected' and after flight start it will be 'Failures started'.
+
+By default you will have 'Main' preset available, but you can create your own by going to 'Preset' tab and clicking on 'New' button. Then you can modify the settings of your presets by clicking on 'Settings' button. It will redirect you to settings view where you can choose on which altitude, speed and time your failures could occur. You can also check the 'instant failure' checkbox if you'd like your failures to occur right after you start your flight. You can set the limit of failures that could occur.
+
+On 'Presets' tab you have 7 buttons that are corresponding to areas of failures occurrency e.g. gear, fuel, engine and so on. By clicking on it you will be redirected to the view where you can set the possibility in [‰] of your failure.
+
+When you already set settings for all the failures you wanted to, you can click on 'overview' and choose your newly prepared preset and start your flight on MS Flight Simulator 2020. You don't have to click on 'Start' it will start automatically right after you run your flight.
+
+While in the flight you can click "Restart" button and your failures will be randomized again. You can also click "Stop" button and change settings or preset and then click "Start" and your failures will be randomized based on new settings and preset. Keep in mind that if some failures already occured during your flight then they could stay even if you would click "Stop" or "Restart". Some failures can only be stopped by starting new flight.
+
+By clicking on 'Fail list' you will be redirected to view with list of failures generated for your flight - those will be revealed by clicking on 'Show failures' button. It's not recommended if you like surprises. Also if you restarted failures in current flight and some failures occured before restarting then list on "Fail list" tab could be incomplete. It's recommended to randomize your failures once per one flight.
+
+Not all failures will work with some aircrafts. It all depends on aircraft. Engine 4 failure won't work on aircraft with two engines. Also some panel failures won't work with some aircrafts.
+
+Also - failures will not occur if you don't set 'true to life' options in MSFS2020. 
+To change it you have to go to: options -> assistance options -> choose 'true to life'
+
+Fly safe! :)
+
+If you need help or if you found bug in my add-on, please contact me via email with "Bug" or "Help" in email thread.
+
+Author: Mateusz "Kanaron" Godziek
+email: kanaron125@gmail.com
+discord: PL_Kanaron#5564
+
+https://github.com/kanaron/RandFailuresFS2020
+
+If you like my work you can donate me here:
+https://www.paypal.com/paypalme/kanaron
+
+Thank you!

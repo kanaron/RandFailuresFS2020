@@ -35,8 +35,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn Header="Fail possibility (0-1000)" IsReadOnly="False" Width="0.22*">
+
+                <DataGridTemplateColumn Header="Fail possibility (0-1000) [‰]" IsReadOnly="False" Width="0.22*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Text="{Binding FailPercent, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>

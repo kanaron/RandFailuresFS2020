@@ -14,6 +14,7 @@ namespace RandFailuresFS2020_WPF.Presenters
         private readonly OverviewPresenter overviewPresenter;
         private readonly PresetsPresenter presetsPresenter;
         private readonly FailListPresenter failListPresenter;
+        private readonly HelpPresenter helpPresenter;
         private SettingsPresenter? settingsPresenter;
         private FailuresPresenter? failuresPresenter;
 
@@ -32,6 +33,7 @@ namespace RandFailuresFS2020_WPF.Presenters
             overviewPresenter = new OverviewPresenter();
             presetsPresenter = new PresetsPresenter();
             failListPresenter = new FailListPresenter();
+            helpPresenter = new HelpPresenter();
 
             presetsPresenter.PresetsView.FailuresClicked += PresetsView_FailuresClicked;
             presetsPresenter.SettingsOpen += PresetsPresenter_SettingsOpen;
@@ -95,7 +97,7 @@ namespace RandFailuresFS2020_WPF.Presenters
 
         private void ShellView_HelpClick(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ShellView.ActiveItem.Content = helpPresenter.HelpView;
         }
 
     }

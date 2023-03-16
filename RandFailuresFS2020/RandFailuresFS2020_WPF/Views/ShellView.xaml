@@ -30,7 +30,7 @@
                     Style="{StaticResource ResourceKey=ShellButton}">PRESETS</Button>
 
         <Button x:Name="Fail_list" Click="Fail_list_Click" Grid.Row="3" Style="{StaticResource ResourceKey=ShellButton}">FAIL LIST</Button>
-        <Button x:Name="Help" Click="Help_Click" IsEnabled="False" Grid.Row="4" Style="{StaticResource ResourceKey=ShellButton}">HELP</Button>
+        <Button x:Name="Help" Click="Help_Click" IsEnabled="True" Grid.Row="4" Style="{StaticResource ResourceKey=ShellButton}">HELP</Button>
 
         <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.RowSpan="6" Content="{Binding}"/>
     </Grid>
