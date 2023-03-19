@@ -20,7 +20,7 @@ Failure will occur in one of four moments (which you can turn on or off) :
 - after random set of secconds
 - at random altitide
 
-![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev1.jpg?raw=true)
+![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev_1.jpg?raw=true)
 
 This project won't be succesful without contributions from community
 
@@ -41,6 +41,12 @@ Thanks!
 - By default you will have 'Main' preset available, but you can create your own by going to 'Preset' tab and clicking on 'New' button. Then you can modify the settings of your presets by clicking on 'Settings' button. It will redirect you to settings view where you can choose on which altitude, speed and time your failures could occur. You can also check the 'instant failure' checkbox if you'd like your failures to occur right after you start your flight. You can set the limit of failures that could occur.
 
 - On 'Presets' tab you have 7 buttons that are corresponding to areas of failures occurrency e.g. gear, fuel, engine and so on. By clicking on it you will be redirected to the view where you can set the possibility in [‰] of your failure.
+
+![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev_2.jpg?raw=true)
+
+![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev_3.jpg?raw=true)
+
+![alt text](https://github.com/kanaron/RandFailuresFS2020/blob/master/Prev_4.jpg?raw=true)
 
 - When you already set settings for all the failures you wanted to, you can click on 'overview' and choose your newly prepared preset and start your flight on MS Flight Simulator 2020. You don't have to click on 'Start' it will start automatically right after you run your flight.
 
