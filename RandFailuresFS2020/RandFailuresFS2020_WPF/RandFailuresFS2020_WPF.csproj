@@ -11,10 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\RandFailuresIcon.png" />
     <None Remove="Assets\RandFailuresLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\RandFailuresIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\RandFailuresLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
